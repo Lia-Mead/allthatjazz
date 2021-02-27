@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "./Axios";
 
-export default function AddVenue() {
-    console.log("i am the Add Venue");
+export default function AddVenue(props) {
+    console.log("props in add venue", props);
     // const inputRef = useRef("");
 
     const [venueName, setVenueName] = useState("");
@@ -22,12 +22,8 @@ export default function AddVenue() {
             .post("/add-venue", formData)
             .then((resp) => {
                 console.log("resp", resp.rows);
-                // props.setProfilePicUrl(resp.data.rows);
-                // props.toggleEditPic(!props.toggleEditPic);
-                // setVenueName(venueName);
-                // setDescription(description);
-                // venuePic && setVenuePic(venuePic);
-                // venuePic != 0;
+                props.togglePopup(!props.newVen);
+
                 setError(false);
             })
             .catch((err) => {
@@ -37,34 +33,41 @@ export default function AddVenue() {
     };
 
     return (
-        <div className="add-venue">
-            <input
-                className="input-file"
-                onChange={(e) => setVenueName(e.target.value)}
-                name="name"
-                type="text"
-                placeholder="Venue Name"
-                autoComplete="off"
-            />
-            <textarea
-                name="description"
-                placeholder="Share your experience at this venue"
-                className="chat-area"
-                onChange={(e) => setDescription(e.target.value)}
-            />
-            <p>Share your venue image</p>
-            <input
-                className="input-file"
-                onChange={(e) => setVenuePic(e.target.files[0])}
-                name="file"
-                type="file"
-                accept="image/*"
-            />
+        <div className="overlay">
+            <div className="add-venue">
+                <img
+                    onClick={props.togglePopup}
+                    className="icon-close"
+                    src="/images/close.svg"
+                />
+                <input
+                    className="input-file"
+                    onChange={(e) => setVenueName(e.target.value)}
+                    name="name"
+                    type="text"
+                    placeholder="Venue Name"
+                    autoComplete="off"
+                />
+                <textarea
+                    name="description"
+                    placeholder="Share your experience at this venue"
+                    className="chat-area"
+                    onChange={(e) => setDescription(e.target.value)}
+                />
+                <p>Share your venue image</p>
+                <input
+                    className="input-file"
+                    onChange={(e) => setVenuePic(e.target.files[0])}
+                    name="file"
+                    type="file"
+                    accept="image/*"
+                />
 
-            <button className="btn upload" onClick={(e) => submitVenue(e)}>
-                Upload
-            </button>
-            {error && <p>Oops something went wrong.</p>}
+                <button className="btn upload" onClick={(e) => submitVenue(e)}>
+                    Upload
+                </button>
+                {error && <p>Oops something went wrong.</p>}
+            </div>
         </div>
     );
 }

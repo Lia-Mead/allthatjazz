@@ -191,10 +191,10 @@ nav ul li a {
     right: -600px;
     width: 600px;
     height: 370px;
-    -webkit-animation: slide 0.5s forwards;
-    -webkit-animation-delay: 2s;
-    animation: slide 0.5s forwards;
-    animation-delay: 2s;
+    -webkit-animation: slide 0.3s forwards;
+    -webkit-animation-delay: 0.3s;
+    animation: slide 0.3s forwards;
+    animation-delay: 0.3s;
 }
 /* .close {
     transition: transform 2s;
@@ -285,6 +285,21 @@ nav ul li a {
     justify-content: center;
     flex-direction: column;
     margin: 20px;
+    width: 600px;
+    height: 600px;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.overlay {
+    height: calc(100vh - 80px);
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    z-index: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 textarea {
@@ -392,12 +407,6 @@ input:-webkit-autofill {
     margin: 0 auto;
 }
 
-.spinner-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .btn {
     min-width: 300px;
     border-radius: 3px;
@@ -412,6 +421,12 @@ input:-webkit-autofill {
     color: black;
     background-color: white;
     font-weight: 700;
+}
+
+.btn.edit {
+    border: none;
+    border-bottom: 3px solid #000000;
+    background-color: transparent;
 }
 
 .btn:hover {
@@ -529,6 +544,8 @@ footer {
     align-items: flex-start;
     overflow: hidden;
     z-index: 100;
+
+    /* right: -600px; */
 }
 
 .zi {
@@ -596,6 +613,15 @@ footer {
     display: flex;
     margin: 20px 0;
     max-height: 50px;
+}
+
+.icon-close {
+    max-height: 50px;
+    justify-self: flex-start;
+    align-self: flex-end;
+    top: -80px;
+    position: relative;
+    cursor: pointer;
 }
 
 .friends-con:last-child {

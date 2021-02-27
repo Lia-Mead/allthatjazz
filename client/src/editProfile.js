@@ -32,7 +32,7 @@ export default function EditProfile(props) {
 
     return (
         <>
-            <button onClick={() => props.toggleEdit()} className="btn">
+            <button onClick={() => props.toggleEdit()} className="btn edit">
                 Edit Account
             </button>
             {props.edit && (

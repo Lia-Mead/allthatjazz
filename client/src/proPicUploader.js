@@ -29,7 +29,7 @@ export default function ProPicUploader(props) {
     return (
         // console.log("this.props in uploader", this.props);
         <div className="uploader">
-            <button onClick={() => props.toggleEditPic()} className="btn">
+            <button onClick={() => props.toggleEditPic()} className="btn edit">
                 Edit Picture
             </button>
 
