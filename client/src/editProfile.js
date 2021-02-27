@@ -2,56 +2,26 @@ import { useState } from "react";
 import axios from "./Axios";
 
 export default function EditProfile(props) {
-    const [edit, setEdit] = useState(false);
+    // console.log("props in edit pro", props);
+    // const [edit, setEdit] = useState(false);
 
     let [first, setFirst] = useState("");
     let [last, setLast] = useState("");
-    let [pic, setPic] = useState("");
     let [pass, setPass] = useState("");
     let [email, setEmail] = useState("");
     const [error, setError] = useState(false);
-    // const [isEditing, setEditing] = useState(false);
-
-    const toggleEdit = () => {
-        setEdit(!edit);
-    };
 
     const editProfile = (e) => {
         e.preventDefault();
-        console.log("first: ", first.length);
-        console.log("last: ", last);
-        console.log("email: ", email);
-        console.log("pass: ", pass);
-        // let origFirst = props.first;
         first = first.length == 0 ? props.first : first;
         last = last.length == 0 ? props.last : last;
         email = email == false ? props.email : email;
-        // pass = pass.length == 0 ? props.pass : pass;
-        // last.length == 0 ? last == props.last : last;
-        // email.length == false ? email == props.email : email;
-        // pass.length == 0 ? first == props.first : first;
-
-        // useEffect(() => {
-        //     dispatch(receiveFriendsWannabes());
-        // }, []);
 
         axios
             .post("/edit-profile", { first, email, last, pass })
             .then((res) => {
-                console.log("response: ", res);
-                // first != null && setFirst(res.data.rows.first);
-                // last != null && setLast(res.data.rows.last);
-                // email != null && setEmail(res.data.rows.email);
-                // pass != null && setPass(res.data.rows.password);
-                // setFirst(res.data.rows.first);
-                // setLast(res.data.rows.last);
-                // setEmail(res.data.rows.email);
-                // setPass(res.data.rows.password);
-                // setFirst(first);
-                // setLast(last);
-                // setEmail(email);
-                // setPass(pass);
-                setEdit(!edit);
+                props.updateProfileData(res.data.rows);
+                props.toggleEdit(!props.toggleEdit);
                 setError(false);
             })
             .catch((err) => {
@@ -62,12 +32,12 @@ export default function EditProfile(props) {
 
     return (
         <>
-            <button onClick={() => toggleEdit()} className="btn">
+            <button onClick={() => props.toggleEdit()} className="btn">
                 Edit Account
             </button>
-            {edit && (
+            {props.edit && (
                 <div className="pro-fields">
-                    <h2>Edit Profile</h2>
+                    <h3>Edit Mode</h3>
                     <input
                         onChange={(e) => setFirst(e.target.value)}
                         name="first"

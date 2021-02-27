@@ -43,19 +43,19 @@ exports.upload = (req, res, next) => {
             console.log(err);
         });
 
-    exports.deleteImage = (filename) => {
-        // console.log("filename", filename);
-        s3.deleteObject({
-            Bucket: "liatsbucket",
-            Key: filename.substr(37),
-        })
-            .promise()
-            .then((response) => {
-                console.log("delete successfull:", response);
-                next();
-            })
-            .catch((err) => {
-                console.log("err deleting image:", err);
-            });
-    };
+    // exports.deleteImage = (filename) => {
+    //     // console.log("filename", filename);
+    //     s3.deleteObject({
+    //         Bucket: "liatsbucket",
+    //         Key: filename.substr(37),
+    //     })
+    //         .promise()
+    //         .then((response) => {
+    //             console.log("delete successfull:", response);
+    //             next();
+    //         })
+    //         .catch((err) => {
+    //             console.log("err deleting image:", err);
+    //         });
+    // };
 };

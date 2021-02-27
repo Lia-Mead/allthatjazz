@@ -152,7 +152,7 @@ app.post("/password/reset/start", (req, res) => {
 });
 
 app.post("/password/reset/verify", (req, res) => {
-    console.log("I am the /password/reset/verify route");
+    // console.log("I am the /password/reset/verify route");
     const { code, password } = req.body;
     db.verifyCode(code)
         .then(({ rows }) => {
@@ -227,13 +227,94 @@ app.post("/edit-profile", (req, res) => {
     } else {
         db.insProfUpdateNoPass(req.session.userId, first, last, email)
             .then(({ rows }) => {
-                console.log("display changes without password change");
+                // console.log("display changes without password change");
                 res.json({ success: true, rows: rows });
             })
             .catch((err) => {
                 console.log("error in insProfUpdateWithoutPass", err);
             });
     }
+});
+
+app.post("/profile-pic", uploader.single("file"), s3.upload, (req, res) => {
+    // console.log("I am profile-pic");
+    const { filename } = req.file;
+
+    const fullUrl = config.s3Url + filename;
+
+    if (req.file) {
+        db.insertPic(req.session.userId, fullUrl)
+            .then(({ rows }) => {
+                // console.log("full URL", rows[0].image);
+                res.json({ success: true, rows: rows[0].image });
+            })
+            .catch((err) => {
+                console.log("error in insert ProfilePic", err);
+            });
+    } else {
+        res.json({ success: false });
+    }
+});
+
+app.post("/add-venue", uploader.single("file"), s3.upload, (req, res) => {
+    const { filename } = req.file;
+    const fullUrl = config.s3Url + filename;
+    const { venueName, description } = req.body;
+
+    if (req.file) {
+        db.addVenue(req.session.userId, venueName, description, fullUrl)
+            .then(({ rows }) => {
+                // console.log("full URL", rows[0].image);
+                res.json({ success: true, rows: rows });
+            })
+            .catch((err) => {
+                console.log("error in add venue post route", err);
+                res.json({ success: false });
+            });
+    } else {
+        db.addVenueNoPic(req.session.userId, venueName, description)
+            .then(({ rows }) => {
+                // console.log("full URL", rows[0].image);
+                res.json({ success: true, rows: rows });
+            })
+            .catch((err) => {
+                console.log("error in add venue post route", err);
+                res.json({ success: false });
+            });
+    }
+});
+
+// app.post("/add-venue-pic", uploader.single("file"), s3.upload, (req, res) => {
+//     // console.log("I am profile-pic");
+//     const { filename } = req.file;
+//     const fullUrl = config.s3Url + filename;
+
+//     if (req.file) {
+//         db.insertPic(req.session.userId, fullUrl)
+//             .then(({ rows }) => {
+//                 // console.log("full URL", rows[0].image);
+//                 res.json({ success: true, rows: rows[0].image });
+//             })
+//             .catch((err) => {
+//                 console.log("error in insert ProfilePic", err);
+//             });
+//     } else {
+//         res.json({ success: false });
+//     }
+// });
+
+app.get(`/api-venue/:id`, (req, res) => {
+    const { id } = req.params;
+
+    db.showVenue(id)
+        .then(({ rows }) => {
+            // console.log("show venue");
+            // console.log("rows in showvenue", rows);
+            res.json({ success: true, rows: rows });
+        })
+        .catch((err) => {
+            console.log("error in showVenue", err);
+        });
 });
 
 app.get("/logout", (req, res) => {

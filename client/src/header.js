@@ -44,7 +44,7 @@ export default function Header(props) {
                     {screenSize < 900 || mQuery ? (
                         <img
                             onClick={toggleBurgerMenu}
-                            className="icon"
+                            className="icon burger"
                             src={src}
                         />
                     ) : (

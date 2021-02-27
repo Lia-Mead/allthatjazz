@@ -11,7 +11,7 @@ export default function Welcome() {
                 <div className="intro">
                     <img
                         className="logo"
-                        src="/images/logo-w.svg"
+                        src="/logo-w.svg"
                         alt="all-that-jazz-logo"
                     />
                     <h1>Welcome</h1>

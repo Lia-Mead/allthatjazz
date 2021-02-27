@@ -45,7 +45,7 @@ module.exports.updatePassword = (email, hashedPw) => {
 };
 
 module.exports.getProfile = (id) => {
-    const q = `SELECT id, first, last, pic, email FROM users
+    const q = `SELECT id, first, last, image, email FROM users
     WHERE id = $1`;
     const params = [id];
     return db.query(q, params);
@@ -70,5 +70,41 @@ module.exports.insProfUpdateNoPass = (userId, first, last, email) => {
     SET first = $2, last = $3, email = $4
     WHERE id = $1`;
     const params = [userId, first, last, email];
+    return db.query(q, params);
+};
+
+module.exports.insertPic = (id, profilePic) => {
+    const q = `UPDATE users
+    SET image = $2
+    WHERE id = $1 RETURNING image`;
+    const params = [id, profilePic];
+    return db.query(q, params);
+};
+
+module.exports.insertPic = (id, profilePic) => {
+    const q = `UPDATE users
+    SET image = $2
+    WHERE id = $1 RETURNING image`;
+    const params = [id, profilePic];
+    return db.query(q, params);
+};
+
+module.exports.addVenue = (userId, name, description, image) => {
+    const q = `INSERT INTO venues (user_id, name, description, image)
+    VALUES ($1, $2, $3, $4) RETURNING *`;
+    const params = [userId, name, description, image];
+    return db.query(q, params);
+};
+
+module.exports.addVenueNoPic = (userId, name, description) => {
+    const q = `INSERT INTO venues (user_id, name, description)
+    VALUES ($1, $2, $3) RETURNING *`;
+    const params = [userId, name, description];
+    return db.query(q, params);
+};
+
+module.exports.showVenue = (id) => {
+    const q = `SELECT * FROM venues WHERE id = $1`;
+    const params = [id];
     return db.query(q, params);
 };

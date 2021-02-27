@@ -1,20 +1,22 @@
-import { useState, useEffect } from "react";
-import axios from "./Axios";
-import ProfilePic from "./profilePic";
+import { useState } from "react";
+// import axios from "./Axios";
 import EditProfile from "./editProfile";
+import ProPicUploader from "./proPicUploader";
 
 export default function Profile(props) {
-    console.log("props in profile", props);
-    // const [edit, setEdit] = useState(false);
+    // console.log("props in profile", props);
 
-    // const [id, setId] = useState("");
-    // let [first, setFirst] = useState("");
-    // let [last, setLast] = useState("");
-    // let [pic, setPic] = useState("");
-    // let [pass, setPass] = useState("");
-    // let [email, setEmail] = useState("");
     const [edit, setEdit] = useState(false);
     const [error, setError] = useState(false);
+    const [editPic, setEditPic] = useState(false);
+
+    const toggleEdit = () => {
+        setEdit(!edit);
+    };
+
+    const toggleEditPic = () => {
+        setEditPic(!editPic);
+    };
 
     return (
         <>
@@ -26,6 +28,7 @@ export default function Profile(props) {
                         {props.first} {props.last}
                     </span>
                 </h1>
+                <p className="handwrite">and all that jazz</p>
                 <img
                     className="pro-pic"
                     src={props.pic || "/images/avatar.jpg"}
@@ -36,8 +39,16 @@ export default function Profile(props) {
                 first={props.first}
                 last={props.last}
                 email={props.email}
-                toggleEdit={props.toggleEdit}
                 editProfile={props.editProfile}
+                updateProfileData={props.updateProfileData}
+                edit={edit}
+                toggleEdit={toggleEdit}
+            />
+
+            <ProPicUploader
+                toggleEditPic={toggleEditPic}
+                editPic={editPic}
+                setProfilePicUrl={props.setProfilePicUrl}
             />
         </>
     );
