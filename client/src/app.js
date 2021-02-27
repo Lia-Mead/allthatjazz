@@ -16,11 +16,23 @@ export default function App() {
     const [email, setEmail] = useState("");
     const [error, setError] = useState(false);
 
+    const [venId, setVenId] = useState("");
+    const [venName, setVenName] = useState("");
+    const [venDescription, setVenDescription] = useState("");
+    const [lat, setLat] = useState("");
+    const [lng, setLng] = useState("");
+
     const updateProfileData = (info) => {
         // console.log(info);
         setFirst(info.first);
         setLast(info.last);
         setEmail(info.email);
+    };
+
+    const updateNewVen = (info) => {
+        console.log(info);
+        setLat(info.lat);
+        setLng(info.lng);
     };
 
     const setProfilePicUrl = (image) => {
@@ -41,8 +53,27 @@ export default function App() {
                 setError(false);
             })
             .catch((err) => {
-                console.log("error in POST use effect api/user", err);
+                console.log("error in get use effect api/user", err);
             });
+
+        axios
+            .get("/api/all-venues")
+            .then((resp) => {
+                console.log("axios all venues", resp);
+                console.log("lat", resp.data.rows.name);
+
+                setVenId(resp.data.rows[0].id);
+                setVenName(resp.data.rows[0].name);
+                setVenDescription(resp.data.rows[0].description);
+                setLat(resp.data.rows[0].lat);
+                setLng(resp.data.rows[0].lng);
+                setError(false);
+            })
+            .catch((err) => {
+                console.log("error in get use effect api/all-venues", err);
+            });
+
+        // create another axios
     });
 
     return (
@@ -63,6 +94,7 @@ export default function App() {
                                 pic={pic}
                                 updateProfileData={updateProfileData}
                                 setProfilePicUrl={setProfilePicUrl}
+                                updateNewVen={updateNewVen}
                             />
                         )}
                     />

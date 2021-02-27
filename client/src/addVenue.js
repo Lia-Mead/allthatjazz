@@ -3,6 +3,7 @@ import axios from "./Axios";
 
 export default function AddVenue(props) {
     console.log("props in add venue", props);
+    console.log("pinLocation", props.pinLocation);
     // const inputRef = useRef("");
 
     const [venueName, setVenueName] = useState("");
@@ -17,13 +18,19 @@ export default function AddVenue(props) {
         formData.append("venueName", venueName);
         formData.append("description", description);
         formData.append("file", venuePic);
+        formData.append("lat", props.pinLocation.lat);
+        formData.append("lng", props.pinLocation.lng);
 
         axios
             .post("/add-venue", formData)
-            .then((resp) => {
-                console.log("resp", resp.rows);
-                props.togglePopup(!props.newVen);
+            .then((res) => {
+                // console.log("resp in add-venue axios POST", res.data.rows);
+                console.log("address: ", res.data.rows[0].address);
+                console.log("lat: ", res.data.rows[0].lat);
+                console.log("lng: ", res.data.rows[0].lng);
+                // props.updateNewVen(res.data.rows[0].address);
 
+                props.togglePopup(!props.newVen);
                 setError(false);
             })
             .catch((err) => {

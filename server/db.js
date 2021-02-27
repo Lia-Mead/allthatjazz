@@ -89,17 +89,17 @@ module.exports.insertPic = (id, profilePic) => {
     return db.query(q, params);
 };
 
-module.exports.addVenue = (userId, name, description, image) => {
-    const q = `INSERT INTO venues (user_id, name, description, image)
-    VALUES ($1, $2, $3, $4) RETURNING *`;
-    const params = [userId, name, description, image];
+module.exports.addVenue = (userId, name, description, image, lat, lng) => {
+    const q = `INSERT INTO venues (user_id, name, description, image, lat, lng)
+    VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
+    const params = [userId, name, description, image, lat, lng];
     return db.query(q, params);
 };
 
-module.exports.addVenueNoPic = (userId, name, description) => {
-    const q = `INSERT INTO venues (user_id, name, description)
-    VALUES ($1, $2, $3) RETURNING *`;
-    const params = [userId, name, description];
+module.exports.addVenueNoPic = (userId, name, description, lat, lng) => {
+    const q = `INSERT INTO venues (user_id, name, description, lat, lng)
+    VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+    const params = [userId, name, description, lat, lng];
     return db.query(q, params);
 };
 
@@ -107,4 +107,9 @@ module.exports.showVenue = (id) => {
     const q = `SELECT * FROM venues WHERE id = $1`;
     const params = [id];
     return db.query(q, params);
+};
+
+module.exports.showAllVenues = () => {
+    const q = `SELECT * FROM venues`;
+    return db.query(q);
 };

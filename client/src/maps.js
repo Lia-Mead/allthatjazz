@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import axios from "./Axios";
 
 import React from "react";
@@ -17,61 +17,49 @@ function Maps() {
         googleMapsApiKey: apiKey,
     });
 
-    const [lat, setLat] = useState(0);
-    const [lng, setLng] = useState(0);
     const [location, setLocation] = useState(0);
+    const [pinLocation, setPinLocation] = useState([]);
     const [userLat, setUserLat] = useState(0);
     const [userLng, setUserLng] = useState(0);
-    const [pinLocation, setPinLocation] = useState({});
-    const [newLocation, setNewLocation] = useState({});
+    // const [newLocation, setNewLocation] = useState({});
     const [markers, setMarkers] = useState(false);
-    const [createdLoc, setCreatedLoc] = useState(false);
+    // const [createdLoc, setCreatedLoc] = useState(false);
 
     const [map, setMap] = React.useState(null);
 
-    const onLoad = React.useCallback(function callback(map) {
-        const bounds = new window.google.maps.LatLngBounds();
-        map.fitBounds(bounds);
-        setMap(map);
+    const mapRef = useRef();
+    const onMapLoad = useCallback((map) => {
+        mapRef.current = map;
     }, []);
 
-    const onUnmount = React.useCallback(function callback(map) {
-        setMap(null);
+    const onMapMount = useCallback((map) => {
+        mapRef.current = map;
     }, []);
+
+    // const onLoad = React.useCallback(function callback(map) {
+    //     const bounds = new window.google.maps.LatLngBounds();
+    //     map.fitBounds(bounds);
+    //     setMap(map);
+    // }, []);
+
+    // const onUnmount = React.useCallback(function callback(map) {
+    //     setMap(null);
+    // }, []);
 
     const [newVen, setNewVen] = useState(false);
 
     const togglePopup = () => {
-        console.log("new ven: ", newVen);
         setNewVen(!newVen);
     };
 
-    // const addMarker = (e) => {
-    //     console.log("e x", e.Wa.x);
-    //     console.log("e y", e.Wa.y);
-    //     console.log("e y", typeof e.Wa.y);
-    //     console.log("e y", typeof e.Wa.x);
-    //     console.log("pinLocation", pinLocation);
-    //     setPinLocation(newVen);
-    //     setPinLocation({ lat: e.Wa.x, lng: e.Wa.y });
-    // };
+    const addMarker = (e) => {
+        setPinLocation({ lat: e.latLng.lat(), lng: e.latLng.lng() });
+        togglePopup();
+    };
 
     const loadMarker = (marker) => {
         console.log("marker: ", marker);
     };
-
-    let venPos = {
-        lat: lat,
-        lng: lng,
-    };
-    // let venPos = {
-    //     lat: pinLocation.lat,
-    //     lng: pinLocation.lng,
-    // };
-    // const venPos = {
-    //     lat: 37.772,
-    //     lng: -122.214,
-    // };
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -97,36 +85,46 @@ function Maps() {
         lng: userLng,
     };
 
-    function Locate({ panTo }) {
-        return (
-            <button
-                className=""
-                onClick={() => {
-                    panTo({
-                        lat: location.pinLocation.lat,
-                        lng: location.pinLocation.lng,
-                    });
-                }}
-            >
-                <img src="/images/pin.svg" alt="" />
-            </button>
-        );
-    }
+    // function Locate({ panTo }) {
+    //     return (
+    //         <button
+    //             className=""
+    //             onClick={() => {
+    //                 panTo({
+    //                     lat: location.pinLocation.lat,
+    //                     lng: location.pinLocation.lng,
+    //                 });
+    //             }}
+    //         >
+    //             <img src="/images/pin.svg" alt="" />
+    //         </button>
+    //     );
+    // }
 
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
             center={userLocation}
-            zoom={20}
-            onLoad={onLoad}
-            onUnmount={onUnmount}
-            // onClick={(e) => addMarker(e)}
-            onClick={() => togglePopup()}
+            zoom={15}
+            onUnmount={onMapMount}
+            onLoad={onMapLoad}
+            onClick={(e) => addMarker(e)}
         >
             {/* Child components, such as markers, info windows, etc. */}
             <>
-                <Marker onLoad={loadMarker} position={venPos} />
-                {newVen && <AddVenue togglePopup={togglePopup} />}
+                <Marker
+                    onLoad={loadMarker}
+                    position={{
+                        lat: parseFloat(pinLocation.lat),
+                        lng: parseFloat(pinLocation.lng),
+                    }}
+                />
+                {newVen && (
+                    <AddVenue
+                        togglePopup={togglePopup}
+                        pinLocation={pinLocation}
+                    />
+                )}
             </>
         </GoogleMap>
     ) : (

@@ -259,10 +259,18 @@ app.post("/profile-pic", uploader.single("file"), s3.upload, (req, res) => {
 app.post("/add-venue", uploader.single("file"), s3.upload, (req, res) => {
     const { filename } = req.file;
     const fullUrl = config.s3Url + filename;
-    const { venueName, description } = req.body;
+    const { venueName, description, lat, lng } = req.body;
+    // const latLng = [lat, lng];
 
     if (req.file) {
-        db.addVenue(req.session.userId, venueName, description, fullUrl)
+        db.addVenue(
+            req.session.userId,
+            venueName,
+            description,
+            fullUrl,
+            lat,
+            lng
+        )
             .then(({ rows }) => {
                 // console.log("full URL", rows[0].image);
                 res.json({ success: true, rows: rows });
@@ -272,7 +280,7 @@ app.post("/add-venue", uploader.single("file"), s3.upload, (req, res) => {
                 res.json({ success: false });
             });
     } else {
-        db.addVenueNoPic(req.session.userId, venueName, description)
+        db.addVenueNoPic(req.session.userId, venueName, description, lat, lng)
             .then(({ rows }) => {
                 // console.log("full URL", rows[0].image);
                 res.json({ success: true, rows: rows });
@@ -307,6 +315,20 @@ app.get(`/api-venue/:id`, (req, res) => {
     const { id } = req.params;
 
     db.showVenue(id)
+        .then(({ rows }) => {
+            // console.log("show venue");
+            // console.log("rows in showvenue", rows);
+            res.json({ success: true, rows: rows });
+        })
+        .catch((err) => {
+            console.log("error in showVenue", err);
+        });
+});
+
+app.get(`/api/all-venues`, (req, res) => {
+    // const { id } = req.params;
+
+    db.showAllVenues()
         .then(({ rows }) => {
             // console.log("show venue");
             // console.log("rows in showvenue", rows);
