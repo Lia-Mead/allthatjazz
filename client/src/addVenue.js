@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import axios from "./Axios";
 
 export default function AddVenue(props) {
-    console.log("props in add venue", props);
-    console.log("pinLocation", props.pinLocation);
+    // console.log("props in add venue", props);
+    // console.log("pinLocation", props.pinLocation);
     // const inputRef = useRef("");
 
     const [venueName, setVenueName] = useState("");
@@ -25,13 +25,15 @@ export default function AddVenue(props) {
             .post("/add-venue", formData)
             .then((res) => {
                 // console.log("resp in add-venue axios POST", res.data.rows);
-                console.log("address: ", res.data.rows[0].address);
-                console.log("lat: ", res.data.rows[0].lat);
-                console.log("lng: ", res.data.rows[0].lng);
-                // props.updateNewVen(res.data.rows[0].address);
+                // console.log("address: ", res.data.rows[0].address);
+                // console.log("lat: ", res.data.rows[0].lat);
+                // console.log("lng: ", res.data.rows[0].lng);
+                // console.log("add-venue rows: ", res.data.rows[0]);
 
-                props.togglePopup(!props.newVen);
+                props.updateNewVen(res.data.rows[0]);
+
                 setError(false);
+                props.togglePopup(!props.newVen);
             })
             .catch((err) => {
                 console.log("error in POST upload profile pic submit", err);
@@ -48,11 +50,11 @@ export default function AddVenue(props) {
                     src="/images/close.svg"
                 />
                 <input
-                    className="input-file"
+                    className="input"
                     onChange={(e) => setVenueName(e.target.value)}
                     name="name"
                     type="text"
-                    placeholder="Venue Name"
+                    placeholder="Insert Venue Name"
                     autoComplete="off"
                 />
                 <textarea

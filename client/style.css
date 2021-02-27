@@ -283,6 +283,7 @@ nav ul li a {
 .add-venue {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     margin: 20px;
     width: 600px;
@@ -443,6 +444,9 @@ input:-webkit-autofill {
 .btn.upload {
     padding: 0;
     margin: 10px;
+    background-color: black;
+    /* color: #f9815b; */
+    color: white;
 }
 
 footer {

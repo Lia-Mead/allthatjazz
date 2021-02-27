@@ -11,7 +11,8 @@ const containerStyle = {
     height: "400px",
 };
 
-function Maps() {
+function Maps(props) {
+    // console.log("props in maps: ", props);
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
         googleMapsApiKey: apiKey,
@@ -85,21 +86,21 @@ function Maps() {
         lng: userLng,
     };
 
-    // function Locate({ panTo }) {
-    //     return (
-    //         <button
-    //             className=""
-    //             onClick={() => {
-    //                 panTo({
-    //                     lat: location.pinLocation.lat,
-    //                     lng: location.pinLocation.lng,
-    //                 });
-    //             }}
-    //         >
-    //             <img src="/images/pin.svg" alt="" />
-    //         </button>
-    //     );
-    // }
+    function Locate({ panTo }) {
+        return (
+            <button
+                className=""
+                onClick={() => {
+                    panTo({
+                        lat: location.pinLocation.lat,
+                        lng: location.pinLocation.lng,
+                    });
+                }}
+            >
+                <img src="/images/pin.svg" alt="" />
+            </button>
+        );
+    }
 
     return isLoaded ? (
         <GoogleMap
@@ -119,10 +120,19 @@ function Maps() {
                         lng: parseFloat(pinLocation.lng),
                     }}
                 />
+
+                <Marker
+                    onLoad={loadMarker}
+                    position={{
+                        lat: parseFloat(52.58811588459525),
+                        lng: parseFloat(13.27429442962495),
+                    }}
+                />
                 {newVen && (
                     <AddVenue
                         togglePopup={togglePopup}
                         pinLocation={pinLocation}
+                        updateNewVen={props.updateNewVen}
                     />
                 )}
             </>

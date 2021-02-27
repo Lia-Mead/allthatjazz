@@ -30,9 +30,12 @@ export default function App() {
     };
 
     const updateNewVen = (info) => {
-        console.log(info);
+        // console.log(info);
         setLat(info.lat);
         setLng(info.lng);
+        setVenId(info.id);
+        setVenName(info.name);
+        setVenDescription(info.description);
     };
 
     const setProfilePicUrl = (image) => {
@@ -59,8 +62,8 @@ export default function App() {
         axios
             .get("/api/all-venues")
             .then((resp) => {
-                console.log("axios all venues", resp);
-                console.log("lat", resp.data.rows.name);
+                // console.log("axios all venues", resp);
+                // console.log("lat", resp.data.rows.name);
 
                 setVenId(resp.data.rows[0].id);
                 setVenName(resp.data.rows[0].name);
@@ -95,6 +98,11 @@ export default function App() {
                                 updateProfileData={updateProfileData}
                                 setProfilePicUrl={setProfilePicUrl}
                                 updateNewVen={updateNewVen}
+                                venId={venId}
+                                venName={venName}
+                                lat={lat}
+                                lng={lng}
+                                venDescription={venDescription}
                             />
                         )}
                     />
