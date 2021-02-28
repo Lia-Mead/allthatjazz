@@ -5,7 +5,7 @@ import NewVenues from "./newVenues";
 import Venue from "./Venue";
 
 import { useSelector, useDispatch } from "react-redux";
-import { showAllVenues } from "./actions";
+import { showAllVenues, addVen } from "./actions";
 
 import React from "react";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";

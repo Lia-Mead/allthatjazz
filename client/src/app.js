@@ -7,7 +7,7 @@ import Maps from "./maps";
 import AddVenue from "./addVenue";
 import AllVenues from "./allVenues";
 // import Venue from "./venue";
-import NewVenues from "./newVenues";
+// import NewVenues from "./newVenues";
 
 export default function App() {
     // console.log("props in app", props);
@@ -27,6 +27,7 @@ export default function App() {
 
     const updateProfileData = (info) => {
         // console.log(info);
+        setId(info.id);
         setFirst(info.first);
         setLast(info.last);
         setEmail(info.email);

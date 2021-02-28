@@ -383,27 +383,27 @@ server.listen(process.env.PORT || 3001, function () {
     console.log("I'm listening.");
 });
 
-io.on("connection", async (socket) => {
-    // // console.log("socket", socket);
-    // const { userId } = socket.request.session;
-    // // const { chat } = req.body;
-    // // console.log("userId connection socket: ", userId);
-    // if (!userId) {
-    //     return socket.disconnect(true);
-    // }
-    // socket.on("chatMessage", async (text) => {
-    //     try {
-    //         await db.addMessage(userId, text);
-    //         const newMessage = await db.showNewMessages();
-    //         io.emit("newMessage", newMessage.rows[0]);
-    //     } catch (err) {
-    //         console.log(err, "error in chatMessage");
-    //     }
-    // });
-    // try {
-    //     const messages = await db.showMessages();
-    //     io.emit("chatMessages", messages.rows.reverse());
-    // } catch (err) {
-    //     console.log(err, "error in chatMessage");
-    // }
-});
+// io.on("connection", async (socket) => {
+// // console.log("socket", socket);
+// const { userId } = socket.request.session;
+// // const { chat } = req.body;
+// // console.log("userId connection socket: ", userId);
+// if (!userId) {
+//     return socket.disconnect(true);
+// }
+// socket.on("chatMessage", async (text) => {
+//     try {
+//         await db.addMessage(userId, text);
+//         const newMessage = await db.showNewMessages();
+//         io.emit("newMessage", newMessage.rows[0]);
+//     } catch (err) {
+//         console.log(err, "error in chatMessage");
+//     }
+// });
+// try {
+//     const messages = await db.showMessages();
+//     io.emit("chatMessages", messages.rows.reverse());
+// } catch (err) {
+//     console.log(err, "error in chatMessage");
+// }
+// });
