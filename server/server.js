@@ -326,8 +326,6 @@ app.get(`/api-venue/:id`, (req, res) => {
 });
 
 app.get(`/api/all-venues`, (req, res) => {
-    // const { id } = req.params;
-
     db.showAllVenues()
         .then(({ rows }) => {
             // console.log("show venue");
@@ -335,7 +333,7 @@ app.get(`/api/all-venues`, (req, res) => {
             res.json({ success: true, rows: rows });
         })
         .catch((err) => {
-            console.log("error in showVenue", err);
+            console.log("error in showVenues", err);
         });
 });
 

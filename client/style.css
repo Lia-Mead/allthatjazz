@@ -22,6 +22,7 @@ body {
     margin: 0px;
     cursor: pointer;
     padding: 12px;
+    /* border: 1px solid ghostwhite; */
     z-index: 300;
 }
 
@@ -31,12 +32,55 @@ body {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    /* border: 1px solid white; */
+}
+
+.ven-con {
+    margin: 20px;
+    padding: 22px;
+    border-bottom: 1px solid black;
+    display: flex;
+}
+
+.ven-icon {
+    width: 35px;
+    cursor: pointer;
+    margin: 35px;
+    align-self: self-start;
+}
+
+.ven-con:first-child {
+    margin-top: 50px;
+}
+
+.ven-pic {
+    width: 600px;
+    height: 370px;
+    border-radius: 11px;
+    margin: 0px;
+    padding: 12px;
+    border: 1px solid black;
+    object-fit: contain;
+}
+
+.ven-pic img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
     border: 1px solid white;
 }
 
-.border-green {
-    border: 5px green solid;
+.ven-text {
+    width: 50%;
+    margin-right: 20px;
+    padding: 12px;
 }
+
+/* .border-green {
+    border: 5px green solid;
+} */
 .border-orange {
     border: 5px orange solid;
 }
@@ -76,6 +120,7 @@ h1 {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-weight: 300;
+    width: 100%;
 }
 
 h2 {
@@ -85,14 +130,7 @@ h2 {
     font-size: 1.5em;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-
-    /* color: #f9815b;
-    text-align: center;
-    margin: 20px 0;
-    font-size: 1.7em;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 300; */
+    text-align: left;
 }
 
 h3 {
@@ -107,9 +145,9 @@ p {
 
 .handwrite {
     font-family: "Niconne", cursive;
-    font-size: 1em;
+    font-size: 1.2em;
+    letter-spacing: 0.1em;
 }
-
 .menu-box {
     display: flex;
     align-items: center;
@@ -117,7 +155,7 @@ p {
 }
 
 .menu {
-    margin: 10px;
+    /* margin: 10px 20px; */
     font-size: 2em;
     color: #f9815b;
     font-weight: 100;
@@ -153,12 +191,12 @@ nav {
 }
 
 nav a {
-    color: black;
+    color: rgb(255, 255, 255);
     margin: 20px;
 }
 
 nav a:hover {
-    color: black;
+    color: rgb(255, 255, 255);
     text-decoration: underline;
 }
 
@@ -174,19 +212,10 @@ nav ul li {
 
 nav ul li a {
     margin: 20px;
-    color: #000000;
+    color: #ffffff;
 }
 
 .slide {
-    /* transition: transform 2s; */
-    /* transform: translateX(-370px); */
-    /* right: -100px; */
-    /* -webkit-animation: slide 0.5s forwards;
-    -webkit-animation-delay: 2s;
-    animation: slide 0.5s forwards;
-    animation-delay: 2s; */
-    /* right: 0; */
-
     position: absolute;
     right: -600px;
     width: 600px;
@@ -196,20 +225,14 @@ nav ul li a {
     animation: slide 0.3s forwards;
     animation-delay: 0.3s;
 }
-/* .close {
-    transition: transform 2s;
-    transform: translateX(370px);
-} */
 
 .active,
 .active:hover {
     color: #f9815b;
     cursor: default;
-    /* text-decoration: underline; */
 }
 
 .active-b {
-    font-weight: bold;
     color: #f9815b !important;
 }
 
@@ -219,7 +242,7 @@ nav ul li a {
 
 .error {
     margin: 20px 0;
-    color: #dc28fb;
+    color: #fc8240;
     text-align: center;
 }
 
@@ -232,7 +255,6 @@ nav ul li a {
 .welcome {
     display: flex;
     justify-content: center;
-    /* height: 100vh; */
 }
 
 .intro {
@@ -282,7 +304,6 @@ nav ul li a {
 
 .add-venue {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     margin: 20px;
@@ -290,6 +311,12 @@ nav ul li a {
     height: 600px;
     background-color: #fff;
     padding: 20px;
+}
+
+.add-venue p {
+    /* color: #f9815b; */
+    font-family: "Niconne", cursive;
+    font-size: 35px;
 }
 
 .overlay {
@@ -322,10 +349,10 @@ textarea:focus {
     outline: none;
 }
 
-.chat-area {
+.text-area {
     margin-top: 30px;
     min-height: auto;
-    height: 100px;
+    height: 140px;
     min-height: 70px;
     max-width: 80%;
     resize: none;
@@ -442,11 +469,14 @@ input:-webkit-autofill {
 }
 
 .btn.upload {
-    padding: 0;
-    margin: 10px;
+    padding: 10px;
     background-color: black;
-    /* color: #f9815b; */
     color: white;
+}
+
+.btn.upload:hover {
+    color: black;
+    background-color: white;
 }
 
 footer {
@@ -535,7 +565,7 @@ footer {
 }
 
 .menu-con {
-    background-color: #e6e6e6;
+    background-color: #000000;
     width: 30%;
     height: 100%;
     position: absolute;
@@ -548,8 +578,6 @@ footer {
     align-items: flex-start;
     overflow: hidden;
     z-index: 100;
-
-    /* right: -600px; */
 }
 
 .zi {
@@ -583,24 +611,15 @@ footer {
     min-height: 89vh;
 }
 
-.friends {
+.container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     min-height: 150px;
-    /* padding: 20px 0 100px; */
-    border-bottom: 4px dotted black;
-    /* border-bottom: 4px dotted #a778b6; */
+    justify-content: center;
+    /* margin: 20px; */
 }
 
-.other-con {
-    background-color: rgb(234 237 241);
-    display: flex;
-    flex-direction: column;
-    padding: 30px 0;
-}
-
-.other-friends {
+/* .other-friends {
     display: grid;
     flex-wrap: wrap;
     min-height: 300px;
@@ -611,7 +630,7 @@ footer {
     grid-auto-rows: min-content;
     grid-auto-flow: row;
     grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-}
+} */
 
 .icons {
     display: flex;
@@ -621,20 +640,16 @@ footer {
 
 .icon-close {
     max-height: 50px;
-    justify-self: flex-start;
+    /* justify-self: flex-start; */
     align-self: flex-end;
-    top: -80px;
-    position: relative;
+    /* top: -80px; */
+    /* position: relative; */
     cursor: pointer;
 }
 
-.friends-con:last-child {
-    border-bottom: none;
+.icon.burger {
+    margin: 0;
 }
-
-/* .friends:last-child {
-    border-bottom: none;
-} */
 
 .venue-pic {
     width: 100%;
@@ -743,8 +758,20 @@ footer {
 
 @media only screen and (max-width: 700px) {
     .uploader {
+        display: flex;
         flex-direction: column;
         margin: 0 auto;
+    }
+
+    .ven-con {
+        display: flex;
+        flex-direction: column;
+    }
+    .ven-pic {
+        width: auto;
+    }
+    .ven-icon {
+        margin: 0;
     }
 
     .nav-con {
@@ -768,6 +795,12 @@ footer {
 
     .profile-pic {
         margin: 10px 0;
+    }
+
+    .pro-pic.small {
+        width: 60px;
+        height: 60px;
+        margin: 10px;
     }
 
     .other-friend-box {
@@ -816,10 +849,6 @@ footer {
 
     p {
         font-size: 0.8em;
-    }
-
-    .bio {
-        width: 80%;
     }
 
     textarea {

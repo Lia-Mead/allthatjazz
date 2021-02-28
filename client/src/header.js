@@ -1,6 +1,6 @@
 import Logo from "./logo";
 import ProfilePic from "./profilePic";
-import MenuCon from "./menuCon";
+import Menu from "./menu";
 // import Menu from "./menu";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -32,7 +32,7 @@ export default function Header(props) {
     };
 
     let src;
-    burgerOpen ? (src = "/images/close.svg") : (src = "/images/burger.svg");
+    burgerOpen ? (src = "/images/close-w.svg") : (src = "/images/burger.svg");
 
     return (
         <>
@@ -57,7 +57,7 @@ export default function Header(props) {
             </header>
 
             {burgerOpen ? (
-                <MenuCon className="" toggleBurgerMenu={toggleBurgerMenu} />
+                <Menu className="" toggleBurgerMenu={toggleBurgerMenu} />
             ) : null}
         </>
     );

@@ -5,6 +5,7 @@ import axios from "./Axios";
 import Profile from "./profile";
 import Maps from "./maps";
 import AddVenue from "./addVenue";
+import AllVenues from "./allVenues";
 import Venue from "./venue";
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
 
     const [venId, setVenId] = useState("");
     const [venName, setVenName] = useState("");
+    const [venImage, setVenImage] = useState("");
     const [venDescription, setVenDescription] = useState("");
     const [lat, setLat] = useState("");
     const [lng, setLng] = useState("");
@@ -67,6 +69,7 @@ export default function App() {
 
                 setVenId(resp.data.rows[0].id);
                 setVenName(resp.data.rows[0].name);
+                setVenImage(resp.data.rows[0].image);
                 setVenDescription(resp.data.rows[0].description);
                 setLat(resp.data.rows[0].lat);
                 setLng(resp.data.rows[0].lng);
@@ -122,6 +125,19 @@ export default function App() {
                         )}
                     />
 
+                    <Route
+                        path="/venues"
+                        render={() => (
+                            <AllVenues
+                                id={venId}
+                                name={venName}
+                                description={venDescription}
+                                image={venImage}
+                                updateNewVen={updateNewVen}
+                            />
+                        )}
+                    />
+
                     <Route path="/upload-venue" render={() => <AddVenue />} />
 
                     <Route
@@ -129,7 +145,7 @@ export default function App() {
                         render={(props) => (
                             <Venue
                                 key={props.match.url}
-                                match={props.match} // must be passed down when we work with match
+                                match={props.match}
                                 history={props.history}
                             />
                         )}

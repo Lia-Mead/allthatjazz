@@ -49,6 +49,7 @@ export default function AddVenue(props) {
                     className="icon-close"
                     src="/images/close.svg"
                 />
+                <h3>Pin your Jazzy Experience</h3>
                 <input
                     className="input"
                     onChange={(e) => setVenueName(e.target.value)}
@@ -60,10 +61,10 @@ export default function AddVenue(props) {
                 <textarea
                     name="description"
                     placeholder="Share your experience at this venue"
-                    className="chat-area"
+                    className="text-area"
                     onChange={(e) => setDescription(e.target.value)}
                 />
-                <p>Share your venue image</p>
+                <p>Insert your venue picture</p>
                 <input
                     className="input-file"
                     onChange={(e) => setVenuePic(e.target.files[0])}

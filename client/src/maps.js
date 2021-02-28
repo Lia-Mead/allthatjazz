@@ -1,5 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import axios from "./Axios";
+// import { Link } from "react-router-dom";
+
+import { useSelector, useDispatch } from "react-redux";
+import { showAllVenues } from "./actions";
 
 import React from "react";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
@@ -13,6 +17,8 @@ const containerStyle = {
 
 function Maps(props) {
     // console.log("props in maps: ", props);
+    const dispatch = useDispatch();
+
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
         googleMapsApiKey: apiKey,
@@ -23,8 +29,9 @@ function Maps(props) {
     const [userLat, setUserLat] = useState(0);
     const [userLng, setUserLng] = useState(0);
     // const [newLocation, setNewLocation] = useState({});
-    const [markers, setMarkers] = useState(false);
-    // const [createdLoc, setCreatedLoc] = useState(false);
+    const [markers, setMarkers] = useState([]);
+
+    const [createdLoc, setCreatedLoc] = useState(false);
 
     const [map, setMap] = React.useState(null);
 
@@ -36,6 +43,13 @@ function Maps(props) {
     const onMapMount = useCallback((map) => {
         mapRef.current = map;
     }, []);
+
+    const all = useSelector(
+        (state) =>
+            state.allVenues && state.allVenues.filter((venue) => venue.id)
+    );
+
+    // console.log("all", all);
 
     // const onLoad = React.useCallback(function callback(map) {
     //     const bounds = new window.google.maps.LatLngBounds();
@@ -54,7 +68,11 @@ function Maps(props) {
     };
 
     const addMarker = (e) => {
-        setPinLocation({ lat: e.latLng.lat(), lng: e.latLng.lng() });
+        setPinLocation({
+            lat: e.latLng.lat(),
+            lng: e.latLng.lng(),
+            // creator: props.id,
+        });
         togglePopup();
     };
 
@@ -81,26 +99,34 @@ function Maps(props) {
         }
     }, []);
 
+    useEffect(() => {
+        dispatch(showAllVenues());
+    }, []);
+
     const userLocation = {
         lat: userLat,
         lng: userLng,
     };
 
-    function Locate({ panTo }) {
-        return (
-            <button
-                className=""
-                onClick={() => {
-                    panTo({
-                        lat: location.pinLocation.lat,
-                        lng: location.pinLocation.lng,
-                    });
-                }}
-            >
-                <img src="/images/pin.svg" alt="" />
-            </button>
-        );
-    }
+    const venPin = (marker) => {
+        setCreatedLoc(marker);
+    };
+
+    // function Locate({ panTo }) {
+    //     return (
+    //         <button
+    //             className=""
+    //             onClick={() => {
+    //                 panTo({
+    //                     lat: location.pinLocation.lat,
+    //                     lng: location.pinLocation.lng,
+    //                 });
+    //             }}
+    //         >
+    //             <img src="/images/pin.svg" alt="" />
+    //         </button>
+    //     );
+    // }
 
     return isLoaded ? (
         <GoogleMap
@@ -128,6 +154,24 @@ function Maps(props) {
                         lng: parseFloat(13.27429442962495),
                     }}
                 />
+                {all &&
+                    all.map((marker) => (
+                        <Marker
+                            key={marker.id}
+                            position={{
+                                lat: parseFloat(marker.lat),
+                                lng: parseFloat(marker.lng),
+                            }}
+                            icon={{
+                                url: "/images/pin.svg",
+                                scaledSize: new window.google.maps.Size(30, 30),
+                                origin: new window.google.maps.Point(0, 0),
+                                anchor: new window.google.maps.Point(15, 15),
+                            }}
+                            onClick={() => venPin(marker)}
+                        />
+                    ))}
+
                 {newVen && (
                     <AddVenue
                         togglePopup={togglePopup}
@@ -166,18 +210,9 @@ function Maps(props) {
 
 export default React.memo(Maps);
 
-//  <Marker onLoad={onLoad} position={position} />;
-
-//    <Marker
-//        {...marker}
-//        onRightClick={() => props.onMarkerRightClick(marker)}
-//    />;
-
-//   ref={(map) => {
-//                 if (map && lat && lng) {
-//                     console.log(bounds);
-//                     const bounds = new google.maps.LatLngBounds({ lat, lng });
-//                     //map.fitBounds(bounds);
-//                     map.panTo({ lat, lng });
-//                 }
-//             }}
+//    icon={{
+//                             url: "/surfspot2.png",
+//                             scaledSize: new window.google.maps.Size(30, 30),
+//                             origin: new window.google.maps.Point(0, 0),
+//                             anchor: new window.google.maps.Point(15, 15),
+//                         }}

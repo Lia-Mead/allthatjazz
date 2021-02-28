@@ -1,10 +1,11 @@
 import { NavLink } from "react-router-dom";
 
-export default function MenuCon({ toggleBurgerMenu }) {
+export default function Menu({ toggleBurgerMenu }) {
     return (
         <nav className="menu-con slide">
             <div className="nav-con">
                 <NavLink
+                    style={{ textDecoration: "underline" }}
                     className="nav-icon"
                     activeClassName="active-b"
                     onClick={toggleBurgerMenu}
@@ -12,7 +13,7 @@ export default function MenuCon({ toggleBurgerMenu }) {
                     to="/"
                 >
                     <img
-                        src="images/home.svg"
+                        src="images/home-w.svg"
                         className="icon"
                         alt="home-icon"
                     />
@@ -26,7 +27,7 @@ export default function MenuCon({ toggleBurgerMenu }) {
                     to="/profile"
                 >
                     <img
-                        src="images/user.svg"
+                        src="images/user-w.svg"
                         className="icon"
                         alt="profile-icon"
                     />
@@ -37,10 +38,10 @@ export default function MenuCon({ toggleBurgerMenu }) {
                     className="nav-icon"
                     activeClassName="active-b"
                     onClick={toggleBurgerMenu}
-                    to="/"
+                    to="/venues"
                 >
                     <img
-                        src="images/pin.svg"
+                        src="images/location-w.svg"
                         className="icon"
                         alt="venues-icon"
                     />
@@ -54,7 +55,7 @@ export default function MenuCon({ toggleBurgerMenu }) {
                     to="/"
                 >
                     <img
-                        src="images/feed.svg"
+                        src="images/feed-w.svg"
                         className="icon"
                         alt="feed-icon"
                     />
@@ -63,7 +64,7 @@ export default function MenuCon({ toggleBurgerMenu }) {
 
                 <a className="nav-icon" href="/logout">
                     <img
-                        src="images/logout.svg"
+                        src="images/logout-w.svg"
                         className="icon"
                         alt="logout-icon"
                     />
