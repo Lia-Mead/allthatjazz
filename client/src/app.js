@@ -140,22 +140,22 @@ export default function App() {
                         )}
                     />
 
-                    <Route
-                        path="/new-vens"
-                        render={() => (
-                            <NewVenues
-                                venId={venId}
-                                venName={venName}
-                                venDescription={venDescription}
-                                venImage={venImage}
-                                updateNewVen={updateNewVen}
-                            />
-                        )}
-                    />
-
                     <Route path="/upload-venue" render={() => <AddVenue />} />
                 </Switch>
             </div>
         </BrowserRouter>
     );
 }
+
+//    <Route
+//        path="/new-vens"
+//        render={() => (
+//            <NewVenues
+//                venId={venId}
+//                venName={venName}
+//                venDescription={venDescription}
+//                venImage={venImage}
+//                updateNewVen={updateNewVen}
+//            />
+//        )}
+//    />;

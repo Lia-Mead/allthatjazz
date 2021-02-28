@@ -33,7 +33,7 @@ function Maps(props) {
     // const [newLocation, setNewLocation] = useState({});
     const [markers, setMarkers] = useState([]);
 
-    const [selected, setSelected] = useState(false);
+    const [selected, setSelected] = useState({});
 
     const [map, setMap] = React.useState(null);
 
@@ -64,13 +64,13 @@ function Maps(props) {
     // }, []);
 
     const [newVen, setNewVen] = useState(false);
-
     const togglePopup = () => {
         setNewVen(!newVen);
     };
 
-    const toggleVenuePin = () => {
-        setSelected(!selected);
+    const [active, setActive] = useState(false);
+    const toggleVen = () => {
+        setActive(!active);
     };
 
     const addMarker = (e) => {
@@ -116,7 +116,18 @@ function Maps(props) {
 
     const venPin = (marker) => {
         console.log("marker: ", marker);
-        setSelected(marker);
+        setSelected({
+            id: marker.id,
+            user_id: marker.user_id,
+            name: marker.name,
+            description: marker.description,
+            img: marker.image,
+            lat: marker.lat,
+            lng: marker.lng,
+            created: marker.created_at,
+        });
+
+        toggleVen();
     };
 
     // function Locate({ panTo }) {
@@ -185,14 +196,36 @@ function Maps(props) {
                             />
                         ))}
 
-                    {selected && <Venue toggleVenuePin={toggleVenuePin} />}
-
                     {newVen && (
                         <AddVenue
                             togglePopup={togglePopup}
                             pinLocation={pinLocation}
                             updateNewVen={props.updateNewVen}
                         />
+                    )}
+
+                    {active && (
+                        <div className="overlay">
+                            <div className="add-venue">
+                                <>
+                                    <img
+                                        onClick={toggleVen}
+                                        className="icon-close"
+                                        src="/images/close.svg"
+                                    />
+                                    <h1>{selected.name}</h1>
+                                    <p>{selected.description}</p>
+
+                                    <img
+                                        className="venue-pic"
+                                        src={
+                                            selected.img ||
+                                            "/images/ven-avatar.jpg"
+                                        }
+                                    />
+                                </>
+                            </div>
+                        </div>
                     )}
                 </>
             </GoogleMap>
