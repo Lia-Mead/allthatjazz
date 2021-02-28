@@ -21,5 +21,12 @@ export function reducer(state = {}, action) {
         };
     }
 
+    if (action.type === "NEW_VEN") {
+        state = {
+            ...state,
+            allVenues: [...state.allVenues, action.newVen],
+        };
+    }
+
     return state;
 }

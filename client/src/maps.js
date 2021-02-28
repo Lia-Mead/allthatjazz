@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import axios from "./Axios";
 // import { Link } from "react-router-dom";
+import NewVenues from "./newVenues";
+import Venue from "./Venue";
 
 import { useSelector, useDispatch } from "react-redux";
 import { showAllVenues } from "./actions";
@@ -24,14 +26,14 @@ function Maps(props) {
         googleMapsApiKey: apiKey,
     });
 
-    const [location, setLocation] = useState(0);
+    // const [location, setLocation] = useState(0);
     const [pinLocation, setPinLocation] = useState([]);
     const [userLat, setUserLat] = useState(0);
     const [userLng, setUserLng] = useState(0);
     // const [newLocation, setNewLocation] = useState({});
     const [markers, setMarkers] = useState([]);
 
-    const [createdLoc, setCreatedLoc] = useState(false);
+    const [selected, setSelected] = useState(false);
 
     const [map, setMap] = React.useState(null);
 
@@ -65,6 +67,10 @@ function Maps(props) {
 
     const togglePopup = () => {
         setNewVen(!newVen);
+    };
+
+    const toggleVenuePin = () => {
+        setSelected(!selected);
     };
 
     const addMarker = (e) => {
@@ -109,7 +115,8 @@ function Maps(props) {
     };
 
     const venPin = (marker) => {
-        setCreatedLoc(marker);
+        console.log("marker: ", marker);
+        setSelected(marker);
     };
 
     // function Locate({ panTo }) {
@@ -129,84 +136,71 @@ function Maps(props) {
     // }
 
     return isLoaded ? (
-        <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={userLocation}
-            zoom={15}
-            onUnmount={onMapMount}
-            onLoad={onMapLoad}
-            onClick={(e) => addMarker(e)}
-        >
-            {/* Child components, such as markers, info windows, etc. */}
-            <>
-                <Marker
-                    onLoad={loadMarker}
-                    position={{
-                        lat: parseFloat(pinLocation.lat),
-                        lng: parseFloat(pinLocation.lng),
-                    }}
-                />
-
-                <Marker
-                    onLoad={loadMarker}
-                    position={{
-                        lat: parseFloat(52.58811588459525),
-                        lng: parseFloat(13.27429442962495),
-                    }}
-                />
-                {all &&
-                    all.map((marker) => (
-                        <Marker
-                            key={marker.id}
-                            position={{
-                                lat: parseFloat(marker.lat),
-                                lng: parseFloat(marker.lng),
-                            }}
-                            icon={{
-                                url: "/images/pin.svg",
-                                scaledSize: new window.google.maps.Size(30, 30),
-                                origin: new window.google.maps.Point(0, 0),
-                                anchor: new window.google.maps.Point(15, 15),
-                            }}
-                            onClick={() => venPin(marker)}
-                        />
-                    ))}
-
-                {newVen && (
-                    <AddVenue
-                        togglePopup={togglePopup}
-                        pinLocation={pinLocation}
-                        updateNewVen={props.updateNewVen}
+        <>
+            <GoogleMap
+                mapContainerStyle={containerStyle}
+                center={userLocation}
+                zoom={15}
+                onUnmount={onMapMount}
+                onLoad={onMapLoad}
+                onClick={(e) => addMarker(e)}
+            >
+                {/* Child components, such as markers, info windows, etc. */}
+                <>
+                    <Marker
+                        onLoad={loadMarker}
+                        position={{
+                            lat: parseFloat(pinLocation.lat),
+                            lng: parseFloat(pinLocation.lng),
+                        }}
+                        icon={{
+                            url: "/images/pin-new.svg",
+                            scaledSize: new window.google.maps.Size(30, 30),
+                            origin: new window.google.maps.Point(0, 0),
+                            anchor: new window.google.maps.Point(15, 15),
+                        }}
                     />
-                )}
-            </>
-        </GoogleMap>
+
+                    {all &&
+                        all.map((marker) => (
+                            <Marker
+                                key={marker.id}
+                                position={{
+                                    lat: parseFloat(marker.lat),
+                                    lng: parseFloat(marker.lng),
+                                }}
+                                icon={{
+                                    url: "/images/pin.svg",
+                                    scaledSize: new window.google.maps.Size(
+                                        30,
+                                        30
+                                    ),
+                                    origin: new window.google.maps.Point(0, 0),
+                                    anchor: new window.google.maps.Point(
+                                        15,
+                                        15
+                                    ),
+                                }}
+                                onClick={() => venPin(marker)}
+                            />
+                        ))}
+
+                    {selected && <Venue toggleVenuePin={toggleVenuePin} />}
+
+                    {newVen && (
+                        <AddVenue
+                            togglePopup={togglePopup}
+                            pinLocation={pinLocation}
+                            updateNewVen={props.updateNewVen}
+                        />
+                    )}
+                </>
+            </GoogleMap>
+        </>
     ) : (
         <></>
     );
 }
-
-// <Locate panTo={pinLocation} />;
-// {
-//     pinLocation && <Marker position={{ lat: lat, lng: lng }} />;
-// }
-// return isLoaded ? (
-//     <GoogleMap
-//         mapContainerStyle={containerStyle}
-//         center={userPos}
-//         zoom={10}
-//         onLoad={onLoad}
-//         onUnmount={onUnmount}
-//     >
-//         {/* Child components, such as markers, info windows, etc. */}
-//         <>
-//             <Marker onLoad={loadMark} venPos={venPos} />
-//         </>
-//     </GoogleMap>
-// ) : (
-//     <></>
-// );
-// }
 
 export default React.memo(Maps);
 
@@ -216,3 +210,13 @@ export default React.memo(Maps);
 //                             origin: new window.google.maps.Point(0, 0),
 //                             anchor: new window.google.maps.Point(15, 15),
 //                         }}
+
+// <Marker
+//     onLoad={loadMarker}
+//     position={{
+//         lat: parseFloat(52.58811588459525),
+//         lng: parseFloat(13.27429442962495),
+//     }}
+// />;
+
+// <NewVenues />;

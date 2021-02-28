@@ -110,6 +110,11 @@ module.exports.showVenue = (id) => {
 };
 
 module.exports.showAllVenues = () => {
-    const q = `SELECT * FROM venues`;
+    const q = `SELECT * FROM venues ORDER BY id DESC`;
+    return db.query(q);
+};
+
+module.exports.threeVens = () => {
+    const q = `SELECT * FROM venues ORDER BY id DESC LIMIT 3`;
     return db.query(q);
 };

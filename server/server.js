@@ -256,60 +256,72 @@ app.post("/profile-pic", uploader.single("file"), s3.upload, (req, res) => {
     }
 });
 
-app.post("/add-venue", uploader.single("file"), s3.upload, (req, res) => {
-    const { filename } = req.file;
-    const fullUrl = config.s3Url + filename;
-    const { venueName, description, lat, lng } = req.body;
-    // const latLng = [lat, lng];
-
-    if (req.file) {
-        db.addVenue(
-            req.session.userId,
-            venueName,
-            description,
-            fullUrl,
-            lat,
-            lng
-        )
-            .then(({ rows }) => {
-                // console.log("full URL", rows[0].image);
-                res.json({ success: true, rows: rows });
-            })
-            .catch((err) => {
-                console.log("error in add venue post route", err);
-                res.json({ success: false });
-            });
-    } else {
-        db.addVenueNoPic(req.session.userId, venueName, description, lat, lng)
-            .then(({ rows }) => {
-                // console.log("full URL", rows[0].image);
-                res.json({ success: true, rows: rows });
-            })
-            .catch((err) => {
-                console.log("error in add venue post route", err);
-                res.json({ success: false });
-            });
-    }
-});
-
-// app.post("/add-venue-pic", uploader.single("file"), s3.upload, (req, res) => {
-//     // console.log("I am profile-pic");
+// app.post("/add-venue", uploader.single("file"), s3.upload, (req, res) => {
 //     const { filename } = req.file;
 //     const fullUrl = config.s3Url + filename;
+//     const { venueName, description, lat, lng } = req.body;
+//     // const latLng = [lat, lng];
 
 //     if (req.file) {
-//         db.insertPic(req.session.userId, fullUrl)
+//         db.addVenue(
+//             req.session.userId,
+//             venueName,
+//             description,
+//             fullUrl,
+//             lat,
+//             lng
+//         )
 //             .then(({ rows }) => {
 //                 // console.log("full URL", rows[0].image);
-//                 res.json({ success: true, rows: rows[0].image });
+//                 res.json({ success: true, rows: rows });
 //             })
 //             .catch((err) => {
-//                 console.log("error in insert ProfilePic", err);
+//                 console.log("error in add venue post route", err);
+//                 res.json({ success: false });
 //             });
 //     } else {
-//         res.json({ success: false });
+//         db.addVenueNoPic(req.session.userId, venueName, description, lat, lng)
+//             .then(({ rows }) => {
+//                 // console.log("full URL", rows[0].image);
+//                 res.json({ success: true, rows: rows });
+//             })
+//             .catch((err) => {
+//                 console.log("error in add venue post route", err);
+//                 res.json({ success: false });
+//             });
 //     }
 // });
+
+app.post("/add-venue", (req, res) => {
+    const { venueName, description, lat, lng } = req.body;
+
+    db.addVenueNoPic(req.session.userId, venueName, description, lat, lng)
+        .then(({ rows }) => {
+            // console.log("full URL", rows[0].image);
+            res.json({ success: true, rows: rows });
+        })
+        .catch((err) => {
+            console.log("error in add venue post route", err);
+            res.json({ success: false });
+        });
+});
+
+app.post("/add-venue-pic", uploader.single("file"), s3.upload, (req, res) => {
+    // console.log("I am profile-pic");
+    const { venueName, description, lat, lng } = req.body;
+
+    const { filename } = req.file;
+    const fullUrl = config.s3Url + filename;
+    db.addVenue(req.session.userId, venueName, description, fullUrl, lat, lng)
+        .then(({ rows }) => {
+            // console.log("full URL", rows[0].image);
+            res.json({ success: true, rows: rows });
+        })
+        .catch((err) => {
+            console.log("error in add venue post route", err);
+            res.json({ success: false });
+        });
+});
 
 app.get(`/api-venue/:id`, (req, res) => {
     const { id } = req.params;
@@ -334,6 +346,17 @@ app.get(`/api/all-venues`, (req, res) => {
         })
         .catch((err) => {
             console.log("error in showVenues", err);
+        });
+});
+
+app.get("/new-venues", (req, res) => {
+    db.threeVens()
+        .then(({ rows }) => {
+            // console.log("rows: ", rows);
+            res.json({ rows: rows });
+        })
+        .catch((err) => {
+            console.log("there was an error in getting last 3 ", err);
         });
 });
 

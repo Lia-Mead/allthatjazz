@@ -1,24 +1,23 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { showAllVenues } from "./actions";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+import Venue from "./venue";
 
 export default function AllVenues() {
     const dispatch = useDispatch();
-
-    // const all = useSelector(
-    //     (state) => state.allVenues && state.allVenues.map((venue) => venue.id)
-    // );
-    // const allv = useSelector((state) => state.allVenues && state.allVenues());
-
-    // console.log("state.allvenues"), state.allvenues;
-
-    // const all = useSelector((state) => state.allvenues);
 
     const all = useSelector(
         (state) =>
             state.allVenues && state.allVenues.filter((venue) => venue.id)
     );
+
+    const [openVen, setOpenVen] = useState(false);
+    // const [pOpen, setPOpen] = useState(false);
+
+    const togglePopup = () => {
+        setOpenVen(!openVen);
+    };
 
     // console.log("all venues", all);
 
@@ -45,10 +44,19 @@ export default function AllVenues() {
                                 />
                                 <div className="ven-text">
                                     <h2>{venue.name}</h2>
+                                    <p className="gray">
+                                        Added on{" "}
+                                        {venue.created_at
+                                            .slice(0, 16)
+                                            .replace("T", " at ")}
+                                    </p>
                                     <p>{venue.description}</p>
                                 </div>
 
-                                <Link to={`/venue/${venue.id}`}>
+                                <Link
+                                    to={`/venues/${venue.id}`}
+                                    onClick={togglePopup}
+                                >
                                     <div className="ven-pic">
                                         <img
                                             src={
@@ -62,6 +70,20 @@ export default function AllVenues() {
                         </div>
                     ))}
             </div>
+
+            {openVen && (
+                <Route
+                    path="/venues/:id"
+                    render={(props) => (
+                        <Venue
+                            key={props.match.url}
+                            match={props.match}
+                            history={props.history}
+                            togglePopup={togglePopup}
+                        />
+                    )}
+                />
+            )}
         </div>
     );
 }

@@ -6,7 +6,8 @@ import Profile from "./profile";
 import Maps from "./maps";
 import AddVenue from "./addVenue";
 import AllVenues from "./allVenues";
-import Venue from "./venue";
+// import Venue from "./venue";
+import NewVenues from "./newVenues";
 
 export default function App() {
     // console.log("props in app", props);
@@ -66,6 +67,7 @@ export default function App() {
             .then((resp) => {
                 // console.log("axios all venues", resp);
                 // console.log("lat", resp.data.rows.name);
+                // console.log("rows in all venues app", resp.data.rows);
 
                 setVenId(resp.data.rows[0].id);
                 setVenName(resp.data.rows[0].name);
@@ -129,27 +131,29 @@ export default function App() {
                         path="/venues"
                         render={() => (
                             <AllVenues
-                                id={venId}
-                                name={venName}
-                                description={venDescription}
-                                image={venImage}
+                                venId={venId}
+                                venName={venName}
+                                venDescription={venDescription}
+                                venImage={venImage}
+                                updateNewVen={updateNewVen}
+                            />
+                        )}
+                    />
+
+                    <Route
+                        path="/new-vens"
+                        render={() => (
+                            <NewVenues
+                                venId={venId}
+                                venName={venName}
+                                venDescription={venDescription}
+                                venImage={venImage}
                                 updateNewVen={updateNewVen}
                             />
                         )}
                     />
 
                     <Route path="/upload-venue" render={() => <AddVenue />} />
-
-                    <Route
-                        path="/venue/:id"
-                        render={(props) => (
-                            <Venue
-                                key={props.match.url}
-                                match={props.match}
-                                history={props.history}
-                            />
-                        )}
-                    />
                 </Switch>
             </div>
         </BrowserRouter>

@@ -10,35 +10,65 @@ export default function AddVenue(props) {
     const [description, setDescription] = useState("");
     const [venuePic, setVenuePic] = useState("");
     const [error, setError] = useState(false);
+    const [errorNoname, setErrorNoname] = useState(false);
+    const [errorPic, setErrorPic] = useState(false);
 
     const submitVenue = (e) => {
         e.preventDefault();
-        let formData = new FormData();
-        // console.log("file in submit", this.state.file);
-        formData.append("venueName", venueName);
-        formData.append("description", description);
-        formData.append("file", venuePic);
-        formData.append("lat", props.pinLocation.lat);
-        formData.append("lng", props.pinLocation.lng);
+        // let formData = new FormData();
+        let formDataPic = new FormData();
+        let lat = props.pinLocation.lat;
+        let lng = props.pinLocation.lng;
 
-        axios
-            .post("/add-venue", formData)
-            .then((res) => {
-                // console.log("resp in add-venue axios POST", res.data.rows);
-                // console.log("address: ", res.data.rows[0].address);
-                // console.log("lat: ", res.data.rows[0].lat);
-                // console.log("lng: ", res.data.rows[0].lng);
-                // console.log("add-venue rows: ", res.data.rows[0]);
+        formDataPic.append("venueName", venueName);
+        formDataPic.append("description", description);
+        formDataPic.append("file", venuePic);
+        formDataPic.append("lat", props.pinLocation.lat);
+        formDataPic.append("lng", props.pinLocation.lng);
 
-                props.updateNewVen(res.data.rows[0]);
+        if (venueName.length == 0) {
+            setErrorNoname(true);
+        } else if (venuePic != 0) {
+            axios
+                .post("/add-venue-pic", formDataPic)
+                .then((res) => {
+                    console.log(
+                        "resp in add-venue-pic axios POST",
+                        res.data.rows
+                    );
 
-                setError(false);
-                props.togglePopup(!props.newVen);
-            })
-            .catch((err) => {
-                console.log("error in POST upload profile pic submit", err);
-                setError(true);
-            });
+                    props.updateNewVen(res.data.rows[0]);
+
+                    setError(false);
+
+                    props.togglePopup(!props.newVen);
+                })
+                .catch((err) => {
+                    console.log(
+                        "error in POST add bar upload venue pic submit",
+                        err
+                    );
+                    setErrorPic(true);
+                    setErrorNoname(false);
+                });
+        } else {
+            axios
+                .post("/add-venue", { venueName, description, lat, lng })
+                .then((res) => {
+                    // console.log(
+                    //     "resp in add-venue no pic axios POST",
+                    //     res.data.rows
+                    // );
+                    props.updateNewVen(res.data.rows[0]);
+
+                    setError(false);
+                    props.togglePopup(!props.newVen);
+                })
+                .catch((err) => {
+                    console.log("error in POST add bar submit", err);
+                    setError(true);
+                });
+        }
     };
 
     return (
@@ -64,7 +94,7 @@ export default function AddVenue(props) {
                     className="text-area"
                     onChange={(e) => setDescription(e.target.value)}
                 />
-                <p>Insert your venue picture</p>
+                <p className="handwrite">Insert your venue picture</p>
                 <input
                     className="input-file"
                     onChange={(e) => setVenuePic(e.target.files[0])}
@@ -76,7 +106,13 @@ export default function AddVenue(props) {
                 <button className="btn upload" onClick={(e) => submitVenue(e)}>
                     Upload
                 </button>
-                {error && <p>Oops something went wrong.</p>}
+                {error && <p className="error">Oops something went wrong.</p>}
+                {errorNoname && (
+                    <p className="error">Please add a venue name.</p>
+                )}
+                {errorPic && (
+                    <p className="error">Your file is too large. Max 2MB</p>
+                )}
             </div>
         </div>
     );
