@@ -118,3 +118,28 @@ module.exports.threeVens = () => {
     const q = `SELECT * FROM venues ORDER BY id DESC LIMIT 3`;
     return db.query(q);
 };
+
+module.exports.addComment = (userId, venue_id, comment) => {
+    const q = `INSERT INTO comments (user_id, venue_id, comment)
+    VALUES ($1, $2, $3) RETURNING *`;
+    const params = [userId, venue_id, comment];
+    return db.query(q, params);
+};
+
+module.exports.showComments = () => {
+    const q = `SELECT comments.id, comments.user_id, comments.venue_id, comments.comment, comments.created_at, users.first, users.last, users.image
+    FROM comments
+    JOIN users
+    ON (user_id = users.id)
+    ORDER BY comments.id DESC`;
+    return db.query(q);
+};
+
+module.exports.showNewComments = () => {
+    const q = `SELECT comments.id, comments.user_id, comments.venue_id, comments.comment, comments.created_at, users.first, users.last, users.image
+    FROM comments
+    JOIN users
+    ON (user_id = users.id)
+    ORDER BY comments.id DESC LIMIT 10`;
+    return db.query(q);
+};

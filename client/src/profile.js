@@ -7,8 +7,8 @@ export default function Profile(props) {
     // console.log("props in profile", props);
 
     const [edit, setEdit] = useState(false);
-    const [error, setError] = useState(false);
     const [editPic, setEditPic] = useState(false);
+    // const [error, setError] = useState(false);
 
     const toggleEdit = () => {
         setEdit(!edit);
@@ -31,7 +31,7 @@ export default function Profile(props) {
                 <p className="handwrite">and all that jazz</p>
                 <img
                     className="pro-pic"
-                    src={props.pic || "/images/avatar.jpg"}
+                    src={props.pic || "/images/avatar.svg"}
                 />
             </div>
 

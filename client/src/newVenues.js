@@ -4,12 +4,18 @@ import { showAllVenues } from "./actions";
 import axios from "./Axios";
 // import { Link } from "react-router-dom";
 
-export default function NewVenues() {
+export default function NewVenues(props) {
     const dispatch = useDispatch();
 
     const all = useSelector(
         (state) =>
             state.allVenues && state.allVenues.filter((venue) => venue.id)
+    );
+
+    const newVens = useSelector(
+        (state) =>
+            state.venues &&
+            state.venues.filter((venue) => venue.venue_id == props.venueId)
     );
 
     // const all = useSelector(
@@ -44,6 +50,32 @@ export default function NewVenues() {
     return (
         <div className="find-people">
             <h3>Check out the new Venues added</h3>
+
+            {newVens &&
+                newVens.map((ven) => (
+                    <div
+                        className={
+                            ven.user_id == props.id ? "comment my" : "comment"
+                        }
+                        key={ven.id}
+                    >
+                        <div className="comment-user">
+                            <img
+                                className="pro-pic small"
+                                src={ven.image || "/images/avatar.svg"}
+                            />
+                            <div className="comment">
+                                <p className="gray">
+                                    {ven.first} {ven.last} on{" "}
+                                    {ven.created_at
+                                        .slice(0, 16)
+                                        .replace("T", " at ")}
+                                </p>
+                                <p>{ven.comment}</p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
         </div>
     );
 }

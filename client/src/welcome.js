@@ -15,7 +15,7 @@ export default function Welcome() {
                         alt="all-that-jazz-logo"
                     />
                     <h1>Welcome</h1>
-                    <h2>We Jazz</h2>
+                    <h2>and all that</h2>
                 </div>
                 <HashRouter>
                     <>

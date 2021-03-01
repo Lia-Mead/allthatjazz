@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Header from "./header";
 import axios from "./Axios";
+import Home from "./home";
+import Header from "./header";
 import Profile from "./profile";
 import Maps from "./maps";
 import AddVenue from "./addVenue";
 import AllVenues from "./allVenues";
 // import Venue from "./venue";
-// import NewVenues from "./newVenues";
+import NewVenues from "./newVenues";
 
 export default function App() {
     // console.log("props in app", props);
@@ -95,6 +96,26 @@ export default function App() {
                         exact
                         path="/"
                         render={() => (
+                            <Home
+                                id={id}
+                                first={first}
+                                last={last}
+                                email={email}
+                                pic={pic}
+                                updateProfileData={updateProfileData}
+                                setProfilePicUrl={setProfilePicUrl}
+                                updateNewVen={updateNewVen}
+                                venId={venId}
+                                venName={venName}
+                                lat={lat}
+                                lng={lng}
+                                venDescription={venDescription}
+                            />
+                        )}
+                    />
+                    <Route
+                        path="/map"
+                        render={() => (
                             <Maps
                                 id={id}
                                 first={first}
@@ -112,7 +133,6 @@ export default function App() {
                             />
                         )}
                     />
-
                     <Route
                         path="/profile"
                         render={() => (
@@ -127,11 +147,22 @@ export default function App() {
                             />
                         )}
                     />
-
                     <Route
                         path="/venues"
                         render={() => (
                             <AllVenues
+                                venId={venId}
+                                venName={venName}
+                                venDescription={venDescription}
+                                venImage={venImage}
+                                updateNewVen={updateNewVen}
+                            />
+                        )}
+                    />
+                    <Route
+                        path="/new-vens"
+                        render={() => (
+                            <NewVenues
                                 venId={venId}
                                 venName={venName}
                                 venDescription={venDescription}
@@ -147,16 +178,3 @@ export default function App() {
         </BrowserRouter>
     );
 }
-
-//    <Route
-//        path="/new-vens"
-//        render={() => (
-//            <NewVenues
-//                venId={venId}
-//                venName={venName}
-//                venDescription={venDescription}
-//                venImage={venImage}
-//                updateNewVen={updateNewVen}
-//            />
-//        )}
-//    />;

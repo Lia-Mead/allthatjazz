@@ -21,3 +21,26 @@ export async function addVen(newVen) {
         console.log("err accepting friend: ", err);
     }
 }
+
+export function sendComment(comment) {
+    return {
+        type: "SEND_COMMENT",
+        comment,
+    };
+}
+
+export function showComments(comments) {
+    // console.log("messages", messages);
+    return {
+        type: "SHOW_MESSAGES",
+        comments,
+    };
+}
+
+export function showNewComments(newComment) {
+    // console.log("newMessage", newMessage);
+    return {
+        type: "NEW_MESSAGE",
+        newComment,
+    };
+}

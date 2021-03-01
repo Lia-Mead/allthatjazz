@@ -153,6 +153,7 @@ p {
 .handwrite {
     font-family: "Niconne", cursive;
     font-size: 1.2em;
+    text-align: center;
     /* letter-spacing: 0.1em; */
 }
 .menu-box {
@@ -287,6 +288,7 @@ nav ul li a {
 
 .gray {
     color: darkgray;
+    font-size: 0.8em;
 }
 
 .logo {
@@ -313,7 +315,22 @@ nav ul li a {
     min-height: 100vh;
 }
 
+.maps {
+    margin: 50px 0;
+}
+
 .add-venue {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+    width: 650px;
+    height: 650px;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.show-venue {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -344,6 +361,15 @@ nav ul li a {
     background-color: #fff;
     padding: 20px;
     border-radius: 11px;
+}
+.venue-box h1 {
+    margin: 0px;
+}
+
+.back-box {
+    display: flex;
+    align-self: end;
+    align-items: center;
 }
 
 .overlay {
@@ -380,20 +406,19 @@ textarea:focus {
 .text-area {
     margin-top: 30px;
     min-height: auto;
-    height: 140px;
+    height: 100px;
     min-height: 70px;
     max-width: 80%;
     resize: none;
 }
 
-.chat-user {
+.comment-user {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
 }
 
-.chat-user > p {
-    color: gray;
-    font-size: 0.8em;
+.comment > p {
+    margin: 5px 10px;
 }
 
 .black {
@@ -578,21 +603,23 @@ footer {
     margin: 20px !important;
 }
 
-.messages-display {
-    height: 730px;
+.comments-display {
+    height: 220px;
     overflow-y: scroll;
     padding: 0 20px;
     min-width: 30%;
 }
 
-.message {
-    margin: 30px 0;
+.comment {
+    /* margin: 30px 0; */
     background-color: white;
     padding: 10px;
     border-radius: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
-.message.my {
+.comment.my {
     background-color: #e6dcf6;
 }
 
@@ -630,13 +657,10 @@ footer {
     padding-bottom: 60px;
 }
 
-.chats {
+.comments {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 85vh;
-    height: calc(100vh - 100px);
-    padding-bottom: 60px;
 }
 
 .profile.high {
@@ -651,19 +675,6 @@ footer {
     /* margin: 20px; */
 }
 
-/* .other-friends {
-    display: grid;
-    flex-wrap: wrap;
-    min-height: 300px;
-    padding: 30px 0 40px;
-    width: 80%;
-    align-self: center;
-    grid-template-rows: min-content;
-    grid-auto-rows: min-content;
-    grid-auto-flow: row;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-} */
-
 .icons {
     display: flex;
     margin: 20px 0;
@@ -672,11 +683,19 @@ footer {
 
 .icon-close {
     max-height: 50px;
-    /* justify-self: flex-start; */
     align-self: flex-end;
-    /* top: -80px; */
-    /* position: relative; */
     cursor: pointer;
+}
+
+.icon.back {
+    align-self: center;
+}
+
+.back {
+    color: #f9815b;
+    cursor: pointer;
+    font-size: 1.3em;
+    margin: 0;
 }
 
 .icon.burger {
@@ -692,6 +711,22 @@ footer {
 }
 
 .venue-pic img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border: 1px solid white;
+}
+
+.popup-pic {
+    width: 100%;
+    height: 35%;
+    border-radius: 11px;
+    object-fit: cover;
+}
+
+.popup-pic img {
     display: inline;
     margin: 0 auto;
     height: 100%;
@@ -891,10 +926,6 @@ footer {
 
     input {
         margin: 0;
-    }
-
-    .chats {
-        padding-bottom: 10px;
     }
 }
 

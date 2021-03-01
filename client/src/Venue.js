@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import axios from "./Axios";
+import Comments from "./comments";
 
 export default function Venue(props) {
     // console.log("props in venue", props);
@@ -31,26 +32,34 @@ export default function Venue(props) {
     }, []);
 
     return (
-        <div className="overlay">
-            <div className="venue-box">
-                {venueId && (
-                    <>
-                        <img
-                            onClick={props.togglePopup}
-                            className="icon-close"
-                            src="/images/close.svg"
-                        />
-                        <h1>{venueName}</h1>
-                        <p>{description}</p>
+        <>
+            <div className="overlay">
+                <div className="venue-box">
+                    {venueId && (
+                        <>
+                            <div
+                                onClick={props.togglePopup}
+                                className="back-box"
+                            >
+                                <img
+                                    className="icon back"
+                                    src="/images/back.svg"
+                                />
+                                <p className="back">Back</p>
+                            </div>
+                            <h1>{venueName}</h1>
+                            <p>{description}</p>
 
-                        <img
-                            className="venue-pic"
-                            src={venuePic || "/images/ven-avatar.jpg"}
-                        />
-                    </>
-                )}
-                {error && <p>Oops something went wrong.</p>}
+                            <img
+                                className="popup-pic"
+                                src={venuePic || "/images/ven-avatar.jpg"}
+                            />
+                            <Comments id={props.id} venueId={venueId} />
+                        </>
+                    )}
+                    {error && <p>Oops something went wrong.</p>}
+                </div>
             </div>
-        </div>
+        </>
     );
 }

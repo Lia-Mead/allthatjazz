@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import axios from "./Axios";
-// import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import NewVenues from "./newVenues";
-import Venue from "./Venue";
+import Venue from "./venue";
 
 import { useSelector, useDispatch } from "react-redux";
-import { showAllVenues, addVen } from "./actions";
+import { showAllVenues } from "./actions";
 
 import React from "react";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
@@ -148,87 +148,112 @@ function Maps(props) {
 
     return isLoaded ? (
         <>
-            <GoogleMap
-                mapContainerStyle={containerStyle}
-                center={userLocation}
-                zoom={15}
-                onUnmount={onMapMount}
-                onLoad={onMapLoad}
-                onClick={(e) => addMarker(e)}
-            >
-                {/* Child components, such as markers, info windows, etc. */}
-                <>
-                    <Marker
-                        onLoad={loadMarker}
-                        position={{
-                            lat: parseFloat(pinLocation.lat),
-                            lng: parseFloat(pinLocation.lng),
-                        }}
-                        icon={{
-                            url: "/images/pin-new.svg",
-                            scaledSize: new window.google.maps.Size(30, 30),
-                            origin: new window.google.maps.Point(0, 0),
-                            anchor: new window.google.maps.Point(15, 15),
-                        }}
-                    />
-
-                    {all &&
-                        all.map((marker) => (
-                            <Marker
-                                key={marker.id}
-                                position={{
-                                    lat: parseFloat(marker.lat),
-                                    lng: parseFloat(marker.lng),
-                                }}
-                                icon={{
-                                    url: "/images/pin.svg",
-                                    scaledSize: new window.google.maps.Size(
-                                        30,
-                                        30
-                                    ),
-                                    origin: new window.google.maps.Point(0, 0),
-                                    anchor: new window.google.maps.Point(
-                                        15,
-                                        15
-                                    ),
-                                }}
-                                onClick={() => venPin(marker)}
-                            />
-                        ))}
-
-                    {newVen && (
-                        <AddVenue
-                            togglePopup={togglePopup}
-                            pinLocation={pinLocation}
-                            updateNewVen={props.updateNewVen}
+            <section className="maps">
+                <GoogleMap
+                    mapContainerStyle={containerStyle}
+                    center={userLocation}
+                    zoom={15}
+                    onUnmount={onMapMount}
+                    onLoad={onMapLoad}
+                    onClick={(e) => addMarker(e)}
+                >
+                    {/* Child components, such as markers, info windows, etc. */}
+                    <>
+                        <Marker
+                            onLoad={loadMarker}
+                            position={{
+                                lat: parseFloat(pinLocation.lat),
+                                lng: parseFloat(pinLocation.lng),
+                            }}
+                            icon={{
+                                url: "/images/pin-new.svg",
+                                scaledSize: new window.google.maps.Size(30, 30),
+                                origin: new window.google.maps.Point(0, 0),
+                                anchor: new window.google.maps.Point(15, 15),
+                            }}
                         />
-                    )}
 
-                    {active && (
-                        <div className="overlay">
-                            <div className="add-venue">
-                                <>
-                                    <img
-                                        onClick={toggleVen}
-                                        className="icon-close"
-                                        src="/images/close.svg"
-                                    />
-                                    <h1>{selected.name}</h1>
-                                    <p>{selected.description}</p>
+                        {all &&
+                            all.map((marker) => (
+                                <Marker
+                                    key={marker.id}
+                                    position={{
+                                        lat: parseFloat(marker.lat),
+                                        lng: parseFloat(marker.lng),
+                                    }}
+                                    icon={{
+                                        url: "/images/pin.svg",
+                                        scaledSize: new window.google.maps.Size(
+                                            30,
+                                            30
+                                        ),
+                                        origin: new window.google.maps.Point(
+                                            0,
+                                            0
+                                        ),
+                                        anchor: new window.google.maps.Point(
+                                            15,
+                                            15
+                                        ),
+                                    }}
+                                    onClick={() => venPin(marker)}
+                                />
+                            ))}
 
-                                    <img
-                                        className="venue-pic"
-                                        src={
-                                            selected.img ||
-                                            "/images/ven-avatar.jpg"
-                                        }
-                                    />
-                                </>
+                        {newVen && (
+                            <AddVenue
+                                togglePopup={togglePopup}
+                                pinLocation={pinLocation}
+                                updateNewVen={props.updateNewVen}
+                            />
+                        )}
+
+                        {active && (
+                            <div className="overlay">
+                                <div className="show-venue">
+                                    <>
+                                        <img
+                                            onClick={toggleVen}
+                                            className="icon-close"
+                                            src="/images/close.svg"
+                                        />
+                                        <h2>{selected.name}</h2>
+                                        <p>{selected.description}</p>
+
+                                        <img
+                                            className="popup-pic"
+                                            src={
+                                                selected.img ||
+                                                "/images/ven-avatar.jpg"
+                                            }
+                                        />
+                                        <Link
+                                            to={`/venues/${selected.id}/venues/${selected.id}`}
+                                            onClick={togglePopup}
+                                        >
+                                            <p>View Venue</p>
+                                        </Link>
+                                    </>
+                                </div>
                             </div>
-                        </div>
-                    )}
-                </>
-            </GoogleMap>
+                        )}
+
+                        {/* {active && (
+                            <Route
+                                path="/venues/:id"
+                                render={(props) => (
+                                    <Venue
+                                        key={props.match.url}
+                                        match={props.match}
+                                        history={props.history}
+                                        togglePopup={togglePopup}
+                                    />
+                                )}
+                            />
+                        )} */}
+                    </>
+                </GoogleMap>
+            </section>
         </>
     ) : (
         <></>

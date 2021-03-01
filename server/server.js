@@ -256,42 +256,6 @@ app.post("/profile-pic", uploader.single("file"), s3.upload, (req, res) => {
     }
 });
 
-// app.post("/add-venue", uploader.single("file"), s3.upload, (req, res) => {
-//     const { filename } = req.file;
-//     const fullUrl = config.s3Url + filename;
-//     const { venueName, description, lat, lng } = req.body;
-//     // const latLng = [lat, lng];
-
-//     if (req.file) {
-//         db.addVenue(
-//             req.session.userId,
-//             venueName,
-//             description,
-//             fullUrl,
-//             lat,
-//             lng
-//         )
-//             .then(({ rows }) => {
-//                 // console.log("full URL", rows[0].image);
-//                 res.json({ success: true, rows: rows });
-//             })
-//             .catch((err) => {
-//                 console.log("error in add venue post route", err);
-//                 res.json({ success: false });
-//             });
-//     } else {
-//         db.addVenueNoPic(req.session.userId, venueName, description, lat, lng)
-//             .then(({ rows }) => {
-//                 // console.log("full URL", rows[0].image);
-//                 res.json({ success: true, rows: rows });
-//             })
-//             .catch((err) => {
-//                 console.log("error in add venue post route", err);
-//                 res.json({ success: false });
-//             });
-//     }
-// });
-
 app.post("/add-venue", (req, res) => {
     const { venueName, description, lat, lng } = req.body;
 
@@ -383,27 +347,27 @@ server.listen(process.env.PORT || 3001, function () {
     console.log("I'm listening.");
 });
 
-// io.on("connection", async (socket) => {
-// // console.log("socket", socket);
-// const { userId } = socket.request.session;
-// // const { chat } = req.body;
-// // console.log("userId connection socket: ", userId);
-// if (!userId) {
-//     return socket.disconnect(true);
-// }
-// socket.on("chatMessage", async (text) => {
-//     try {
-//         await db.addMessage(userId, text);
-//         const newMessage = await db.showNewMessages();
-//         io.emit("newMessage", newMessage.rows[0]);
-//     } catch (err) {
-//         console.log(err, "error in chatMessage");
-//     }
-// });
-// try {
-//     const messages = await db.showMessages();
-//     io.emit("chatMessages", messages.rows.reverse());
-// } catch (err) {
-//     console.log(err, "error in chatMessage");
-// }
-// });
+io.on("connection", async (socket) => {
+    // console.log("socket", socket);
+    const { userId } = socket.request.session;
+    // console.log("userId connection socket: ", userId);
+    if (!userId) {
+        return socket.disconnect(true);
+    }
+    socket.on("sendComment", async (text) => {
+        // console.log("text: ", text);
+        try {
+            await db.addComment(userId, text.venueId, text.text);
+            const showNewComments = await db.showNewComments();
+            io.emit("showNewComments", showNewComments.rows[0]);
+        } catch (err) {
+            console.log(err, "error in sendComment");
+        }
+    });
+    try {
+        const comments = await db.showComments();
+        io.emit("showComments", comments.rows.reverse());
+    } catch (err) {
+        console.log(err, "error in chatMessage");
+    }
+});

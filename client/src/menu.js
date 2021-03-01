@@ -52,7 +52,7 @@ export default function Menu({ toggleBurgerMenu }) {
                     className="nav-icon"
                     activeClassName="active-b"
                     onClick={toggleBurgerMenu}
-                    to="/"
+                    to="/feed"
                 >
                     <img
                         src="images/feed-w.svg"
