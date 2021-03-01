@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "./Axios";
 import Comments from "./comments";
+import Ratings from "./ratings";
 
 export default function Venue(props) {
     // console.log("props in venue", props);
@@ -42,10 +43,9 @@ export default function Venue(props) {
                                 className="icon-close"
                                 src="/images/close.svg"
                             />
-
                             <h1>{venueName}</h1>
                             <p>{description}</p>
-
+                            <Ratings />
                             <img
                                 className="popup-pic ven"
                                 src={venuePic || "/images/ven-avatar.jpg"}

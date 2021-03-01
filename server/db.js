@@ -143,3 +143,33 @@ module.exports.showNewComments = () => {
     ORDER BY comments.id DESC LIMIT 10`;
     return db.query(q);
 };
+
+// module.exports.like = (userId, venueId, value) => {
+//     const q = `INSERT INTO ratings (user_id, venue_id, rate)
+//     VALUES ($1, $2, $3)
+//     UPDATE SET rate = $3 RETURNING *`;
+//     const params = [userId, venueId, value];
+//     return db.query(q, params);
+// };
+
+// module.exports.like = (userId, venueId, value) => {
+//     const q = `INSERT INTO ratings (user_id, venue_id, rate)
+//     VALUES ($1, $2, $3)
+//     ON CONFLICT (user_id, venue_id)
+//     DO UPDATE SET rate = $3 RETURNING *`;
+//     const params = [userId, venueId, value];
+//     return db.query(q, params);
+// };
+
+module.exports.showLikes = (venueId) => {
+    const q = `SELECT * FROM ratings WHERE id=$1`;
+    const params = [venueId];
+    return db.query(q, params);
+};
+
+module.exports.addLike = (userId, venueId, rate) => {
+    const q = `INSERT INTO ratings (user_id, venue_id, rate)
+    VALUES ($1, $2, $3) RETURNING *`;
+    const params = [userId, venueId, rate];
+    return db.query(q, params);
+};

@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import axios from "./Axios";
 import { Link, Route } from "react-router-dom";
-import NewVenues from "./newVenues";
 import Venue from "./venue";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -30,12 +29,10 @@ function Maps(props) {
     const [pinLocation, setPinLocation] = useState([]);
     const [userLat, setUserLat] = useState(0);
     const [userLng, setUserLng] = useState(0);
-    // const [newLocation, setNewLocation] = useState({});
-    const [markers, setMarkers] = useState([]);
-
     const [selected, setSelected] = useState({});
 
-    const [map, setMap] = React.useState(null);
+    // const [markers, setMarkers] = useState([]);
+    // const [map, setMap] = React.useState(null);
 
     const mapRef = useRef();
     const onMapLoad = useCallback((map) => {
@@ -87,6 +84,7 @@ function Maps(props) {
     };
 
     useEffect(() => {
+        console.log("i am use effect");
         if (navigator.geolocation) {
             navigator.geolocation.watchPosition(
                 (position) => {
@@ -101,7 +99,7 @@ function Maps(props) {
                 }
             );
         } else {
-            alert("This browswer doesn't support your location,");
+            alert("This browser doesn't support your location,");
         }
     }, []);
 
@@ -153,8 +151,8 @@ function Maps(props) {
                     mapContainerStyle={containerStyle}
                     center={userLocation}
                     zoom={15}
-                    onUnmount={onMapMount}
                     onLoad={onMapLoad}
+                    onUnmount={onMapMount}
                     onClick={(e) => addMarker(e)}
                 >
                     {/* Child components, such as markers, info windows, etc. */}
@@ -291,3 +289,5 @@ export default React.memo(Maps);
 //          <button className="btn link">Go to Venue</button>
 //      </Link>
 //  </div>;
+
+// onUnmount = { onMapMount };

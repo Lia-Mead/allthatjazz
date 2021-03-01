@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from "react";
-// import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from "./Axios";
-// import { addVen } from "./actions";
+import { addVen } from "./actions";
 
 export default function AddVenue(props) {
     // console.log("props in add venue", props);
     // console.log("pinLocation", props.pinLocation);
     // const inputRef = useRef("");
+    const dispatch = useDispatch();
 
     const [venueName, setVenueName] = useState("");
     const [description, setDescription] = useState("");
@@ -41,6 +42,8 @@ export default function AddVenue(props) {
 
                     props.updateNewVen(res.data.rows[0]);
 
+                    dispatch(addVen(res.data.rows[0]));
+
                     setError(false);
 
                     props.togglePopup(!props.newVen);
@@ -59,9 +62,11 @@ export default function AddVenue(props) {
                 .then((res) => {
                     // console.log(
                     //     "resp in add-venue no pic axios POST",
-                    //     res.data.rows
+                    //     res.data.rows[0]
                     // );
                     props.updateNewVen(res.data.rows[0]);
+
+                    dispatch(addVen(res.data.rows[0]));
 
                     setError(false);
                     props.togglePopup(!props.newVen);

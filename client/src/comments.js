@@ -54,7 +54,7 @@ export default function Comments(props) {
     };
 
     return (
-        <div className="comments bg-img">
+        <div className="comments">
             <p className="handwrite">Spread your love</p>
 
             <div className="comments-display" ref={scrollRef}>

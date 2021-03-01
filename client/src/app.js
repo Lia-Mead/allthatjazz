@@ -4,11 +4,12 @@ import axios from "./Axios";
 import Home from "./home";
 import Header from "./header";
 import Profile from "./profile";
-import Maps from "./maps";
 import AddVenue from "./addVenue";
 import AllVenues from "./allVenues";
 import Venue from "./venue";
-import NewVenues from "./newVenues";
+import Ratings from "./ratings";
+// import Maps from "./maps";
+// import NewVenues from "./newVenues";
 
 export default function App() {
     // console.log("props in app", props);
@@ -36,9 +37,9 @@ export default function App() {
 
     const updateNewVen = (info) => {
         // console.log(info);
+        setVenId(info.id);
         setLat(info.lat);
         setLng(info.lng);
-        setVenId(info.id);
         setVenName(info.name);
         setVenDescription(info.description);
     };
@@ -151,6 +152,19 @@ export default function App() {
                                 history={props.history}
                                 togglePopup={props.togglePopup}
                                 openVen={props.openVen}
+                            />
+                        )}
+                    />
+
+                    <Route
+                        path="/ratings/:id"
+                        render={(props) => (
+                            <Ratings
+                                key={props.match.url}
+                                match={props.match}
+                                history={props.history}
+                                id={id}
+                                venId={venId}
                             />
                         )}
                     />

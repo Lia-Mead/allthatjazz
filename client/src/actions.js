@@ -19,16 +19,12 @@ export async function newThreeVens() {
 }
 
 export async function addVen(newVen) {
-    try {
-        const { data } = await axios.post("/add-venue");
-        console.log(("addVen data: ", data));
-        return {
-            type: "NEW_VEN",
-            newVen,
-        };
-    } catch (err) {
-        console.log("err accepting friend: ", err);
-    }
+    // const { data } = await axios.post("/add-venue");
+    // console.log(("newVen: ", newVen));
+    return {
+        type: "NEW_VEN",
+        newVen,
+    };
 }
 
 export function sendComment(comment) {
@@ -51,5 +47,37 @@ export function showNewComments(newComment) {
     return {
         type: "NEW_MESSAGE",
         newComment,
+    };
+}
+
+// export function like(review) {
+//     console.log("review", review);
+//     return {
+//         type: "NEW_RATE",
+//         review,
+//     };
+// }
+
+export async function addRating(id) {
+    const { data } = await axios.post(`/reviews/${id}`);
+    console.log("data receive rating: ", data.rows);
+    console.log("addRating data: ", data.rows.id);
+    console.log("addRating data: ", id);
+
+    return {
+        type: "ADD_RATING",
+        newReview: id,
+    };
+}
+
+export async function receiveRatings(id) {
+    const { data } = await axios.get(`/reviews/${id}`);
+    console.log("data receive rating: ", data.rows);
+    console.log("addRating data: ", data.rows.id);
+    console.log("addRating data: ", data.rows[0]);
+    console.log("addRating id: ", id);
+    return {
+        type: "SHOW_RATINGS",
+        allReviews: data.rows,
     };
 }

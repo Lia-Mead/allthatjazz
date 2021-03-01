@@ -16,7 +16,7 @@ export function reducer(state = {}, action) {
     if (action.type === "NEW_VEN") {
         state = {
             ...state,
-            allVenues: [...state.allVenues, action.newVen],
+            newVenues: [...state.newVenues, action.newVen],
         };
     }
 
@@ -38,6 +38,20 @@ export function reducer(state = {}, action) {
         state = {
             ...state,
             comments: [...state.comments, action.newComment],
+        };
+    }
+
+    if (action.type === "SHOW_RATINGS") {
+        state = {
+            ...state,
+            allReviews: action.allReviews,
+        };
+    }
+
+    if (action.type === "ADD_RATING") {
+        state = {
+            ...state,
+            allReviews: [...state.allReviews, action.newReview],
         };
     }
 
