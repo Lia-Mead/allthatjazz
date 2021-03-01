@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { newThreeVens } from "./actions";
-import axios from "./Axios";
-// import { Link } from "react-router-dom";
+// import axios from "./Axios";
 
 export default function NewVenues(props) {
     const dispatch = useDispatch();
@@ -56,25 +56,30 @@ export default function NewVenues(props) {
 
     return (
         <div className="cards-container">
-            <h3>Check out the new Venues added</h3>
+            <h2>Check out the new Venues added</h2>
 
             <div className="new-vens">
                 {showNewVens &&
                     showNewVens.map((ven) => (
                         <div key={ven.id}>
                             <div className="card">
+                                <h3>{ven.name}</h3>
                                 <img
                                     className="card-pic"
                                     src={ven.image || "/images/ven-avatar.jpg"}
                                 />
                                 <div className="">
                                     <p className="gray">
-                                        {ven.first} {ven.last} on{" "}
+                                        {props.first} {props.last} on{" "}
                                         {ven.created_at
                                             .slice(0, 16)
                                             .replace("T", " at ")}
                                     </p>
-                                    <p>{ven.comment}</p>
+                                    <Link to={`/venues/${ven.id}`}>
+                                        <button className="btn link">
+                                            Go to Venue
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

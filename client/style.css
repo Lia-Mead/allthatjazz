@@ -4,8 +4,11 @@
 }
 
 body {
-    background-color: ghostwhite;
-    /* background-color: white; */
+    /* background-color: ghostwhite; */
+    background-color: white;
+    /* font-family: "PT Sans", sans-serif; */
+    font-family: "Ubuntu", sans-serif;
+    font-size: 24px;
 }
 
 .pro-pic {
@@ -101,23 +104,15 @@ body {
     border: 5px blue solid;
 }
 
-body {
-    background-color: ghostwhite;
-    /* font-family: "PT Sans", sans-serif; */
-    font-family: "Ubuntu", sans-serif;
-    font-size: 24px;
-}
-
 header {
     display: flex;
     justify-content: space-between;
     flex-flow: wrap;
     background: #fff;
-    background: ghostwhite;
-    /* position: fixed; */
     width: 100%;
     border-bottom: 1px solid black;
     z-index: 2000;
+    /* position: fixed; */
 }
 
 h1 {
@@ -135,10 +130,20 @@ h2 {
     text-align: center;
     margin: 20px 0;
     font-size: 1.5em;
+    letter-spacing: 0.1em;
+    text-align: left;
+    font-weight: 300;
+}
+/* 
+h2 {
+    color: #f9815b;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.5em;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     text-align: left;
-}
+} */
 
 h3 {
     margin: 20px 0;
@@ -154,6 +159,7 @@ p {
     font-family: "Niconne", cursive;
     font-size: 1.2em;
     text-align: center;
+    margin: 20px 0;
     /* letter-spacing: 0.1em; */
 }
 .menu-box {
@@ -316,7 +322,7 @@ nav ul li a {
 }
 
 .maps {
-    margin: 50px 0;
+    margin: 50px 0 0;
 }
 
 .add-venue {
@@ -363,7 +369,7 @@ nav ul li a {
     border-radius: 11px;
 }
 .venue-box h1 {
-    margin: 0px;
+    margin: 0px 0 20px 0px;
 }
 
 .back-box {
@@ -539,6 +545,22 @@ input:-webkit-autofill {
     color: white;
 }
 
+.btn.link {
+    padding: 10px;
+    color: black;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    border-right: 1px solid black;
+}
+
+.btn.link:hover {
+    background-color: black;
+    color: white;
+}
+
 footer {
     height: 40px;
     display: flex;
@@ -611,6 +633,7 @@ footer {
     overflow-y: scroll;
     padding: 0 20px;
     min-width: 30%;
+    /* visibility: hidden; */
 }
 
 .comment {
@@ -644,6 +667,7 @@ footer {
 
 .zi {
     z-index: 300;
+    line-height: 0;
 }
 
 .nav-con {
@@ -673,11 +697,12 @@ footer {
 .cards-container {
     display: flex;
     flex-wrap: wrap;
-    min-height: 150px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /* width: 90%; */
+    padding: 40px 0;
+    /* background-color: black; */
+    /* margin-bottom: 60px; */
 }
 
 .container {
@@ -856,6 +881,7 @@ footer {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    width: 80%;
 }
 
 .card {
@@ -869,6 +895,10 @@ footer {
 }
 
 @media only screen and (max-width: 700px) {
+    .logo {
+        width: 40%;
+        padding: 10px;
+    }
     .uploader {
         /* display: flex;
         flex-direction: column; */
@@ -911,9 +941,10 @@ footer {
     }
 
     .pro-pic.small {
-        width: 60px;
-        height: 60px;
-        margin: 10px;
+        width: 50px;
+        height: 50px;
+        padding: 7px;
+        /* margin: 10px; */
     }
 
     .other-friend-box {

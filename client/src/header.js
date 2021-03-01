@@ -12,7 +12,6 @@ export default function Header(props) {
     const [screenSize, setScreenSize] = useState();
 
     useEffect(() => {
-        // componentDidMount - registers eventlistener, event fired by the browser
         window.addEventListener("resize", updateSize);
         setScreenSize(window.innerWidth);
     });

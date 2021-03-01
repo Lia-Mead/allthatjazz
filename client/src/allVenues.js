@@ -13,7 +13,6 @@ export default function AllVenues() {
     );
 
     const [openVen, setOpenVen] = useState(false);
-    // const [pOpen, setPOpen] = useState(false);
 
     const togglePopup = () => {
         setOpenVen(!openVen);
@@ -70,20 +69,22 @@ export default function AllVenues() {
                         </div>
                     ))}
             </div>
-
-            {openVen && (
-                <Route
-                    path="/venues/:id"
-                    render={(props) => (
-                        <Venue
-                            key={props.match.url}
-                            match={props.match}
-                            history={props.history}
-                            togglePopup={togglePopup}
-                        />
-                    )}
-                />
-            )}
         </div>
     );
 }
+
+// {
+//     openVen && (
+//         <Route
+//             path="/venues/:id"
+//             render={(props) => (
+//                 <Venue
+//                     key={props.match.url}
+//                     match={props.match}
+//                     history={props.history}
+//                     togglePopup={togglePopup}
+//                 />
+//             )}
+//         />
+//     );
+// }

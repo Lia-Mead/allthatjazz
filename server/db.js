@@ -115,7 +115,7 @@ module.exports.showAllVenues = () => {
 };
 
 module.exports.threeVens = () => {
-    const q = `SELECT * FROM venues ORDER BY id DESC LIMIT 4`;
+    const q = `SELECT * FROM venues ORDER BY id DESC LIMIT 3`;
     return db.query(q);
 };
 

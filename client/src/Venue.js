@@ -38,7 +38,7 @@ export default function Venue(props) {
                     {venueId && (
                         <>
                             <img
-                                onClick={props.togglePopup}
+                                onClick={() => props.history.goBack()}
                                 className="icon-close"
                                 src="/images/close.svg"
                             />
@@ -59,8 +59,3 @@ export default function Venue(props) {
         </>
     );
 }
-
-//  <div onClick={props.togglePopup} className="back-box">
-//      <img className="icon back" src="/images/back.svg" />
-//      <p className="back">Back</p>
-//  </div>;

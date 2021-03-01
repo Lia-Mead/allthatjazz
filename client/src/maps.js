@@ -14,7 +14,7 @@ import AddVenue from "./addVenue";
 
 const containerStyle = {
     width: "100vw",
-    height: "400px",
+    height: "500px",
 };
 
 function Maps(props) {
@@ -218,6 +218,7 @@ function Maps(props) {
                                             src="/images/close.svg"
                                         />
                                         <h2>{selected.name}</h2>
+
                                         <p>{selected.description}</p>
 
                                         <img
@@ -228,7 +229,7 @@ function Maps(props) {
                                             }
                                         />
                                         <Link
-                                            to={`/venues/${selected.id}/venues/${selected.id}`}
+                                            to={`/venues/${selected.id}`}
                                             onClick={togglePopup}
                                         >
                                             <button className="btn upload">
@@ -280,3 +281,13 @@ export default React.memo(Maps);
 // />;
 
 // <NewVenues />;
+
+//  <div>
+//      <p className="gray">
+//          {props.first} {props.last} on{" "}
+//          {props.created_at.slice(0, 16).replace("T", " at ")}
+//      </p>
+//      <Link to={`/venues/${selected.id}`}>
+//          <button className="btn link">Go to Venue</button>
+//      </Link>
+//  </div>;

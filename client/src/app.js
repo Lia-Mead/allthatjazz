@@ -7,7 +7,7 @@ import Profile from "./profile";
 import Maps from "./maps";
 import AddVenue from "./addVenue";
 import AllVenues from "./allVenues";
-// import Venue from "./venue";
+import Venue from "./venue";
 import NewVenues from "./newVenues";
 
 export default function App() {
@@ -113,26 +113,7 @@ export default function App() {
                             />
                         )}
                     />
-                    <Route
-                        path="/map"
-                        render={() => (
-                            <Maps
-                                id={id}
-                                first={first}
-                                last={last}
-                                email={email}
-                                pic={pic}
-                                updateProfileData={updateProfileData}
-                                setProfilePicUrl={setProfilePicUrl}
-                                updateNewVen={updateNewVen}
-                                venId={venId}
-                                venName={venName}
-                                lat={lat}
-                                lng={lng}
-                                venDescription={venDescription}
-                            />
-                        )}
-                    />
+
                     <Route
                         path="/account"
                         render={() => (
@@ -148,6 +129,7 @@ export default function App() {
                         )}
                     />
                     <Route
+                        exact
                         path="/venues"
                         render={() => (
                             <AllVenues
@@ -159,15 +141,16 @@ export default function App() {
                             />
                         )}
                     />
+
                     <Route
-                        path="/new-vens"
-                        render={() => (
-                            <NewVenues
-                                venId={venId}
-                                venName={venName}
-                                venDescription={venDescription}
-                                venImage={venImage}
-                                updateNewVen={updateNewVen}
+                        path="/venues/:id"
+                        render={(props) => (
+                            <Venue
+                                key={props.match.url}
+                                match={props.match}
+                                history={props.history}
+                                togglePopup={props.togglePopup}
+                                openVen={props.openVen}
                             />
                         )}
                     />
@@ -178,3 +161,40 @@ export default function App() {
         </BrowserRouter>
     );
 }
+
+//   <Route
+//       path="/map"
+//       render={() => (
+//           <Maps
+//               id={id}
+//               first={first}
+//               last={last}
+//               email={email}
+//               pic={pic}
+//               updateProfileData={updateProfileData}
+//               setProfilePicUrl={setProfilePicUrl}
+//               updateNewVen={updateNewVen}
+//               venId={venId}
+//               venName={venName}
+//               lat={lat}
+//               lng={lng}
+//               venDescription={venDescription}
+//           />
+//       )}
+//   />;
+
+//   <Route
+//       path="/new-vens"
+//       render={() => (
+//           <NewVenues
+//               id={id}
+//               first={first}
+//               last={last}
+//               venId={venId}
+//               venName={venName}
+//               venDescription={venDescription}
+//               venImage={venImage}
+//               updateNewVen={updateNewVen}
+//           />
+//       )}
+//   />;

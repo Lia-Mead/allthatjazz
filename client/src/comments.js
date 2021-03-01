@@ -6,7 +6,7 @@ export default function Comments(props) {
     const inputRef = useRef("");
     let scrollRef = useRef();
 
-    // const [comments, setComments] = useState(false);
+    // const [dispComments, setDispComments] = useState(false);
 
     // const allComments = useSelector((state) => state.comments);
     // console.log("allComments", allComments);

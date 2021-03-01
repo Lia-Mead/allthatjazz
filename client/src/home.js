@@ -27,8 +27,31 @@ export default function Home(props) {
             </h1>
             <p className="handwrite">and all that jazz</p>
 
-            <Maps updateNewVen={props.updateNewVen} />
-            <NewVenues />
+            <Maps
+                id={props.id}
+                first={props.first}
+                last={props.last}
+                email={props.email}
+                pic={props.pic}
+                updateProfileData={props.updateProfileData}
+                setProfilePicUrl={props.setProfilePicUrl}
+                venId={props.venId}
+                venName={props.venName}
+                lat={props.lat}
+                lng={props.lng}
+                venDescription={props.venDescription}
+                updateNewVen={props.updateNewVen}
+            />
+            <NewVenues
+                id={props.id}
+                first={props.first}
+                last={props.last}
+                venId={props.venId}
+                venName={props.venName}
+                venDescription={props.venDescription}
+                venImage={props.venImage}
+                updateNewVen={props.updateNewVen}
+            />
         </>
     );
 }
