@@ -9,6 +9,15 @@ export async function showAllVenues() {
     };
 }
 
+export async function newThreeVens() {
+    const { data } = await axios.get("/new-venues");
+    // console.log("data.rows in axios all venues: ", data.rows);
+    return {
+        type: "NEW_VENUES",
+        newVenues: data.rows,
+    };
+}
+
 export async function addVen(newVen) {
     try {
         const { data } = await axios.post("/add-venue");

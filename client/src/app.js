@@ -134,7 +134,7 @@ export default function App() {
                         )}
                     />
                     <Route
-                        path="/profile"
+                        path="/account"
                         render={() => (
                             <Profile
                                 id={id}

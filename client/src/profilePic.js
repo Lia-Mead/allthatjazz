@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function ProfilePic({ ...props }) {
     return (
-        <Link className="zi" to={"/profile"}>
+        <Link className="zi" to={"/account"}>
             <img
                 src={props.pic || "/images/ven-avatar.jpg"}
                 alt={`${props.first} ${props.last}`}

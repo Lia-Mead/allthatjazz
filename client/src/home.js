@@ -27,7 +27,7 @@ export default function Home(props) {
             </h1>
             <p className="handwrite">and all that jazz</p>
 
-            <Maps />
+            <Maps updateNewVen={props.updateNewVen} />
             <NewVenues />
         </>
     );

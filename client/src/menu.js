@@ -24,14 +24,14 @@ export default function Menu({ toggleBurgerMenu }) {
                     className="nav-icon"
                     activeClassName="active-b"
                     onClick={toggleBurgerMenu}
-                    to="/profile"
+                    to="/account"
                 >
                     <img
                         src="images/user-w.svg"
                         className="icon"
                         alt="profile-icon"
                     />
-                    Profile
+                    Account
                 </NavLink>
 
                 <NavLink

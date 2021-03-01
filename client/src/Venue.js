@@ -37,21 +37,17 @@ export default function Venue(props) {
                 <div className="venue-box">
                     {venueId && (
                         <>
-                            <div
+                            <img
                                 onClick={props.togglePopup}
-                                className="back-box"
-                            >
-                                <img
-                                    className="icon back"
-                                    src="/images/back.svg"
-                                />
-                                <p className="back">Back</p>
-                            </div>
+                                className="icon-close"
+                                src="/images/close.svg"
+                            />
+
                             <h1>{venueName}</h1>
                             <p>{description}</p>
 
                             <img
-                                className="popup-pic"
+                                className="popup-pic ven"
                                 src={venuePic || "/images/ven-avatar.jpg"}
                             />
                             <Comments id={props.id} venueId={venueId} />
@@ -63,3 +59,8 @@ export default function Venue(props) {
         </>
     );
 }
+
+//  <div onClick={props.togglePopup} className="back-box">
+//      <img className="icon back" src="/images/back.svg" />
+//      <p className="back">Back</p>
+//  </div>;

@@ -1,22 +1,36 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { showAllVenues } from "./actions";
+import { newThreeVens } from "./actions";
 import axios from "./Axios";
 // import { Link } from "react-router-dom";
 
 export default function NewVenues(props) {
     const dispatch = useDispatch();
 
-    const all = useSelector(
+    // const [newV, setNewV] = useState([]);
+
+    // const all = useSelector(
+    //     (state) =>
+    //         state.allVenues && state.allVenues.filter((venue) => venue.id)
+    // );
+
+    // last 3
+
+    // const newVens = useSelector(
+    //     (state) =>
+    //         state.allVenues && state.allVenues.filter((venue) => venue.id)
+    // );
+
+    const showNewVens = useSelector(
         (state) =>
-            state.allVenues && state.allVenues.filter((venue) => venue.id)
+            state.newVenues && state.newVenues.filter((venue) => venue.id)
     );
 
-    const newVens = useSelector(
-        (state) =>
-            state.venues &&
-            state.venues.filter((venue) => venue.venue_id == props.venueId)
-    );
+    // const newVens = useSelector(
+    //     (state) =>
+    //         state.allVenues &&
+    //         state.allVenues.filter((venue) => venue.venue_id == props.venueId)
+    // );
 
     // const all = useSelector(
     //     (state) =>
@@ -34,48 +48,38 @@ export default function NewVenues(props) {
     // const [error, setError] = useState(false);
 
     useEffect(() => {
-        // axios
-        //     .get("/new-venues")
-        //     .then(({ data }) => {
-        //         // console.log("data: ", data);
-        //         setUser(data.rows);
-        //     })
-        //     .catch((err) => {
-        //         console.log("error in axios GET new venues", err);
-        //     });
-
-        dispatch(showAllVenues());
+        dispatch(newThreeVens());
     }, []);
+    // useEffect(() => {
+    //     dispatch(showAllVenues());
+    // }, []);
 
     return (
-        <div className="find-people">
+        <div className="cards-container">
             <h3>Check out the new Venues added</h3>
 
-            {newVens &&
-                newVens.map((ven) => (
-                    <div
-                        className={
-                            ven.user_id == props.id ? "comment my" : "comment"
-                        }
-                        key={ven.id}
-                    >
-                        <div className="comment-user">
-                            <img
-                                className="pro-pic small"
-                                src={ven.image || "/images/avatar.svg"}
-                            />
-                            <div className="comment">
-                                <p className="gray">
-                                    {ven.first} {ven.last} on{" "}
-                                    {ven.created_at
-                                        .slice(0, 16)
-                                        .replace("T", " at ")}
-                                </p>
-                                <p>{ven.comment}</p>
+            <div className="new-vens">
+                {showNewVens &&
+                    showNewVens.map((ven) => (
+                        <div key={ven.id}>
+                            <div className="card">
+                                <img
+                                    className="card-pic"
+                                    src={ven.image || "/images/ven-avatar.jpg"}
+                                />
+                                <div className="">
+                                    <p className="gray">
+                                        {ven.first} {ven.last} on{" "}
+                                        {ven.created_at
+                                            .slice(0, 16)
+                                            .replace("T", " at ")}
+                                    </p>
+                                    <p>{ven.comment}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+            </div>
         </div>
     );
 }

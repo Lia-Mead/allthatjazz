@@ -6,6 +6,13 @@ export function reducer(state = {}, action) {
         };
     }
 
+    if (action.type === "NEW_VENUES") {
+        state = {
+            ...state,
+            newVenues: action.newVenues,
+        };
+    }
+
     if (action.type === "NEW_VEN") {
         state = {
             ...state,

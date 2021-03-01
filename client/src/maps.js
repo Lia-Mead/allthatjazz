@@ -231,7 +231,9 @@ function Maps(props) {
                                             to={`/venues/${selected.id}/venues/${selected.id}`}
                                             onClick={togglePopup}
                                         >
-                                            <p>View Venue</p>
+                                            <button className="btn upload">
+                                                Go to Venue
+                                            </button>
                                         </Link>
                                     </>
                                 </div>
