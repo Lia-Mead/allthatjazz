@@ -39,7 +39,7 @@ export default function MyNewVen(props) {
                                 className="my-ven-pic"
                                 src={ven.image || "/images/ven-avatar.jpg"}
                             />
-                            <div className="">
+                            <div className="my-ven-box">
                                 <p className="gray">
                                     {props.first} {props.last} on{" "}
                                     {ven.created_at
@@ -47,12 +47,14 @@ export default function MyNewVen(props) {
                                         .replace("T", " at ")}
                                 </p>
 
-                                <button
-                                    onClick={() => toggleEditVenue()}
-                                    className="btn edit"
-                                >
-                                    Edit Venue
-                                </button>
+                                <div className="my-ven-box">
+                                    <button
+                                        onClick={() => toggleEditVenue()}
+                                        className="btn edit"
+                                    >
+                                        Edit Venue
+                                    </button>
+                                </div>
 
                                 {editVenue && (
                                     <EditVenue
@@ -65,6 +67,8 @@ export default function MyNewVen(props) {
                                         toggleEditVenue={toggleEditVenue}
                                     />
                                 )}
+
+                                <img className="icon" src="/images/sax.svg" />
                             </div>
                         </div>
                     </div>

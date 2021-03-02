@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import axios from "./Axios";
 import { Link, Route } from "react-router-dom";
-import mapstyle from "./mapstyle";
+// import mapstyle from "./mapstyle";
 // import Venue from "./venue";
 // import PlacesAutoComplete from "./placesAutoComplete";
 
@@ -82,7 +82,7 @@ function Maps(props) {
     };
 
     const loadMarker = (marker) => {
-        console.log("marker: ", marker);
+        // console.log("marker: ", marker);
     };
 
     const userLocation = {
@@ -127,8 +127,9 @@ function Maps(props) {
             );
             // clean up function
             return () => {
-                console.log("running cleanup fn");
+                // console.log("running cleanup fn");
                 // navigator.geolocation.watchPosition();
+                // () = navigator.location.clearWatch(id)
             };
             // () => null, options;
         } else {
@@ -167,7 +168,7 @@ function Maps(props) {
     }, []);
 
     const venPin = (marker) => {
-        console.log("marker: ", marker);
+        // console.log("marker: ", marker);
         setSelected({
             id: marker.id,
             user_id: marker.user_id,

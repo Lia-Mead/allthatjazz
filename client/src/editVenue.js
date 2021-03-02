@@ -4,7 +4,7 @@ import axios from "./Axios";
 import { addVen, myLastV } from "./actions";
 
 export default function EditVenue(props) {
-    console.log("props in edit pro", props);
+    // console.log("props in edit pro", props);
     const dispatch = useDispatch();
 
     let [venueName, setVenueName] = useState("");

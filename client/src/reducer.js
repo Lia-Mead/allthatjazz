@@ -16,7 +16,8 @@ export function reducer(state = {}, action) {
     if (action.type === "NEW_VEN") {
         state = {
             ...state,
-            newVenues: [...state.newVenues, action.newVen],
+            // newVenues: [...state.newVenues, action.newVen],
+            newVenues: [action.newVen, ...state.newVenues].slice(0, 3),
         };
     }
 
