@@ -18,7 +18,7 @@ export default function NewVenues(props) {
 
     return (
         <div className="cards-container">
-            <h2>Check out the new Venues added</h2>
+            <h2>Newly Added</h2>
 
             <div className="new-vens">
                 {showNewVens &&

@@ -136,17 +136,6 @@ h2 {
     font-weight: 300;
 }
 
-/* 
-h2 {
-    color: #f9815b;
-    text-align: center;
-    margin: 20px 0;
-    font-size: 1.5em;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-align: left;
-} */
-
 h3 {
     margin: 20px 0;
     text-align: center;
@@ -154,15 +143,14 @@ h3 {
 
 p {
     margin: 10px;
-    font-size: 24px;
+    font-size: 0.8em;
+    line-height: 1.4em;
 }
-
 .handwrite {
     font-family: "Niconne", cursive;
     font-size: 1.2em;
     text-align: center;
     margin: 20px 0;
-    /* letter-spacing: 0.1em; */
 }
 .menu-box {
     display: flex;
@@ -171,7 +159,6 @@ p {
 }
 
 .menu {
-    /* margin: 10px 20px; */
     font-size: 2em;
     color: #f9815b;
     font-weight: 100;
@@ -569,13 +556,40 @@ input:-webkit-autofill {
 }
 
 footer {
-    height: 40px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    background-color: black;
+    color: white;
+    font-weight: 300;
+    /* margin-top: 30px; */
 }
 
-.foot-note {
+footer > p {
+    font-size: 0.8em;
+    margin-left: 1%;
+}
+footer > div {
+    justify-self: flex-end;
+    align-self: flex-end;
+}
+
+.playlist {
+    justify-self: flex-end;
+    align-self: flex-end;
+    margin: auto;
+}
+
+.map-intro {
+    display: flex;
+    justify-content: center;
+    background-color: #a5a5a5;
+    color: white;
+    /* background-color: #dedede;
+    color: black; */
+}
+
+.map-intro p {
     font-size: 0.8em;
 }
 
@@ -583,44 +597,30 @@ footer {
     width: 100%;
     height: auto;
     object-fit: cover;
-
-    /* background-repeat: no-repeat; */
+    background-repeat: no-repeat;
     background-image: linear-gradient(
-            rgba(255, 255, 255, 0.8),
-            rgba(255, 255, 255, 0.9)
+            rgba(11, 11, 11, 0.8),
+            rgba(67, 67, 67, 0.9)
         ),
-        url(/images/bg.jpg);
+        url("/images/bg.jpg");
     background-position: center center;
     display: block;
     position: relative;
     background-size: cover;
 }
 
-/* Components*/
-
-.connected-con {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: #d4f2ef;
+.feed {
+    min-height: 84vh;
 }
 
-.connected {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.del-link {
+/* .del-link {
     margin: 40px;
     color: black;
     text-decoration: underline;
     font-size: 0.8em;
-}
+} */
 
-.del-box {
+/* .del-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -629,11 +629,7 @@ footer {
     padding: 40px;
     border: 1px black dotted;
     border-radius: 7px;
-}
-
-.connencted > button {
-    margin: 20px !important;
-}
+} */
 
 .comments-display {
     max-height: 220px;
@@ -708,6 +704,10 @@ footer {
     padding: 40px 0;
     /* background-color: black; */
     /* margin-bottom: 60px; */
+}
+
+.cards-container h2 {
+    font-family: "Niconne", cursive;
 }
 
 .container {
@@ -790,7 +790,7 @@ footer {
     object-fit: cover;
 }
 
-.profile-pic {
+/* .profile-pic {
     width: 270px;
     height: 270px;
     border-radius: 50%;
@@ -814,7 +814,7 @@ footer {
     width: 100%;
     object-fit: cover;
     border: 1px solid white;
-}
+} */
 
 .user-search {
     display: flex;
@@ -894,7 +894,6 @@ footer {
     flex-direction: column;
     padding: 20px;
     margin: 20px;
-    /* border: black 1px solid; */
     border-radius: 11px;
     background-color: #f6f5f6;
     transition: 0.4s ease-out;
@@ -917,8 +916,6 @@ footer {
         padding: 10px;
     }
     .uploader {
-        /* display: flex;
-        flex-direction: column; */
         margin: 0 auto;
     }
 
@@ -926,6 +923,7 @@ footer {
         display: flex;
         flex-direction: column;
     }
+
     .ven-pic {
         width: auto;
     }
@@ -961,7 +959,6 @@ footer {
         width: 50px;
         height: 50px;
         padding: 7px;
-        /* margin: 10px; */
     }
 
     .other-friend-box {

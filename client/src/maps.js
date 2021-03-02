@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import axios from "./Axios";
 import { Link, Route } from "react-router-dom";
-import Venue from "./venue";
+// import Venue from "./venue";
+// import PlacesAutoComplete from "./placesAutoComplete";
 
 import { useSelector, useDispatch } from "react-redux";
 import { showAllVenues } from "./actions";
@@ -165,7 +166,7 @@ function Maps(props) {
                             }}
                             icon={{
                                 url: "/images/pin-new.svg",
-                                scaledSize: new window.google.maps.Size(30, 30),
+                                scaledSize: new window.google.maps.Size(40, 40),
                                 origin: new window.google.maps.Point(0, 0),
                                 anchor: new window.google.maps.Point(15, 15),
                             }}
@@ -182,8 +183,8 @@ function Maps(props) {
                                     icon={{
                                         url: "/images/pin.svg",
                                         scaledSize: new window.google.maps.Size(
-                                            30,
-                                            30
+                                            40,
+                                            40
                                         ),
                                         origin: new window.google.maps.Point(
                                             0,
@@ -238,22 +239,12 @@ function Maps(props) {
                                 </div>
                             </div>
                         )}
-
-                        {/* {active && (
-                            <Route
-                                path="/venues/:id"
-                                render={(props) => (
-                                    <Venue
-                                        key={props.match.url}
-                                        match={props.match}
-                                        history={props.history}
-                                        togglePopup={togglePopup}
-                                    />
-                                )}
-                            />
-                        )} */}
                     </>
                 </GoogleMap>
+
+                <div className="map-intro">
+                    <p>Click on the map to add your favorite venue</p>
+                </div>
             </section>
         </>
     ) : (
@@ -291,3 +282,19 @@ export default React.memo(Maps);
 //  </div>;
 
 // onUnmount = { onMapMount };
+
+// {
+//     /* {active && (
+//                         <Route
+//                             path="/venues/:id"
+//                             render={(props) => (
+//                                 <Venue
+//                                     key={props.match.url}
+//                                     match={props.match}
+//                                     history={props.history}
+//                                     togglePopup={togglePopup}
+//                                 />
+//                             )}
+//                         />
+//                     )} */
+// }

@@ -1,11 +1,11 @@
 import React from "react";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useEffect } from "react";
 import axios from "./Axios";
 // import { Link } from "react-router-dom";
 import Maps from "./maps";
 import NewVenues from "./newVenues";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { showAllVenues } from "./actions";
 
 export default function Home(props) {

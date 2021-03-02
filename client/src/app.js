@@ -8,6 +8,8 @@ import AddVenue from "./addVenue";
 import AllVenues from "./allVenues";
 import Venue from "./venue";
 import Ratings from "./ratings";
+import Feed from "./feed";
+import Footer from "./footer";
 // import Maps from "./maps";
 // import NewVenues from "./newVenues";
 
@@ -169,8 +171,18 @@ export default function App() {
                         )}
                     />
 
+                    <Route
+                        exact
+                        path="/feed"
+                        render={(props) => (
+                            <Feed id={props.id} venId={props.venId} />
+                        )}
+                    />
+
                     <Route path="/upload-venue" render={() => <AddVenue />} />
                 </Switch>
+
+                <Footer />
             </div>
         </BrowserRouter>
     );

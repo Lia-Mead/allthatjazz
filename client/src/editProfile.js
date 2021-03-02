@@ -69,7 +69,10 @@ export default function EditProfile(props) {
                         placeholder="Password"
                         autoComplete="off"
                     ></input>
-                    <button className="btn" onClick={(e) => editProfile(e)}>
+                    <button
+                        className="btn upload"
+                        onClick={(e) => editProfile(e)}
+                    >
                         Submit
                     </button>
                 </div>
