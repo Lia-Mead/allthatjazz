@@ -20,6 +20,7 @@ const containerStyle = {
 
 function Maps(props) {
     // console.log("props in maps: ", props);
+    // console.log("id in maps: ", props.id);
     const dispatch = useDispatch();
 
     const { isLoaded } = useJsApiLoader({
@@ -82,7 +83,7 @@ function Maps(props) {
     };
 
     const loadMarker = (marker) => {
-        // console.log("marker: ", marker);
+        console.log("marker: ", marker);
     };
 
     const userLocation = {
@@ -96,25 +97,17 @@ function Maps(props) {
         zoomControl: true,
         enableHighAccuracy: true,
         timeout: 10000,
-        maximumAge: 10000,
+        maximumAge: 60000,
     };
+
+    let watchId;
 
     useEffect(() => {
         // console.log("i am use effect maps");
         // console.log("userLocation", userLocation);
-
         if (navigator.geolocation) {
-            navigator.geolocation.watchPosition(
+            watchId = navigator.geolocation.watchPosition(
                 (position) => {
-                    // console.log("position", position);
-                    // console.log(
-                    //     "position.coords.latitude",
-                    //     position.coords.latitude
-                    // );
-                    // console.log(
-                    //     "position.coords.latitude",
-                    //     position.coords.longitude
-                    // );
                     setUserLat(position.coords.latitude);
                     setUserLng(position.coords.longitude);
                 },
@@ -125,13 +118,10 @@ function Maps(props) {
                     maximumAge: 5000,
                 }
             );
-            // clean up function
             return () => {
                 // console.log("running cleanup fn");
-                // navigator.geolocation.watchPosition();
-                // () = navigator.location.clearWatch(id)
+                navigator.geolocation.clearWatch(watchId);
             };
-            // () => null, options;
         } else {
             alert("This browser doesn't support your location,");
         }

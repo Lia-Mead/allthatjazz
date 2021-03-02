@@ -39,6 +39,7 @@ export default function App() {
 
     const updateVenuePost = (info) => {
         // console.log(info);
+        setId(info.id);
         setVenId(info.venId);
         setVenName(info.venName);
         setVenDescription(info.venDescription);
@@ -46,7 +47,7 @@ export default function App() {
     };
 
     const updateNewVen = (info) => {
-        // console.log(info);
+        console.log("infoin app:", info);
         setVenId(info.id);
         setLat(info.lat);
         setLng(info.lng);
@@ -160,9 +161,11 @@ export default function App() {
                                 key={props.match.url}
                                 match={props.match}
                                 history={props.history}
+                                venId={venId}
                                 togglePopup={props.togglePopup}
                                 openVen={props.openVen}
                                 updateVenuePost={updateVenuePost}
+                                updateNewVen={updateNewVen}
                             />
                         )}
                     />
@@ -196,40 +199,3 @@ export default function App() {
         </BrowserRouter>
     );
 }
-
-//   <Route
-//       path="/map"
-//       render={() => (
-//           <Maps
-//               id={id}
-//               first={first}
-//               last={last}
-//               email={email}
-//               pic={pic}
-//               updateProfileData={updateProfileData}
-//               setProfilePicUrl={setProfilePicUrl}
-//               updateNewVen={updateNewVen}
-//               venId={venId}
-//               venName={venName}
-//               lat={lat}
-//               lng={lng}
-//               venDescription={venDescription}
-//           />
-//       )}
-//   />;
-
-//   <Route
-//       path="/new-vens"
-//       render={() => (
-//           <NewVenues
-//               id={id}
-//               first={first}
-//               last={last}
-//               venId={venId}
-//               venName={venName}
-//               venDescription={venDescription}
-//               venImage={venImage}
-//               updateNewVen={updateNewVen}
-//           />
-//       )}
-//   />;

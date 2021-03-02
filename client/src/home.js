@@ -10,7 +10,8 @@ import { useDispatch } from "react-redux";
 import { showAllVenues } from "./actions";
 
 export default function Home(props) {
-    // console.log("props in maps: ", props);
+    // console.log("props in home: ", props);
+    // console.log("id in home: ", props.id);
     const dispatch = useDispatch();
 
     useEffect(() => {

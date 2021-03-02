@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { myLastV } from "./actions";
 import EditVenue from "./editVenue";
 
 export default function MyNewVen(props) {
+    // console.log("props in mynew ven", props);
     const dispatch = useDispatch();
 
     const showLast = useSelector((state) => state.lastVen);
@@ -58,12 +59,14 @@ export default function MyNewVen(props) {
 
                                 {editVenue && (
                                     <EditVenue
+                                        id={props.id}
+                                        venId={props.venId}
                                         first={props.first}
                                         last={props.last}
                                         lat={props.lat}
                                         lng={props.lng}
-                                        editVenue={props.editVenue}
-                                        updateVenuePost={props.updateVenuePost}
+                                        updateNewVen={props.updateNewVen}
+                                        editVenue={editVenue}
                                         toggleEditVenue={toggleEditVenue}
                                     />
                                 )}

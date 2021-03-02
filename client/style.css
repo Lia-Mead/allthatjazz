@@ -4,9 +4,7 @@
 }
 
 body {
-    /* background-color: ghostwhite; */
     background-color: white;
-    /* font-family: "PT Sans", sans-serif; */
     font-family: "Ubuntu", sans-serif;
     font-size: 24px;
 }
@@ -26,7 +24,6 @@ body {
     margin: 0px;
     cursor: pointer;
     padding: 12px;
-    /* border: 1px solid ghostwhite; */
     z-index: 300;
 }
 
@@ -36,7 +33,6 @@ body {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    /* border: 1px solid white; */
 }
 
 .ven-con {
@@ -82,9 +78,6 @@ body {
     padding: 12px;
 }
 
-/* .border-green {
-    border: 5px green solid;
-} */
 .border-orange {
     border: 5px orange solid;
 }
@@ -112,8 +105,6 @@ header {
     border-bottom: 1px solid white;
     z-index: 2000;
     background: #000;
-    /* background: #fff; */
-    /* position: fixed; */
 }
 
 h1 {
@@ -271,6 +262,9 @@ nav ul li a {
 
 .intro > h1 {
     color: white;
+}
+.intro > h2 {
+    color: #fc8240;
 }
 
 .intro > p {
@@ -437,6 +431,22 @@ textarea:focus {
     align-items: center;
 }
 
+select {
+    width: 350px;
+    color: white;
+    font-size: 1em;
+    padding: 13px 11px;
+    margin: 5px 20px;
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid darkgrey !important;
+}
+
+select:focus,
+select:active {
+    outline: none;
+}
+
 input {
     width: 350px;
     font-size: 1em;
@@ -557,12 +567,15 @@ input:-webkit-autofill {
 
 footer {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
     background-color: black;
     color: white;
     font-weight: 300;
-    /* margin-top: 30px; */
+    /* justify-content: flex-end; */
+}
+
+.footer-note {
+    justify-self: flex-start;
 }
 
 footer > p {
@@ -580,13 +593,27 @@ footer > div {
     margin: auto;
 }
 
+.music-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: flex-end;
+    align-self: flex-end;
+}
+
+.iframe-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: flex-end;
+    align-self: flex-end;
+}
+
 .map-intro {
     display: flex;
     justify-content: center;
     background-color: #a5a5a5;
     color: white;
-    /* background-color: #dedede;
-    color: black; */
 }
 
 .map-intro p {
@@ -612,24 +639,6 @@ footer > div {
 .feed {
     min-height: 84vh;
 }
-
-/* .del-link {
-    margin: 40px;
-    color: black;
-    text-decoration: underline;
-    font-size: 0.8em;
-} */
-
-/* .del-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    background-color: white;
-    padding: 40px;
-    border: 1px black dotted;
-    border-radius: 7px;
-} */
 
 .comments-display {
     max-height: 220px;
@@ -701,7 +710,8 @@ footer > div {
 }
 
 .my-ven-pic {
-    width: auto;
+    width: 80%;
+    /* width: 730px; */
     height: 570px;
     border-radius: 11px;
     margin: 20px auto;
@@ -718,6 +728,19 @@ footer > div {
     min-height: 89vh;
 }
 
+.tweets-con {
+    position: absolute;
+}
+
+.tweets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px 0;
+    margin-bottom: 40px;
+}
 .cards-container {
     display: flex;
     flex-wrap: wrap;
@@ -725,8 +748,7 @@ footer > div {
     align-items: center;
     flex-direction: column;
     padding: 40px 0;
-    /* background-color: black; */
-    /* margin-bottom: 60px; */
+    margin-bottom: 40px;
 }
 
 .cards-container h2 {
@@ -738,7 +760,6 @@ footer > div {
     flex-wrap: wrap;
     min-height: 150px;
     justify-content: center;
-    /* margin: 20px; */
 }
 
 .icons {
@@ -812,32 +833,6 @@ footer > div {
     border-radius: 11px;
     object-fit: cover;
 }
-
-/* .profile-pic {
-    width: 270px;
-    height: 270px;
-    border-radius: 50%;
-    margin: 50px 50px 10px;
-    object-fit: cover;
-}
-
-.profile-pic.small {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    margin: 0px;
-    cursor: pointer;
-    padding: 12px;
-}
-
-.profile-pic img {
-    display: inline;
-    margin: 0 auto;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    border: 1px solid white;
-} */
 
 .user-search {
     display: flex;
@@ -930,10 +925,9 @@ footer > div {
 
 .ratings {
     margin: 20px;
-    /* align-self: flex-end; */
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 900px) {
     .logo {
         width: 40%;
         padding: 10px;
@@ -1040,6 +1034,17 @@ footer > div {
 
     input {
         margin: 0;
+    }
+
+    footer {
+        display: block;
+    }
+
+    .iframe-box {
+        width: 100%;
+    }
+    .music-box {
+        width: 100%;
     }
 }
 

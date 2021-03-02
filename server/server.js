@@ -6,6 +6,15 @@ const io = require("socket.io")(server, {
     origins: "localhost:3000 https://epic-time.herokuapp.com/:*",
 });
 
+// twitter
+// const { promisify } = require("util");
+// let { getToken, getTweets, filterTweets } = require("./twitter");
+// getToken = promisify(getToken);
+// getTweets = promisify(getTweets);
+
+// app.use(express.static("./ticker"));
+// twitter
+
 const compression = require("compression");
 const path = require("path");
 const db = require("./db");
@@ -289,11 +298,19 @@ app.post("/add-venue-pic", uploader.single("file"), s3.upload, (req, res) => {
 
 app.post("/edit-venue-pic", uploader.single("file"), s3.upload, (req, res) => {
     // console.log("I am profile-pic");
-    const { venueName, description, lat, lng } = req.body;
+    const { venId, venueName, description, lat, lng } = req.body;
 
     const { filename } = req.file;
     const fullUrl = config.s3Url + filename;
-    db.addVenue(req.session.userId, venueName, description, fullUrl, lat, lng)
+    db.editVenPic(
+        req.session.userId,
+        venId,
+        venueName,
+        description,
+        fullUrl,
+        lat,
+        lng
+    )
         .then(({ rows }) => {
             // console.log("full URL", rows[0].image);
             res.json({ success: true, rows: rows });
@@ -305,9 +322,9 @@ app.post("/edit-venue-pic", uploader.single("file"), s3.upload, (req, res) => {
 });
 
 app.post("/edit-venue", (req, res) => {
-    const { venueName, description, lat, lng } = req.body;
+    const { venId, venueName, description, lat, lng } = req.body;
 
-    db.addVenueNoPic(req.session.userId, venueName, description, lat, lng)
+    db.editVenNoPic(req.session.userId, venId, venueName, description, lat, lng)
         .then(({ rows }) => {
             // console.log("full URL", rows[0].image);
             res.json({ success: true, rows: rows });
@@ -394,6 +411,23 @@ app.post(`/reviews/:id`, (req, res) => {
             console.log("error in likes", err);
         });
 });
+
+// twitter
+// app.get("/twitts.json", (req, res) => {
+//     getToken()
+//         .then((bearerToken) => {
+//             return Promise.all([
+//                 getTweets(bearerToken, "Oprah"),
+//                 getTweets(bearerToken, "boilerroomtv"),
+//                 getTweets(bearerToken, "sia"),
+//             ]);
+//         })
+//         .then((tweets) => {
+//             const filteredTweets = filterTweets(tweets);
+//             res.json(filteredTweets);
+//         })
+//         .catch((err) => console.log("error: ", err));
+// });
 
 app.get("/logout", (req, res) => {
     req.session = null;

@@ -50,10 +50,7 @@ export default function AddVenue(props) {
                     props.togglePopup(!props.newVen);
                 })
                 .catch((err) => {
-                    console.log(
-                        "error in POST add bar upload venue pic submit",
-                        err
-                    );
+                    console.log("error in POST add venue pic submit", err);
                     setErrorPic(true);
                     setErrorNoname(false);
                 });

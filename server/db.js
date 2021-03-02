@@ -95,18 +95,20 @@ module.exports.addVenueNoPic = (userId, name, description, lat, lng) => {
     return db.query(q, params);
 };
 
-module.exports.editVenNoPic = (userId, name, description, lat, lng) => {
+// not working
+module.exports.editVenNoPic = (userId, venId, name, description, lat, lng) => {
     const q = `UPDATE venues
-    SET name = $2, description = $3, lat = $4, lng = $5
-    WHERE id = $1`;
-    const params = [userId, name, description, lat, lng];
+    SET name = $3, description = $4, lat = $5, lng = $6
+    WHERE id = $1 AND user_id = $2`;
+    const params = [userId, venId, name, description, lat, lng];
     return db.query(q, params);
 };
 
+// not working
 module.exports.editVenPic = (userId, name, description, image, lat, lng) => {
     const q = `UPDATE venues
-    SET name = $2, description = $3, image = $4, lat = $5, lng = $6
-    WHERE id = $1`;
+    SET name = $3, description = $4, image = $5, lat = $6, lng = $7
+    WHERE id = $1 AND user_id = $2`;
     const params = [userId, name, description, image, lat, lng];
     return db.query(q, params);
 };
