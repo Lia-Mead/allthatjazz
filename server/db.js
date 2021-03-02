@@ -119,6 +119,11 @@ module.exports.threeVens = () => {
     return db.query(q);
 };
 
+module.exports.lastVen = () => {
+    const q = `SELECT * FROM venues ORDER BY id DESC LIMIT 1`;
+    return db.query(q);
+};
+
 module.exports.addComment = (userId, venue_id, comment) => {
     const q = `INSERT INTO comments (user_id, venue_id, comment)
     VALUES ($1, $2, $3) RETURNING *`;

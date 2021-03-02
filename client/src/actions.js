@@ -18,6 +18,16 @@ export async function newThreeVens() {
     };
 }
 
+export async function myLastV() {
+    const { data } = await axios.get("/api-last-ven");
+    console.log("data.rows in axios all venues: ", data.rows);
+    console.log("data in axios all venues: ", data);
+    return {
+        type: "LAST-VEN",
+        lastVen: data.rows,
+    };
+}
+
 export async function addVen(newVen) {
     // const { data } = await axios.post("/add-venue");
     // console.log(("newVen: ", newVen));

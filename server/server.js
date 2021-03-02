@@ -324,6 +324,17 @@ app.get("/new-venues", (req, res) => {
         });
 });
 
+app.get("/api-last-ven", (req, res) => {
+    db.lastVen()
+        .then(({ rows }) => {
+            // console.log("rows: ", rows);
+            res.json({ rows: rows });
+        })
+        .catch((err) => {
+            console.log("there was an error in getting last one ", err);
+        });
+});
+
 app.get(`/reviews/:id`, (req, res) => {
     const { id } = req.params;
 

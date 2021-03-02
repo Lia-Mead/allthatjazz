@@ -40,9 +40,9 @@ function Maps(props) {
         mapRef.current = map;
     }, []);
 
-    const onMapMount = useCallback((map) => {
-        mapRef.current = map;
-    }, []);
+    // const onMapMount = useCallback((map) => {
+    //     mapRef.current = map;
+    // }, []);
 
     const all = useSelector(
         (state) =>
@@ -92,13 +92,17 @@ function Maps(props) {
                     setUserLat(position.coords.latitude);
                     setUserLng(position.coords.longitude);
                 },
-                (err) => console.log(err),
+                (err) => console.log(err, "err useEffect maps"),
                 {
                     enableHighAccuracy: true,
                     timeout: 10000,
                     maximumAge: 10000,
                 }
             );
+            // clean up function
+            // return () => {
+            //     navigator.geolocation.watchPosition();
+            // };
         } else {
             alert("This browser doesn't support your location,");
         }
@@ -153,7 +157,6 @@ function Maps(props) {
                     center={userLocation}
                     zoom={15}
                     onLoad={onMapLoad}
-                    onUnmount={onMapMount}
                     onClick={(e) => addMarker(e)}
                 >
                     {/* Child components, such as markers, info windows, etc. */}
@@ -241,10 +244,6 @@ function Maps(props) {
                         )}
                     </>
                 </GoogleMap>
-
-                <div className="map-intro">
-                    <p>Click on the map to add your favorite venue</p>
-                </div>
             </section>
         </>
     ) : (
@@ -298,3 +297,9 @@ export default React.memo(Maps);
 //                         />
 //                     )} */
 // }
+
+//   <div className="map-intro">
+//       <p>Click on the map to add your favorite venue</p>
+//   </div>;
+
+// onUnmount = { onMapMount };

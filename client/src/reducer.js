@@ -20,6 +20,13 @@ export function reducer(state = {}, action) {
         };
     }
 
+    if (action.type === "LAST-VEN") {
+        state = {
+            ...state,
+            lastVen: action.lastVen,
+        };
+    }
+
     if (action.type === "SEND_COMMENT") {
         state = {
             ...state,
