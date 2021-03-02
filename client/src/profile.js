@@ -20,7 +20,7 @@ export default function Profile(props) {
 
     return (
         <>
-            <div className="profile-con border-green">
+            <div className="profile-con">
                 <h1>
                     <span className="orange">Welcome</span>
                     <span>

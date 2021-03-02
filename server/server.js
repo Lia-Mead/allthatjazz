@@ -287,6 +287,37 @@ app.post("/add-venue-pic", uploader.single("file"), s3.upload, (req, res) => {
         });
 });
 
+app.post("/edit-venue-pic", uploader.single("file"), s3.upload, (req, res) => {
+    // console.log("I am profile-pic");
+    const { venueName, description, lat, lng } = req.body;
+
+    const { filename } = req.file;
+    const fullUrl = config.s3Url + filename;
+    db.addVenue(req.session.userId, venueName, description, fullUrl, lat, lng)
+        .then(({ rows }) => {
+            // console.log("full URL", rows[0].image);
+            res.json({ success: true, rows: rows });
+        })
+        .catch((err) => {
+            console.log("error in add venue post route", err);
+            res.json({ success: false });
+        });
+});
+
+app.post("/edit-venue", (req, res) => {
+    const { venueName, description, lat, lng } = req.body;
+
+    db.addVenueNoPic(req.session.userId, venueName, description, lat, lng)
+        .then(({ rows }) => {
+            // console.log("full URL", rows[0].image);
+            res.json({ success: true, rows: rows });
+        })
+        .catch((err) => {
+            console.log("error in add venue post route", err);
+            res.json({ success: false });
+        });
+});
+
 app.get(`/api-venue/:id`, (req, res) => {
     const { id } = req.params;
 

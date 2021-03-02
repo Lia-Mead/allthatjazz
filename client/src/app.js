@@ -37,6 +37,14 @@ export default function App() {
         setEmail(info.email);
     };
 
+    const updateVenuePost = (info) => {
+        // console.log(info);
+        setVenId(info.venId);
+        setVenName(info.venName);
+        setVenDescription(info.venDescription);
+        setVenImage(info.venImage);
+    };
+
     const updateNewVen = (info) => {
         // console.log(info);
         setVenId(info.id);
@@ -154,6 +162,7 @@ export default function App() {
                                 history={props.history}
                                 togglePopup={props.togglePopup}
                                 openVen={props.openVen}
+                                updateVenuePost={updateVenuePost}
                             />
                         )}
                     />

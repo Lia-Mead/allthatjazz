@@ -81,14 +81,6 @@ module.exports.insertPic = (id, profilePic) => {
     return db.query(q, params);
 };
 
-module.exports.insertPic = (id, profilePic) => {
-    const q = `UPDATE users
-    SET image = $2
-    WHERE id = $1 RETURNING image`;
-    const params = [id, profilePic];
-    return db.query(q, params);
-};
-
 module.exports.addVenue = (userId, name, description, image, lat, lng) => {
     const q = `INSERT INTO venues (user_id, name, description, image, lat, lng)
     VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
@@ -100,6 +92,22 @@ module.exports.addVenueNoPic = (userId, name, description, lat, lng) => {
     const q = `INSERT INTO venues (user_id, name, description, lat, lng)
     VALUES ($1, $2, $3, $4, $5) RETURNING *`;
     const params = [userId, name, description, lat, lng];
+    return db.query(q, params);
+};
+
+module.exports.editVenNoPic = (userId, name, description, lat, lng) => {
+    const q = `UPDATE venues
+    SET name = $2, description = $3, lat = $4, lng = $5
+    WHERE id = $1`;
+    const params = [userId, name, description, lat, lng];
+    return db.query(q, params);
+};
+
+module.exports.editVenPic = (userId, name, description, image, lat, lng) => {
+    const q = `UPDATE venues
+    SET name = $2, description = $3, image = $4, lat = $5, lng = $6
+    WHERE id = $1`;
+    const params = [userId, name, description, image, lat, lng];
     return db.query(q, params);
 };
 

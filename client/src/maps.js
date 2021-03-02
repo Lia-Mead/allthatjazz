@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import axios from "./Axios";
 import { Link, Route } from "react-router-dom";
+import mapstyle from "./mapstyle";
 // import Venue from "./venue";
 // import PlacesAutoComplete from "./placesAutoComplete";
 
@@ -84,38 +85,86 @@ function Maps(props) {
         console.log("marker: ", marker);
     };
 
+    const userLocation = {
+        lat: userLat,
+        lng: userLng,
+    };
+
+    let options = {
+        // styles: mapStyle,
+        disableDefaultUI: true,
+        zoomControl: true,
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 10000,
+    };
+
     useEffect(() => {
-        console.log("i am use effect");
+        // console.log("i am use effect maps");
+        // console.log("userLocation", userLocation);
+
         if (navigator.geolocation) {
             navigator.geolocation.watchPosition(
                 (position) => {
+                    // console.log("position", position);
+                    // console.log(
+                    //     "position.coords.latitude",
+                    //     position.coords.latitude
+                    // );
+                    // console.log(
+                    //     "position.coords.latitude",
+                    //     position.coords.longitude
+                    // );
                     setUserLat(position.coords.latitude);
                     setUserLng(position.coords.longitude);
                 },
                 (err) => console.log(err, "err useEffect maps"),
                 {
-                    enableHighAccuracy: true,
-                    timeout: 10000,
-                    maximumAge: 10000,
+                    enableHighAccuracy: false,
+                    timeout: 5000,
+                    maximumAge: 5000,
                 }
             );
             // clean up function
-            // return () => {
-            //     navigator.geolocation.watchPosition();
-            // };
+            return () => {
+                console.log("running cleanup fn");
+                // navigator.geolocation.watchPosition();
+            };
+            // () => null, options;
         } else {
             alert("This browser doesn't support your location,");
         }
-    }, []);
+    }, [userLat]);
+
+    // useEffect(() => {
+    //     console.log("i am use effect maps");
+    //     if (navigator.geolocation) {
+    //         navigator.geolocation.watchPosition(
+    //             (position) => {
+    //                 setUserLat(position.coords.latitude);
+    //                 setUserLng(position.coords.longitude);
+    //             },
+    //             (err) => console.log(err, "err useEffect maps"),
+    //             {
+    //                 enableHighAccuracy: true,
+    //                 timeout: 10000,
+    //                 maximumAge: 10000,
+    //             }
+    //         );
+    //         // clean up function
+    //         return () => {
+    //             console.log("running cleanup fn");
+    //             // navigator.geolocation.watchPosition();
+    //         };
+    //         // () => null, options;
+    //     } else {
+    //         alert("This browser doesn't support your location,");
+    //     }
+    // }, []);
 
     useEffect(() => {
         dispatch(showAllVenues());
     }, []);
-
-    const userLocation = {
-        lat: userLat,
-        lng: userLng,
-    };
 
     const venPin = (marker) => {
         console.log("marker: ", marker);
@@ -156,6 +205,7 @@ function Maps(props) {
                     mapContainerStyle={containerStyle}
                     center={userLocation}
                     zoom={15}
+                    options={options}
                     onLoad={onMapLoad}
                     onClick={(e) => addMarker(e)}
                 >
@@ -252,33 +302,6 @@ function Maps(props) {
 }
 
 export default React.memo(Maps);
-
-//    icon={{
-//                             url: "/surfspot2.png",
-//                             scaledSize: new window.google.maps.Size(30, 30),
-//                             origin: new window.google.maps.Point(0, 0),
-//                             anchor: new window.google.maps.Point(15, 15),
-//                         }}
-
-// <Marker
-//     onLoad={loadMarker}
-//     position={{
-//         lat: parseFloat(52.58811588459525),
-//         lng: parseFloat(13.27429442962495),
-//     }}
-// />;
-
-// <NewVenues />;
-
-//  <div>
-//      <p className="gray">
-//          {props.first} {props.last} on{" "}
-//          {props.created_at.slice(0, 16).replace("T", " at ")}
-//      </p>
-//      <Link to={`/venues/${selected.id}`}>
-//          <button className="btn link">Go to Venue</button>
-//      </Link>
-//  </div>;
 
 // onUnmount = { onMapMount };
 

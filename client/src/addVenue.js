@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "./Axios";
-import { addVen } from "./actions";
+import { addVen, myLastV } from "./actions";
 
 export default function AddVenue(props) {
-    // console.log("props in add venue", props);
+    console.log("props in add venue", props);
     // console.log("pinLocation", props.pinLocation);
     // const inputRef = useRef("");
     const dispatch = useDispatch();
@@ -43,6 +43,7 @@ export default function AddVenue(props) {
                     props.updateNewVen(res.data.rows[0]);
 
                     dispatch(addVen(res.data.rows[0]));
+                    dispatch(myLastV(res.data.rows[0]));
 
                     setError(false);
 
@@ -67,6 +68,7 @@ export default function AddVenue(props) {
                     props.updateNewVen(res.data.rows[0]);
 
                     dispatch(addVen(res.data.rows[0]));
+                    dispatch(myLastV(res.data.rows[0]));
 
                     setError(false);
                     props.togglePopup(!props.newVen);

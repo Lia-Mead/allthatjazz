@@ -46,13 +46,14 @@ export default function Home(props) {
                 id={props.id}
                 first={props.first}
                 last={props.last}
+                lat={props.lat}
+                lng={props.lng}
                 venId={props.venId}
                 venName={props.venName}
                 venDescription={props.venDescription}
                 venImage={props.venImage}
                 updateNewVen={props.updateNewVen}
             />
-            ;
             <NewVenues
                 id={props.id}
                 first={props.first}
