@@ -55,6 +55,15 @@ export default function App() {
         setVenDescription(info.description);
     };
 
+    const delVenFn = (info) => {
+        console.log("info delVenFn app:", info);
+        setVenId(info.id);
+        setLat(info.lat);
+        setLng(info.lng);
+        setVenName(info.name);
+        setVenDescription(info.description);
+    };
+
     const setProfilePicUrl = (image) => {
         setPic(image);
     };
@@ -117,6 +126,7 @@ export default function App() {
                                 updateProfileData={updateProfileData}
                                 setProfilePicUrl={setProfilePicUrl}
                                 updateNewVen={updateNewVen}
+                                delVenFn={delVenFn}
                                 venId={venId}
                                 venName={venName}
                                 lat={lat}
@@ -149,6 +159,7 @@ export default function App() {
                                 venName={venName}
                                 venDescription={venDescription}
                                 venImage={venImage}
+                                delVenFn={delVenFn}
                                 updateNewVen={updateNewVen}
                             />
                         )}
@@ -166,6 +177,7 @@ export default function App() {
                                 openVen={props.openVen}
                                 updateVenuePost={updateVenuePost}
                                 updateNewVen={updateNewVen}
+                                delVenFn={delVenFn}
                             />
                         )}
                     />

@@ -21,12 +21,26 @@ export function reducer(state = {}, action) {
         };
     }
 
+    if (action.type === "UPDATE_VEN") {
+        state = {
+            ...state,
+            newVenues: [action.updateVen, ...state.newVenues].slice(0, 3),
+        };
+    }
+
     if (action.type === "LAST-VEN") {
         state = {
             ...state,
             lastVen: action.lastVen,
+            uploader: action.uploader,
         };
     }
+    // if (action.type === "LAST-VEN") {
+    //     state = {
+    //         ...state,
+    //         lastVen: action.lastVen,
+    //     };
+    // }
 
     if (action.type === "SEND_COMMENT") {
         state = {

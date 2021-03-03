@@ -224,8 +224,14 @@ module.exports.deleteVenue = (venId, userId) => {
 };
 
 module.exports.deleteComments = (venId) => {
-    const q = `DELETE FROM venues
+    const q = `DELETE FROM comments
     WHERE id = $1`;
     const params = [venId];
+    return db.query(q, params);
+};
+
+module.exports.getInfoUploader = (userId) => {
+    const q = `SELECT first, last, image FROM users WHERE id = $1`;
+    const params = [userId];
     return db.query(q, params);
 };

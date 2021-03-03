@@ -20,11 +20,12 @@ export async function newThreeVens() {
 
 export async function myLastV() {
     const { data } = await axios.get("/api-last-ven");
-    // console.log("data.rows in axios all venues: ", data.rows);
+    console.log("rowVen: rowVen, rowUser: rows: ", data.rowVen, data.rowUser);
     // console.log("data in axios all venues: ", data);
     return {
         type: "LAST-VEN",
-        lastVen: data.rows,
+        lastVen: data.rowVen,
+        uploader: data.rowUser,
     };
 }
 
@@ -34,6 +35,13 @@ export async function addVen(newVen) {
     return {
         type: "NEW_VEN",
         newVen,
+    };
+}
+
+export async function updateVen(updateVen) {
+    return {
+        type: "UPDATE_VEN",
+        updateVen,
     };
 }
 
@@ -90,4 +98,18 @@ export async function receiveRatings(id) {
         type: "SHOW_RATINGS",
         allReviews: data.rows,
     };
+}
+
+export async function delVen(id) {
+    try {
+        const { data } = await axios.post("/delete-venue", { id });
+        console.log("data delVen: ", data.rows);
+        console.log("delVen data: ", data.rows.id);
+        return {
+            type: "DEL_VEN",
+            id: id,
+        };
+    } catch (err) {
+        console.log("err accepting friend: ", err);
+    }
 }

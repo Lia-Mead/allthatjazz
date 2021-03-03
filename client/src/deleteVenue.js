@@ -13,7 +13,7 @@ export default function DeleteVenue(props) {
             .post(`/delete-venue`)
             .then((res) => {
                 // window.location.reload();
-                props.updateNewVen(res.data.rows[0]);
+                props.delVenFn(res.data.rows[0]);
             })
             .catch((err) => {
                 console.log("err in axios delete venue: ", err);

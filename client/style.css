@@ -834,6 +834,7 @@ footer > div {
     height: 55%;
     border-radius: 11px;
     object-fit: cover;
+    margin-top: 5px;
 }
 
 .popup-pic.ven {
@@ -889,6 +890,7 @@ footer > div {
 .app {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 .uploader {

@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "./Axios";
-import { addVen, myLastV } from "./actions";
+import { myLastV } from "./actions";
 import DeleteVenue from "./deleteVenue";
 
 export default function EditVenue(props) {
@@ -11,7 +11,7 @@ export default function EditVenue(props) {
 
     let [venueName, setVenueName] = useState("");
     let [description, setDescription] = useState("");
-    let [venuePic, setVenuePic] = useState("");
+    let [venuePic, setVenuePic, updateVen] = useState("");
     // let [lat, setLat] = useState("");
     // let [lng, setLng] = useState("");
 
@@ -58,7 +58,8 @@ export default function EditVenue(props) {
 
                     props.updateNewVen(res.data.rows[0]);
 
-                    dispatch(addVen(res.data.rows[0]));
+                    dispatch(updateVen(res.data.rows[0]));
+
                     dispatch(myLastV(res.data.rows[0]));
 
                     setError(false);
@@ -84,7 +85,7 @@ export default function EditVenue(props) {
                     console.log("resp in add-venue no pic axios POST", res);
                     props.updateNewVen(res.data.rows[0]);
 
-                    dispatch(addVen(res.data.rows[0]));
+                    // dispatch(addVen(res.data.rows[0]));
                     dispatch(myLastV(res.data.rows[0]));
 
                     setError(false);

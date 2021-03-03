@@ -399,12 +399,46 @@ app.get("/api-last-ven", (req, res) => {
     db.lastVen()
         .then(({ rows }) => {
             // console.log("rows: ", rows);
-            res.json({ rows: rows });
+            let rowVen = rows;
+
+            db.getInfoUploader(rows[0].user_id)
+                .then(({ rows }) => {
+                    res.json({ rowVen: rowVen, rowUser: rows, sucess: true });
+                })
+                .catch((err) => {
+                    console.log("error in api lat ven", err);
+                });
         })
         .catch((err) => {
             console.log("there was an error in getting last one ", err);
+            res.json({ sucess: false });
         });
 });
+
+// app.get("/bar/:id", (req, res) => {
+//     // console.log("bar dynamic route");
+//     const { id } = req.params;
+//     db.showBar(id)
+//         .then(({ rows }) => {
+//             console.log("rows: ", rows);
+//             let rowsBars = rows;
+//             db.getInfoUploader(rows[0].user_id)
+//                 .then(({ rows }) => {
+//                     console.log("user rows: ", rows);
+//                     res.json({
+//                         success: true,
+//                         rowsUser: rows,
+//                         rowsBar: rowsBars,
+//                     });
+//                 })
+//                 .catch((err) => {
+//                     console.log("err in getting info uploader: ", err);
+//                 });
+//         })
+//         .catch((err) => {
+//             console.log("there was an error in bar dynamic route: ", err);
+//         });
+// });
 
 app.get(`/reviews/:id`, (req, res) => {
     const { id } = req.params;
