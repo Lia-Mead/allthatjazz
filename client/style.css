@@ -363,9 +363,10 @@ nav ul li a {
     flex-direction: column;
     margin: 20px;
     background-color: #fff;
-    padding: 20px;
     border-radius: 11px;
+    /* padding: 20px; */
 }
+
 .venue-box h1 {
     margin: 0px 0 20px 0px;
 }
@@ -408,9 +409,9 @@ textarea:focus {
 }
 
 .text-area {
-    margin-top: 30px;
     min-height: auto;
     min-height: 70px;
+    /* margin-top: 30px; */
     /* height: 100px; */
     /* max-width: 80%; */
     resize: none;
@@ -1057,9 +1058,9 @@ footer > div {
         margin: 0;
     }
 
-    .venue-box {
+    /* .venue-box {
         margin: 0px;
-    }
+    } */
 
     .profile-con {
         padding-bottom: 0px;
