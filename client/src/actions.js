@@ -68,37 +68,29 @@ export function showNewComments(newComment) {
     };
 }
 
-// export function like(review) {
-//     console.log("review", review);
+// export async function addRating(id) {
+//     const { data } = await axios.post(`/reviews/${id}`);
+//     console.log("data receive rating: ", data.rows);
+//     console.log("addRating data: ", data.rows.id);
+//     console.log("addRating data: ", id);
+
 //     return {
-//         type: "NEW_RATE",
-//         review,
+//         type: "ADD_RATING",
+//         newReview: id,
 //     };
 // }
 
-export async function addRating(id) {
-    const { data } = await axios.post(`/reviews/${id}`);
-    console.log("data receive rating: ", data.rows);
-    console.log("addRating data: ", data.rows.id);
-    console.log("addRating data: ", id);
-
-    return {
-        type: "ADD_RATING",
-        newReview: id,
-    };
-}
-
-export async function receiveRatings(id) {
-    const { data } = await axios.get(`/reviews/${id}`);
-    console.log("data receive rating: ", data.rows);
-    console.log("addRating data: ", data.rows.id);
-    console.log("addRating data: ", data.rows[0]);
-    console.log("addRating id: ", id);
-    return {
-        type: "SHOW_RATINGS",
-        allReviews: data.rows,
-    };
-}
+// export async function receiveRatings(id) {
+//     const { data } = await axios.get(`/reviews/${id}`);
+//     console.log("data receive rating: ", data.rows);
+//     console.log("addRating data: ", data.rows.id);
+//     console.log("addRating data: ", data.rows[0]);
+//     console.log("addRating id: ", id);
+//     return {
+//         type: "SHOW_RATINGS",
+//         allReviews: data.rows,
+//     };
+// }
 
 export async function delVen(id) {
     try {

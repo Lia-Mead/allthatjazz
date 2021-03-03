@@ -63,19 +63,19 @@ export function reducer(state = {}, action) {
         };
     }
 
-    if (action.type === "SHOW_RATINGS") {
-        state = {
-            ...state,
-            allReviews: action.allReviews,
-        };
-    }
+    // if (action.type === "SHOW_RATINGS") {
+    //     state = {
+    //         ...state,
+    //         allReviews: action.allReviews,
+    //     };
+    // }
 
-    if (action.type === "ADD_RATING") {
-        state = {
-            ...state,
-            allReviews: [...state.allReviews, action.newReview],
-        };
-    }
+    // if (action.type === "ADD_RATING") {
+    //     state = {
+    //         ...state,
+    //         allReviews: [...state.allReviews, action.newReview],
+    //     };
+    // }
 
     return state;
 }

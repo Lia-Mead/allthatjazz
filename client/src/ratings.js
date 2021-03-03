@@ -1,21 +1,22 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import StarRatings from "react-star-ratings";
-import { addRating, receiveRatings } from "./actions";
+// import { addRating, receiveRatings } from "./actions";
 
 // import axios from "./Axios";
 
 export default function Ratings() {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     // const receiveRatings = useSelector(
     //     (state) =>
     //         state.allReviews && state.allReviews.filter((venue) => venue.id)
     // );
 
-    useEffect(() => {
-        dispatch(receiveRatings());
-    }, []);
+    // useEffect(() => {
+    //     dispatch(receiveRatings());
+    // }, []);
+
     const [rating, setRating] = useState();
 
     const changeRating = (newRating) => {
