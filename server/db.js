@@ -108,7 +108,7 @@ module.exports.editVenNoPic = (userId, venId, name, description, lat, lng) => {
     const q = `UPDATE venues
     SET name = $3, description = $4, lat = $5, lng = $6
     WHERE id = $2 AND user_id = $1 RETURNING *`;
-    const params = [userId, venId, name, description || "", lat, lng];
+    const params = [userId, venId, name, description, lat, lng];
     return db.query(q, params);
 };
 
@@ -116,7 +116,6 @@ module.exports.editVenNoPic = (userId, venId, name, description, lat, lng) => {
 //     SET name = 'test', description = 'test', lat = 450000, lng = 344443
 // WHERE id = 132 AND user_id = 1 RETURNING *;
 
-// not working
 module.exports.editVenPic = (
     userId,
     venId,

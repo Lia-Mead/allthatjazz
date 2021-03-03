@@ -48,67 +48,86 @@ export default function Venue(props) {
 
     return (
         <>
-            <div className="overlay">
-                <div className="venue-box">
-                    {venueId && (
-                        <>
-                            <img
-                                onClick={() => props.history.goBack()}
-                                className="icon-close"
-                                src="/images/close.svg"
-                            />
-                            <h1>{venueName}</h1>
-                            <p>{description}</p>
-                            <Ratings />
+            <div className="venue-box">
+                {venueId && (
+                    <>
+                        <img
+                            onClick={() => props.history.goBack()}
+                            className="icon-close"
+                            src="/images/close.svg"
+                        />
+                        <h1>{venueName}</h1>
+                        <p>{description}</p>
+                        <Ratings />
 
-                            <div className="comment-user">
-                                <img
-                                    className="pro-pic small"
-                                    src={userPic || "/images/avatar.svg"}
-                                />
-                                <div className="user-box">
-                                    <p className="gray">
-                                        Created by {userFirst} {userLast} on{" "}
-                                        {createdAt
-                                            .slice(0, 16)
-                                            .replace("T", " at ")}
-                                    </p>
-                                </div>
+                        <div className="ven-creator">
+                            <img
+                                className="pro-pic small"
+                                src={userPic || "/images/avatar.svg"}
+                            />
+                            <div className="user-box">
+                                <p className="gray">
+                                    Created by {userFirst} {userLast} on{" "}
+                                    {createdAt
+                                        .slice(0, 16)
+                                        .replace("T", " at ")}
+                                </p>
                             </div>
+                        </div>
 
-                            <img
-                                className="popup-pic ven"
-                                src={venuePic || "/images/ven-avatar.jpg"}
-                            />
-                            <Comments id={props.id} venueId={venueId} />
-                        </>
-                    )}
+                        <img
+                            className="ven-image"
+                            src={venuePic || "/images/ven-avatar.jpg"}
+                        />
+                        <Comments id={props.id} venueId={venueId} />
+                    </>
+                )}
 
-                    {error && <p>Oops something went wrong.</p>}
-                </div>
+                {error && <p>Oops something went wrong.</p>}
             </div>
         </>
     );
 }
+// return (
+//     <>
+//         <div className="overlay">
+//             <div className="venue-box">
+//                 {venueId && (
+//                     <>
+//                         <img
+//                             onClick={() => props.history.goBack()}
+//                             className="icon-close"
+//                             src="/images/close.svg"
+//                         />
+//                         <h1>{venueName}</h1>
+//                         <p>{description}</p>
+//                         <Ratings />
 
-//    <div className="my-ven-box">
-//        <button onClick={() => toggleEditVenue()} className="btn edit">
-//            Edit Venue
-//        </button>
-//    </div>;
+//                         <div className="comment-user">
+//                             <img
+//                                 className="pro-pic small"
+//                                 src={userPic || "/images/avatar.svg"}
+//                             />
+//                             <div className="user-box">
+//                                 <p className="gray">
+//                                     Created by {userFirst} {userLast} on{" "}
+//                                     {createdAt
+//                                         .slice(0, 16)
+//                                         .replace("T", " at ")}
+//                                 </p>
+//                             </div>
+//                         </div>
 
-//    {
-//        editVenue && (
-//            <EditVenue
-//                id={props.id}
-//                venId={props.venId}
-//                first={props.first}
-//                last={props.last}
-//                lat={props.lat}
-//                lng={props.lng}
-//                updateNewVen={props.updateNewVen}
-//                editVenue={editVenue}
-//                toggleEditVenue={toggleEditVenue}
-//            />
-//        );
-//    }
+//                         <img
+//                             className="popup-pic ven"
+//                             src={venuePic || "/images/ven-avatar.jpg"}
+//                         />
+//                         <Comments id={props.id} venueId={venueId} />
+//                     </>
+//                 )}
+
+//                 {error && <p>Oops something went wrong.</p>}
+//             </div>
+//         </div>
+//     </>
+// );

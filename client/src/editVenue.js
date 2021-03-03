@@ -9,14 +9,14 @@ export default function EditVenue(props) {
 
     const dispatch = useDispatch();
 
-    let [venueName, setVenueName] = useState("");
-    let [description, setDescription] = useState("");
-    let [venuePic, setVenuePic, updateVen] = useState("");
     // let [lat, setLat] = useState("");
     // let [lng, setLng] = useState("");
 
     // const fullState = useSelector((state) => state);
     // console.log("fullState", fullState);
+    let [venueName, setVenueName] = useState("");
+    let [description, setDescription] = useState("");
+    let [venuePic, setVenuePic] = useState("");
 
     const [error, setError] = useState(false);
     const [errorNoname, setErrorNoname] = useState(false);
@@ -34,8 +34,8 @@ export default function EditVenue(props) {
         let lng = props.lng;
         let venId = props.venId;
         let id = props.id;
-        console.log("ID", props.id);
-        console.log("venId", props.venId);
+        // console.log("ID", props.id);
+        // console.log("venId", props.venId);
 
         formDataPic.append("venueName", venueName);
         formDataPic.append("description", description);
@@ -48,13 +48,18 @@ export default function EditVenue(props) {
         if (venueName.length == 0) {
             setErrorNoname(true);
         } else if (venuePic != 0) {
+            // description =
+            //     description.length == 0 ? props.description : description;
+            // venuePic = venuePic == false ? props.venuePic : venuePic;
+
             axios
                 .post("/edit-venue-pic", formDataPic)
                 .then((res) => {
-                    console.log(
-                        "resp in edit-venue-pic axios POST",
-                        res.data.rows
-                    );
+                    // console.log(
+                    //     "resp in edit-venue-pic axios POST",
+                    //     res.data.rows
+                    // );
+                    setError(false);
 
                     props.updateNewVen(res.data.rows[0]);
 
@@ -62,9 +67,7 @@ export default function EditVenue(props) {
 
                     dispatch(myLastV(res.data.rows[0]));
 
-                    setError(false);
-
-                    // props.togglePopup(!props.newVen);
+                    props.togglePopup(!props.newVen);
                 })
                 .catch((err) => {
                     console.log("error in POST edit venue pic submit", err);
@@ -85,11 +88,10 @@ export default function EditVenue(props) {
                     console.log("resp in add-venue no pic axios POST", res);
                     props.updateNewVen(res.data.rows[0]);
 
-                    // dispatch(addVen(res.data.rows[0]));
+                    setError(false);
                     dispatch(myLastV(res.data.rows[0]));
                     dispatch(updateVenue(res.data.rows[0]));
 
-                    setError(false);
                     props.togglePopup(!props.newVen);
                 })
                 .catch((err) => {
