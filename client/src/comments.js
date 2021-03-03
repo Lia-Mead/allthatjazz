@@ -81,7 +81,7 @@ export default function Comments(props) {
 
             <textarea
                 name="comment"
-                placeholder="Type a message"
+                placeholder="Type your review"
                 className="text-area"
                 onChange={(e) => messageHandleChange(e)}
                 onKeyDown={(e) => enterSend(e)}

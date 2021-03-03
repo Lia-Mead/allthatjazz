@@ -747,7 +747,7 @@ footer > div {
 
 .my-ven-pic {
     width: 80%;
-    height: 570px;
+    max-height: 570px;
     border-radius: 15px;
     margin: 20px auto;
     object-fit: cover;
@@ -972,9 +972,9 @@ footer > div {
     transition: 0.4s;
 }
 
-/* .ratings {
-    margin: 20px;
-} */
+.ratings {
+    margin: 15px;
+}
 
 @media only screen and (max-width: 900px) {
     .logo {
@@ -983,6 +983,10 @@ footer > div {
     }
     .uploader {
         margin: 0 auto;
+    }
+
+    .my-ven-pic {
+        height: auto;
     }
 
     .ven-con {
@@ -1014,7 +1018,7 @@ footer > div {
 
     .pro-pic {
         margin: 10px 0;
-        height: 50%;
+        height: 330px;
     }
 
     .pro-pic.small {
@@ -1055,6 +1059,10 @@ footer > div {
 
     .venue-box {
         margin: 0px;
+    }
+
+    .profile-con {
+        padding-bottom: 0px;
     }
 
     header {
@@ -1098,6 +1106,10 @@ footer > div {
 
     .maps {
         margin: 0;
+    }
+
+    .ven-text {
+        width: 100%;
     }
 }
 
