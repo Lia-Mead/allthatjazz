@@ -363,9 +363,16 @@ app.get(`/api-venue/:id`, (req, res) => {
 
     db.showVenue(id)
         .then(({ rows }) => {
+            let rowVen = rows;
             // console.log("show venue");
             // console.log("rows in showvenue", rows);
-            res.json({ success: true, rows: rows });
+            db.getInfoUploader(rows[0].user_id)
+                .then(({ rows }) => {
+                    res.json({ success: true, rowVen: rowVen, rowsUser: rows });
+                })
+                .catch((err) => {
+                    console.log("error in get info uploader", err);
+                });
         })
         .catch((err) => {
             console.log("error in showVenue", err);

@@ -231,7 +231,7 @@ module.exports.deleteComments = (venId) => {
 };
 
 module.exports.getInfoUploader = (userId) => {
-    const q = `SELECT first, last, image FROM users WHERE id = $1`;
+    const q = `SELECT id, first, last, image FROM users WHERE id = $1`;
     const params = [userId];
     return db.query(q, params);
 };

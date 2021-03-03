@@ -63,7 +63,7 @@ export default class Login extends React.Component {
 
                     {this.state.error && (
                         <p className="error">
-                            The email and password are not matching 🟣
+                            The email and password are not matching
                         </p>
                     )}
 

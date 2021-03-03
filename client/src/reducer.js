@@ -28,6 +28,19 @@ export function reducer(state = {}, action) {
         };
     }
 
+    // if (action.type === "UPDATE_VEN") {
+    //     state = {
+    //         ...state,
+    //         newVenues: state.newVenues.map(function (ven) {
+    //             if (ven.id == action.updateVen.id) {
+    //                 return action.updateVen;
+    //             } else {
+    //                 return ven;
+    //             }
+    //         }),
+    //     };
+    // }
+
     if (action.type === "LAST-VEN") {
         state = {
             ...state,
