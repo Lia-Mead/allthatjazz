@@ -143,6 +143,7 @@ p {
     text-align: center;
     margin: 20px 0;
 }
+
 .menu-box {
     display: flex;
     align-items: center;
@@ -424,6 +425,23 @@ textarea:focus {
     position: fixed;
 }
 
+.del-box {
+    margin-bottom: 40px;
+    /* font-size: 0.8em; */
+}
+
+.del-con {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: white;
+    padding: 40px;
+    border: 1px black dotted;
+    border-radius: 7px;
+    margin-bottom: 40px;
+}
+
 .pro-fields {
     display: flex;
     flex-direction: column;
@@ -541,6 +559,13 @@ input:-webkit-autofill {
     padding: 10px;
     color: black;
     background-color: white;
+}
+
+.btn.del {
+    padding: 10px;
+    color: white;
+    background-color: #f9815b;
+    border: 3px solid #f9815b;
 }
 
 .btn.upload:hover {
@@ -980,9 +1005,6 @@ footer > div {
         font-size: 0.8em;
     }
 
-    header {
-        flex-flow: row;
-    }
     .welcome {
         flex-direction: column;
         height: auto;
@@ -1003,6 +1025,10 @@ footer > div {
 
     .menu-right > .icon {
         margin: 0;
+    }
+
+    header {
+        flex-flow: row;
     }
 
     h1 {
@@ -1035,7 +1061,6 @@ footer > div {
     }
 
     .iframe-box {
-        /* width: 100%; */
         flex-direction: column;
     }
 

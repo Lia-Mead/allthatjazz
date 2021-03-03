@@ -329,14 +329,33 @@ app.post("/edit-venue", (req, res) => {
 
     db.editVenNoPic(req.session.userId, venId, venueName, description, lat, lng)
         .then(({ rows }) => {
-            console.log("rows edit no pic", rows);
-            console.log("rows edit no pic", rows[0]);
+            // console.log("rows edit no pic", rows);
+            // console.log("rows edit no pic", rows[0]);
             res.json({ success: true, rows: rows });
         })
         .catch((err) => {
             console.log("error in add venue post route", err);
             res.json({ success: false });
         });
+});
+
+// DELETE
+app.post("/delete-venue", async (req, res) => {
+    const { venId } = req.body;
+    const userId = req.session.userId;
+
+    try {
+        const venues = await db.showVenue(venId);
+        // console.log("users are ", users.rows[0]);
+        if (venues.rows[0].image != null) {
+            s3.deleteImage(venues.rows[0].image);
+        }
+        await db.deleteComments(venId);
+        db.deleteVenue(venId, userId);
+    } catch (err) {
+        console.log("err in delete venue: ", err);
+        res.json({ success: false });
+    }
 });
 
 app.get(`/api-venue/:id`, (req, res) => {
@@ -415,23 +434,6 @@ app.post(`/reviews/:id`, (req, res) => {
             console.log("error in likes", err);
         });
 });
-
-// twitter
-// app.get("/twitts.json", (req, res) => {
-//     getToken()
-//         .then((bearerToken) => {
-//             return Promise.all([
-//                 getTweets(bearerToken, "Oprah"),
-//                 getTweets(bearerToken, "boilerroomtv"),
-//                 getTweets(bearerToken, "sia"),
-//             ]);
-//         })
-//         .then((tweets) => {
-//             const filteredTweets = filterTweets(tweets);
-//             res.json(filteredTweets);
-//         })
-//         .catch((err) => console.log("error: ", err));
-// });
 
 app.get("/logout", (req, res) => {
     req.session = null;

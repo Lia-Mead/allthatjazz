@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "./Axios";
 import { addVen, myLastV } from "./actions";
+import DeleteVenue from "./deleteVenue";
 
 export default function EditVenue(props) {
-    console.log("props in edit VENUE", props);
+    // console.log("props in edit VENUE", props);
+
     const dispatch = useDispatch();
 
     let [venueName, setVenueName] = useState("");
@@ -19,6 +21,10 @@ export default function EditVenue(props) {
     const [error, setError] = useState(false);
     const [errorNoname, setErrorNoname] = useState(false);
     const [errorPic, setErrorPic] = useState(false);
+
+    const showLast = useSelector((state) => state.lastVen);
+    // console.log("showLast[0].lat", showLast[0].lat);
+    // console.log("showLast[0].id", showLast[0].id);
 
     const submitVenue = (e) => {
         e.preventDefault();
@@ -57,7 +63,7 @@ export default function EditVenue(props) {
 
                     setError(false);
 
-                    props.togglePopup(!props.newVen);
+                    // props.togglePopup(!props.newVen);
                 })
                 .catch((err) => {
                     console.log("error in POST edit venue pic submit", err);
@@ -91,6 +97,13 @@ export default function EditVenue(props) {
         }
     };
 
+    const [delCon, setDelCon] = useState(false);
+
+    const toggleDelete = () => {
+        console.log("toggle del pressed");
+        setDelCon(!delCon);
+    };
+
     return (
         <>
             <div className="pro-fields">
@@ -100,7 +113,7 @@ export default function EditVenue(props) {
                     type="text"
                     placeholder="Venue Name"
                     autoComplete="off"
-                    defaultValue={props.venueName}
+                    defaultValue={showLast[0].name}
                 ></input>
                 <input
                     onChange={(e) => setDescription(e.target.value)}
@@ -108,7 +121,7 @@ export default function EditVenue(props) {
                     type="text"
                     placeholder="Description"
                     autoComplete="off"
-                    defaultValue={props.description}
+                    defaultValue={showLast[0].description}
                 ></input>
 
                 <input
@@ -128,6 +141,17 @@ export default function EditVenue(props) {
                 >
                     Submit
                 </button>
+
+                <a
+                    className="del-box"
+                    onClick={() => {
+                        toggleDelete();
+                    }}
+                >
+                    Delete Venue
+                </a>
+
+                {delCon && <DeleteVenue toggleDelete={toggleDelete} />}
             </div>
         </>
     );
