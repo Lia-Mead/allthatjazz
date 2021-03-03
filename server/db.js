@@ -95,21 +95,32 @@ module.exports.addVenueNoPic = (userId, name, description, lat, lng) => {
     return db.query(q, params);
 };
 
-// not working
 module.exports.editVenNoPic = (userId, venId, name, description, lat, lng) => {
     const q = `UPDATE venues
     SET name = $3, description = $4, lat = $5, lng = $6
-    WHERE id = $1 AND user_id = $2`;
+    WHERE id = $1 AND user_id = $2 RETURNING *`;
     const params = [userId, venId, name, description, lat, lng];
     return db.query(q, params);
 };
 
+// UPDATE venues
+//     SET name = 'test', description = 'test', lat = 450000, lng = 344443
+// WHERE id = 107 AND user_id = 1 RETURNING *
+
 // not working
-module.exports.editVenPic = (userId, name, description, image, lat, lng) => {
+module.exports.editVenPic = (
+    userId,
+    venId,
+    name,
+    description,
+    image,
+    lat,
+    lng
+) => {
     const q = `UPDATE venues
     SET name = $3, description = $4, image = $5, lat = $6, lng = $7
-    WHERE id = $1 AND user_id = $2`;
-    const params = [userId, name, description, image, lat, lng];
+    WHERE id = $1 AND user_id = $2 RETURNING *`;
+    const params = [userId, venId, name, description, image, lat, lng];
     return db.query(q, params);
 };
 
@@ -188,3 +199,10 @@ module.exports.addLike = (userId, venueId, rate) => {
     const params = [userId, venueId, rate];
     return db.query(q, params);
 };
+
+// cl
+// const results = db.query(q, params);
+// results.then((result) => {
+//     console.log("result", result);
+//     return result;
+// });

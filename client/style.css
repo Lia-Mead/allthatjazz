@@ -78,8 +78,8 @@ body {
     padding: 12px;
 }
 
-.border-orange {
-    border: 5px orange solid;
+.border-hotpink {
+    border: 5px hotpink solid;
 }
 .border-acqua {
     border: 5px aquamarine solid;
@@ -455,7 +455,7 @@ input {
     background-color: transparent !important;
     border: none !important;
     border-bottom: 1px solid darkgrey !important;
-    /* color: black; */
+    color: #f9815b;
 }
 
 input:hover,
@@ -571,7 +571,7 @@ footer {
     background-color: black;
     color: white;
     font-weight: 300;
-    /* justify-content: flex-end; */
+    flex-flow: wrap;
 }
 
 .footer-note {
@@ -711,9 +711,8 @@ footer > div {
 
 .my-ven-pic {
     width: 80%;
-    /* width: 730px; */
     height: 570px;
-    border-radius: 11px;
+    border-radius: 15px;
     margin: 20px auto;
     object-fit: cover;
 }
@@ -777,15 +776,14 @@ footer > div {
 .icon.back {
     align-self: center;
 }
+.icon.big {
+    width: 50px;
+}
 
 .back {
     color: #f9815b;
     cursor: pointer;
     font-size: 1.3em;
-    margin: 0;
-}
-
-.icon.burger {
     margin: 0;
 }
 
@@ -948,12 +946,8 @@ footer > div {
         margin: 0;
     }
 
-    .nav-con {
-        height: auto;
-    }
-
     .menu-con {
-        width: 90%;
+        width: 80%;
         box-shadow: -15px -12px 5px 0px rgb(132 128 128 / 11%);
     }
 
@@ -1037,14 +1031,20 @@ footer > div {
     }
 
     footer {
-        display: block;
+        flex-direction: column;
     }
 
     .iframe-box {
-        width: 100%;
+        /* width: 100%; */
+        flex-direction: column;
     }
-    .music-box {
-        width: 100%;
+
+    .music-box a {
+        align-self: flex-end;
+    }
+
+    .maps {
+        margin: 0;
     }
 }
 

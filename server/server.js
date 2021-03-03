@@ -61,7 +61,7 @@ app.use(function (req, res, next) {
 });
 
 app.get("/welcome", function (req, res) {
-    if (req.session.UserId) {
+    if (req.session.userId) {
         res.redirect("/");
     } else {
         res.sendFile(path.join(__dirname, "..", "client", "index.html"));
@@ -298,6 +298,7 @@ app.post("/add-venue-pic", uploader.single("file"), s3.upload, (req, res) => {
 
 app.post("/edit-venue-pic", uploader.single("file"), s3.upload, (req, res) => {
     // console.log("I am profile-pic");
+    console.log("req.session.userId", req.session.userId);
     const { venId, venueName, description, lat, lng } = req.body;
 
     const { filename } = req.file;
@@ -323,10 +324,13 @@ app.post("/edit-venue-pic", uploader.single("file"), s3.upload, (req, res) => {
 
 app.post("/edit-venue", (req, res) => {
     const { venId, venueName, description, lat, lng } = req.body;
+    console.log("route edit ven prop", venId, venueName, description, lat, lng);
+    console.log("cookie", req.session.userId);
 
     db.editVenNoPic(req.session.userId, venId, venueName, description, lat, lng)
         .then(({ rows }) => {
-            // console.log("full URL", rows[0].image);
+            console.log("rows edit no pic", rows);
+            console.log("rows edit no pic", rows[0]);
             res.json({ success: true, rows: rows });
         })
         .catch((err) => {

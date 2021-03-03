@@ -101,6 +101,7 @@ export default function AddVenue(props) {
                     onChange={(e) => setDescription(e.target.value)}
                 />
                 <p className="handwrite">Insert your venue picture</p>
+
                 <input
                     className="input-file"
                     onChange={(e) => setVenuePic(e.target.files[0])}

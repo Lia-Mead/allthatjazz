@@ -18,10 +18,6 @@ export default function MyNewVen(props) {
         setEditVenue(!editVenue);
     };
 
-    // const toggleEditPic = () => {
-    //     setEditVenPic(!editVenPic);
-    // };
-
     useEffect(() => {
         dispatch(myLastV());
     }, []);
@@ -33,7 +29,7 @@ export default function MyNewVen(props) {
                     <div key={ven.id}>
                         <div className="my-ven-box">
                             <h2>
-                                I just pinned {""}
+                                Thank you for adding {""}
                                 <span className="orange">{ven.name}</span>
                             </h2>
                             <img
@@ -71,7 +67,10 @@ export default function MyNewVen(props) {
                                     />
                                 )}
 
-                                <img className="icon" src="/images/sax.svg" />
+                                <img
+                                    className="icon big"
+                                    src="/images/sax.svg"
+                                />
                             </div>
                         </div>
                     </div>

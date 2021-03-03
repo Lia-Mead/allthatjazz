@@ -75,10 +75,7 @@ export default function EditVenue(props) {
                     lng,
                 })
                 .then((res) => {
-                    console.log(
-                        "resp in add-venue no pic axios POST",
-                        res.data.rows[0]
-                    );
+                    console.log("resp in add-venue no pic axios POST", res);
                     props.updateNewVen(res.data.rows[0]);
 
                     dispatch(addVen(res.data.rows[0]));
@@ -94,29 +91,9 @@ export default function EditVenue(props) {
         }
     };
 
-    // const editVenue = (e) => {
-    //     e.preventDefault();
-    //     venueName = venueName.length == 0 ? props.venueName : venueName;
-    //     description = description.length == 0 ? props.description : description;
-    //     venuePic = venuePic == false ? props.venuePic : venuePic;
-
-    //     axios
-    //         .post("/edit-venue", { venueName, description, venuePic })
-    //         .then((res) => {
-    //             props.updateVenuePost(res.data.rows);
-    //             props.toggleEditVen(!props.toggleEditVen);
-    //             setError(false);
-    //         })
-    //         .catch((err) => {
-    //             console.log("error in axios api/edit-venue: ", err);
-    //             setError(true);
-    //         });
-    // };
-
     return (
         <>
             <div className="pro-fields">
-                <h3>Edit Mode</h3>
                 <input
                     onChange={(e) => setVenueName(e.target.value)}
                     name="name"

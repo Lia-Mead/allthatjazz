@@ -47,7 +47,7 @@ export default function App() {
     };
 
     const updateNewVen = (info) => {
-        console.log("infoin app:", info);
+        console.log("info updateNewVen app:", info);
         setVenId(info.id);
         setLat(info.lat);
         setLng(info.lng);

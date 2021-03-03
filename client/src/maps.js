@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import axios from "./Axios";
 import { Link, Route } from "react-router-dom";
-// import mapstyle from "./mapstyle";
-// import Venue from "./venue";
 // import PlacesAutoComplete from "./placesAutoComplete";
+// import mapstyle from "./mapstyle";
 
 import { useSelector, useDispatch } from "react-redux";
 import { showAllVenues } from "./actions";
@@ -20,7 +19,6 @@ const containerStyle = {
 
 function Maps(props) {
     // console.log("props in maps: ", props);
-    // console.log("id in maps: ", props.id);
     const dispatch = useDispatch();
 
     const { isLoaded } = useJsApiLoader({
@@ -33,6 +31,7 @@ function Maps(props) {
     const [userLat, setUserLat] = useState(0);
     const [userLng, setUserLng] = useState(0);
     const [selected, setSelected] = useState({});
+    // const [userId, setUserId] = useState();
 
     // const [markers, setMarkers] = useState([]);
     // const [map, setMap] = React.useState(null);
@@ -96,8 +95,8 @@ function Maps(props) {
         disableDefaultUI: true,
         zoomControl: true,
         enableHighAccuracy: true,
-        timeout: 10000,
-        maximumAge: 60000,
+        timeout: 5000,
+        maximumAge: 5000,
     };
 
     let watchId;
@@ -105,6 +104,7 @@ function Maps(props) {
     useEffect(() => {
         // console.log("i am use effect maps");
         // console.log("userLocation", userLocation);
+
         if (navigator.geolocation) {
             watchId = navigator.geolocation.watchPosition(
                 (position) => {
@@ -119,39 +119,13 @@ function Maps(props) {
                 }
             );
             return () => {
-                // console.log("running cleanup fn");
+                console.log("running cleanup fn");
                 navigator.geolocation.clearWatch(watchId);
             };
         } else {
             alert("This browser doesn't support your location,");
         }
     }, [userLat]);
-
-    // useEffect(() => {
-    //     console.log("i am use effect maps");
-    //     if (navigator.geolocation) {
-    //         navigator.geolocation.watchPosition(
-    //             (position) => {
-    //                 setUserLat(position.coords.latitude);
-    //                 setUserLng(position.coords.longitude);
-    //             },
-    //             (err) => console.log(err, "err useEffect maps"),
-    //             {
-    //                 enableHighAccuracy: true,
-    //                 timeout: 10000,
-    //                 maximumAge: 10000,
-    //             }
-    //         );
-    //         // clean up function
-    //         return () => {
-    //             console.log("running cleanup fn");
-    //             // navigator.geolocation.watchPosition();
-    //         };
-    //         // () => null, options;
-    //     } else {
-    //         alert("This browser doesn't support your location,");
-    //     }
-    // }, []);
 
     useEffect(() => {
         dispatch(showAllVenues());
@@ -195,7 +169,7 @@ function Maps(props) {
                 <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={userLocation}
-                    zoom={15}
+                    zoom={12}
                     options={options}
                     onLoad={onMapLoad}
                     onClick={(e) => addMarker(e)}
@@ -210,7 +184,7 @@ function Maps(props) {
                             }}
                             icon={{
                                 url: "/images/pin-new.svg",
-                                scaledSize: new window.google.maps.Size(40, 40),
+                                scaledSize: new window.google.maps.Size(30, 30),
                                 origin: new window.google.maps.Point(0, 0),
                                 anchor: new window.google.maps.Point(15, 15),
                             }}
@@ -227,8 +201,8 @@ function Maps(props) {
                                     icon={{
                                         url: "/images/pin.svg",
                                         scaledSize: new window.google.maps.Size(
-                                            40,
-                                            40
+                                            30,
+                                            30
                                         ),
                                         origin: new window.google.maps.Point(
                                             0,
