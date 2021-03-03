@@ -39,6 +39,7 @@ export async function addVen(newVen) {
 }
 
 export async function updateVen(updateVen) {
+    // console.log("update ven: ", updateVen);
     return {
         type: "UPDATE_VEN",
         updateVen,

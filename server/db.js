@@ -96,15 +96,15 @@ module.exports.addVenueNoPic = (userId, name, description, lat, lng) => {
 };
 
 module.exports.editVenNoPic = (userId, venId, name, description, lat, lng) => {
-    console.log(
-        "in edit ven no pic: ",
-        userId,
-        venId,
-        name,
-        description,
-        lat,
-        lng
-    );
+    // console.log(
+    //     "in edit ven no pic: ",
+    //     userId,
+    //     venId,
+    //     name,
+    //     description,
+    //     lat,
+    //     lng
+    // );
     const q = `UPDATE venues
     SET name = $3, description = $4, lat = $5, lng = $6
     WHERE id = $2 AND user_id = $1 RETURNING *`;

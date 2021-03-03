@@ -411,6 +411,11 @@ textarea:focus {
     /* align-items: center; */
 }
 
+.user-box {
+    display: flex;
+    align-items: center;
+}
+
 .comment > p {
     margin: 5px 10px;
 }

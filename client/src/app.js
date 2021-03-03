@@ -47,7 +47,7 @@ export default function App() {
     };
 
     const updateNewVen = (info) => {
-        console.log("info updateNewVen app:", info);
+        // console.log("info updateNewVen app:", info);
         setVenId(info.id);
         setLat(info.lat);
         setLng(info.lng);
@@ -56,7 +56,7 @@ export default function App() {
     };
 
     const delVenFn = (info) => {
-        console.log("info delVenFn app:", info);
+        // console.log("info delVenFn app:", info);
         setVenId(info.id);
         setLat(info.lat);
         setLng(info.lng);

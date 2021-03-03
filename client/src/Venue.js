@@ -61,13 +61,19 @@ export default function Venue(props) {
                             <p>{description}</p>
                             <Ratings />
 
-                            <div className="created-by">
+                            <div className="comment-user">
                                 <img
-                                    className="pro-pic"
-                                    src={userPic || "/avatar.jpg"}
+                                    className="pro-pic small"
+                                    src={userPic || "/images/avatar.svg"}
                                 />
-                                {userFirst} {userLast} added this venue on{" "}
-                                {createdAt.slice(0, 16).replace("T", " at ")}
+                                <div className="user-box">
+                                    <p className="gray">
+                                        Created by {userFirst} {userLast} on{" "}
+                                        {createdAt
+                                            .slice(0, 16)
+                                            .replace("T", " at ")}
+                                    </p>
+                                </div>
                             </div>
 
                             <img
