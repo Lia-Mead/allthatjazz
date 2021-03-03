@@ -114,7 +114,6 @@ h1 {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-weight: 300;
-    /* width: 100%; */
 }
 
 h2 {
@@ -137,6 +136,7 @@ p {
     font-size: 0.8em;
     line-height: 1.4em;
 }
+
 .handwrite {
     font-family: "Niconne", cursive;
     font-size: 1.4em;

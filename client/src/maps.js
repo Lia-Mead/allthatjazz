@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import axios from "./Axios";
+// import axios from "./Axios";
 import { Link, Route } from "react-router-dom";
 // import PlacesAutoComplete from "./placesAutoComplete";
 // import mapstyle from "./mapstyle";
@@ -114,8 +114,8 @@ function Maps(props) {
                 (err) => console.log(err, "err useEffect maps"),
                 {
                     enableHighAccuracy: false,
-                    timeout: 5000,
-                    maximumAge: 5000,
+                    timeout: 10000,
+                    maximumAge: 10000,
                 }
             );
             return () => {
@@ -267,27 +267,3 @@ function Maps(props) {
 }
 
 export default React.memo(Maps);
-
-// onUnmount = { onMapMount };
-
-// {
-//     /* {active && (
-//                         <Route
-//                             path="/venues/:id"
-//                             render={(props) => (
-//                                 <Venue
-//                                     key={props.match.url}
-//                                     match={props.match}
-//                                     history={props.history}
-//                                     togglePopup={togglePopup}
-//                                 />
-//                             )}
-//                         />
-//                     )} */
-// }
-
-//   <div className="map-intro">
-//       <p>Click on the map to add your favorite venue</p>
-//   </div>;
-
-// onUnmount = { onMapMount };

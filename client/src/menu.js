@@ -78,7 +78,7 @@ export default function Menu({ toggleBurgerMenu }) {
                     </NavLink>
 
                     <a
-                        style={{ marginTop: "70px" }}
+                        style={{ marginTop: "70px", color: "#b4aeae" }}
                         className="nav-icon"
                         href="/logout"
                     >

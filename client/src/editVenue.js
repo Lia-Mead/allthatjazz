@@ -37,6 +37,13 @@ export default function EditVenue(props) {
         // console.log("ID", props.id);
         // console.log("venId", props.venId);
 
+        venueName = venueName.length == 0 ? showLast[0].name : venueName;
+        description =
+            description.length == 0 ? showLast[0].description : description;
+
+        // description = description.length == 0 ? props.description : description;
+        // venuePic = venuePic == false ? props.venuePic : venuePic;
+
         formDataPic.append("venueName", venueName);
         formDataPic.append("description", description);
         formDataPic.append("file", venuePic);
@@ -48,10 +55,6 @@ export default function EditVenue(props) {
         if (venueName.length == 0) {
             setErrorNoname(true);
         } else if (venuePic != 0) {
-            // description =
-            //     description.length == 0 ? props.description : description;
-            // venuePic = venuePic == false ? props.venuePic : venuePic;
-
             axios
                 .post("/edit-venue-pic", formDataPic)
                 .then((res) => {
@@ -66,8 +69,6 @@ export default function EditVenue(props) {
                     dispatch(updateVenue(res.data.rows[0]));
 
                     dispatch(myLastV(res.data.rows[0]));
-
-                    props.togglePopup(!props.newVen);
                 })
                 .catch((err) => {
                     console.log("error in POST edit venue pic submit", err);
@@ -91,8 +92,6 @@ export default function EditVenue(props) {
                     setError(false);
                     dispatch(myLastV(res.data.rows[0]));
                     dispatch(updateVenue(res.data.rows[0]));
-
-                    props.togglePopup(!props.newVen);
                 })
                 .catch((err) => {
                     console.log("error in POST edit venue submit", err);
