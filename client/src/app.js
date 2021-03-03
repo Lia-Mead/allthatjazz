@@ -183,19 +183,6 @@ export default function App() {
                     />
 
                     <Route
-                        path="/ratings/:id"
-                        render={(props) => (
-                            <Ratings
-                                key={props.match.url}
-                                match={props.match}
-                                history={props.history}
-                                id={id}
-                                venId={venId}
-                            />
-                        )}
-                    />
-
-                    <Route
                         exact
                         path="/feed"
                         render={(props) => (
@@ -211,3 +198,16 @@ export default function App() {
         </BrowserRouter>
     );
 }
+
+// <Route
+//     path="/ratings/:id"
+//     render={(props) => (
+//         <Ratings
+//             key={props.match.url}
+//             match={props.match}
+//             history={props.history}
+//             id={id}
+//             venId={venId}
+//         />
+//     )}
+// />

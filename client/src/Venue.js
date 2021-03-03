@@ -17,10 +17,6 @@ export default function Venue(props) {
     const [venuePic, setVenuePic] = useState("");
     const [error, setError] = useState(false);
 
-    const showLast = useSelector((state) => state.lastVen);
-    console.log("showLast[0].lat", showLast[0].lat);
-    console.log("showLast[0].id", showLast[0].id);
-
     useEffect(() => {
         // console.log("props: ", props);
         // console.log("venueName", venueName);

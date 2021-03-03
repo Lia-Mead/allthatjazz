@@ -440,34 +440,34 @@ app.get("/api-last-ven", (req, res) => {
 //         });
 // });
 
-app.get(`/reviews/:id`, (req, res) => {
-    const { id } = req.params;
+// app.get(`/reviews/:id`, (req, res) => {
+//     const { id } = req.params;
 
-    db.showLikes(id)
-        .then(({ rows }) => {
-            console.log("showLikes");
-            console.log("rows in showLikes", rows);
-            res.json({ success: true, rows: rows });
-        })
-        .catch((err) => {
-            console.log("error in showLikes", err);
-        });
-});
+//     db.showLikes(id)
+//         .then(({ rows }) => {
+//             console.log("showLikes");
+//             console.log("rows in showLikes", rows);
+//             res.json({ success: true, rows: rows });
+//         })
+//         .catch((err) => {
+//             console.log("error in showLikes", err);
+//         });
+// });
 
-app.post(`/reviews/:id`, (req, res) => {
-    const { id } = req.params;
-    const { rate } = req.body;
+// app.post(`/reviews/:id`, (req, res) => {
+//     const { id } = req.params;
+//     const { rate } = req.body;
 
-    db.addLike(req.session.userId, id, rate)
-        .then(({ rows }) => {
-            console.log("likes");
-            console.log("rows in likes", rows);
-            res.json({ success: true, rows: rows });
-        })
-        .catch((err) => {
-            console.log("error in likes", err);
-        });
-});
+//     db.addLike(req.session.userId, id, rate)
+//         .then(({ rows }) => {
+//             console.log("likes");
+//             console.log("rows in likes", rows);
+//             res.json({ success: true, rows: rows });
+//         })
+//         .catch((err) => {
+//             console.log("error in likes", err);
+//         });
+// });
 
 app.get("/logout", (req, res) => {
     req.session = null;
