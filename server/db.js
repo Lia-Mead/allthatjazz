@@ -130,7 +130,7 @@ module.exports.showVenue = (id) => {
 };
 
 module.exports.showMyPosts = (userId) => {
-    const q = `SELECT * FROM venues WHERE user_id = $1`;
+    const q = `SELECT * FROM venues WHERE user_id = $1 ORDER BY id DESC`;
     const params = [userId];
     return db.query(q, params);
 };
