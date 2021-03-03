@@ -5,12 +5,12 @@ export default function Playlist() {
 
     let selectMood = [
         {
-            name: "Choose a music genre",
+            name: "How are you feeling?",
             key: "choose",
             value: "choose",
         },
         {
-            name: "Morning",
+            name: "Morning Haze",
             key: "morning",
             value: "morning",
         },
@@ -30,7 +30,7 @@ export default function Playlist() {
             value: "dreamy",
         },
         {
-            name: "Night",
+            name: "Night Mode",
             key: "night",
             value: "night",
         },

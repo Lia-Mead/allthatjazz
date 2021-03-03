@@ -6,15 +6,15 @@ import EditVenue from "./editVenue";
 
 export default function MyNewVen(props) {
     // console.log("props in mynew ven", props);
-    console.log("props id", props.id);
+    // console.log("props id", props.id);
 
     const dispatch = useDispatch();
 
     const showLast = useSelector((state) => state.lastVen);
     const showUploader = useSelector((state) => state.uploader);
 
-    console.log("show last", showLast);
-    console.log("showUploader", showUploader);
+    // console.log("show last", showLast);
+    // console.log("showUploader", showUploader);
 
     const [editVenue, setEditVenue] = useState(false);
     // const [editVenPic, setEditVenPic] = useState(false);

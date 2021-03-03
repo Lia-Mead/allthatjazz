@@ -391,6 +391,18 @@ app.get(`/api/all-venues`, (req, res) => {
         });
 });
 
+app.get(`/api/my-venues`, (req, res) => {
+    db.showMyPosts(req.session.userId)
+        .then(({ rows }) => {
+            // console.log("show my venue");
+            // console.log("rows in my venues", rows);
+            res.json({ success: true, rows: rows });
+        })
+        .catch((err) => {
+            console.log("error in all my venues", err);
+        });
+});
+
 app.get("/new-venues", (req, res) => {
     db.threeVens()
         .then(({ rows }) => {

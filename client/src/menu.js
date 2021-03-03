@@ -14,7 +14,7 @@ export default function Menu({ toggleBurgerMenu }) {
                         to="/"
                     >
                         <img
-                            src="/images/home-w.svg"
+                            src="/images/sax-w.svg"
                             className="icon"
                             alt="home-icon"
                         />
@@ -33,6 +33,20 @@ export default function Menu({ toggleBurgerMenu }) {
                             alt="profile-icon"
                         />
                         Account
+                    </NavLink>
+
+                    <NavLink
+                        className="nav-icon"
+                        activeClassName="active-b"
+                        onClick={toggleBurgerMenu}
+                        to="/my-posts"
+                    >
+                        <img
+                            src="/images/my-pins.svg"
+                            className="icon"
+                            alt="my-posts-icon"
+                        />
+                        My Posts
                     </NavLink>
 
                     <NavLink
@@ -63,7 +77,11 @@ export default function Menu({ toggleBurgerMenu }) {
                         Feed
                     </NavLink>
 
-                    <a className="nav-icon" href="/logout">
+                    <a
+                        style={{ marginTop: "70px" }}
+                        className="nav-icon"
+                        href="/logout"
+                    >
                         <img
                             src="/images/logout-w.svg"
                             className="icon"

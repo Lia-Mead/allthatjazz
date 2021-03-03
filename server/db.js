@@ -96,15 +96,6 @@ module.exports.addVenueNoPic = (userId, name, description, lat, lng) => {
 };
 
 module.exports.editVenNoPic = (userId, venId, name, description, lat, lng) => {
-    // console.log(
-    //     "in edit ven no pic: ",
-    //     userId,
-    //     venId,
-    //     name,
-    //     description,
-    //     lat,
-    //     lng
-    // );
     const q = `UPDATE venues
     SET name = $3, description = $4, lat = $5, lng = $6
     WHERE id = $2 AND user_id = $1 RETURNING *`;
@@ -135,6 +126,12 @@ module.exports.editVenPic = (
 module.exports.showVenue = (id) => {
     const q = `SELECT * FROM venues WHERE id = $1`;
     const params = [id];
+    return db.query(q, params);
+};
+
+module.exports.showMyPosts = (userId) => {
+    const q = `SELECT * FROM venues WHERE user_id = $1`;
+    const params = [userId];
     return db.query(q, params);
 };
 
@@ -208,13 +205,6 @@ module.exports.addLike = (userId, venueId, rate) => {
     return db.query(q, params);
 };
 
-// cl
-// const results = db.query(q, params);
-// results.then((result) => {
-//     console.log("result", result);
-//     return result;
-// });
-
 module.exports.deleteVenue = (venId, userId) => {
     const q = `DELETE FROM venues
     WHERE id = $1 AND user_id = $2`;
@@ -234,3 +224,10 @@ module.exports.getInfoUploader = (userId) => {
     const params = [userId];
     return db.query(q, params);
 };
+
+// cl
+// const results = db.query(q, params);
+// results.then((result) => {
+//     console.log("result", result);
+//     return result;
+// });

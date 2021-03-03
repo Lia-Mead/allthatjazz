@@ -28,6 +28,13 @@ export function reducer(state = {}, action) {
     //     };
     // }
 
+    if (action.type === "MY_POSTS") {
+        state = {
+            ...state,
+            allMyPosts: action.allMyPosts,
+        };
+    }
+
     if (action.type === "UPDATE_VEN") {
         state = {
             ...state,
@@ -41,7 +48,7 @@ export function reducer(state = {}, action) {
         };
     }
 
-    if (action.type === "LAST-VEN") {
+    if (action.type === "LAST_VEN") {
         state = {
             ...state,
             lastVen: action.lastVen,

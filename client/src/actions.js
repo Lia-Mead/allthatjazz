@@ -23,9 +23,19 @@ export async function myLastV() {
     console.log("rowVen: rowVen, rowUser: rows: ", data.rowVen, data.rowUser);
     // console.log("data in axios all venues: ", data);
     return {
-        type: "LAST-VEN",
+        type: "LAST_VEN",
         lastVen: data.rowVen,
         uploader: data.rowUser,
+    };
+}
+
+export async function allMyPosts() {
+    const { data } = await axios.get("/api/my-venues");
+    // console.log("data.rows in axios all my posts: ", data.rows);
+    // console.log("data in axios all venues: ", data);
+    return {
+        type: "MY_POSTS",
+        allMyPosts: data.rows,
     };
 }
 

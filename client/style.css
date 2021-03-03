@@ -188,6 +188,7 @@ nav {
 nav a {
     color: rgb(255, 255, 255);
     margin: 20px;
+    font-weight: 300;
 }
 
 nav a:hover {
@@ -407,13 +408,14 @@ textarea {
 textarea:focus {
     outline: none;
 }
+.comments textarea {
+    margin-top: 0;
+}
 
 .text-area {
     min-height: auto;
     min-height: 70px;
-    /* margin-top: 30px; */
-    /* height: 100px; */
-    /* max-width: 80%; */
+    margin-top: 30px;
     resize: none;
 }
 

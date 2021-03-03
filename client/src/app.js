@@ -10,6 +10,8 @@ import Venue from "./venue";
 import Ratings from "./ratings";
 import Feed from "./feed";
 import Footer from "./footer";
+import MyPosts from "./myPosts";
+
 // import Maps from "./maps";
 // import NewVenues from "./newVenues";
 
@@ -160,6 +162,18 @@ export default function App() {
                                 venDescription={venDescription}
                                 venImage={venImage}
                                 delVenFn={delVenFn}
+                                updateNewVen={updateNewVen}
+                            />
+                        )}
+                    />
+
+                    <Route
+                        exact
+                        path="/my-posts"
+                        render={() => (
+                            <MyPosts
+                                venDescription={venDescription}
+                                venImage={venImage}
                                 updateNewVen={updateNewVen}
                             />
                         )}
