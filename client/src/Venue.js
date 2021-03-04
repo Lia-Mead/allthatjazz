@@ -7,7 +7,7 @@ import Ratings from "./ratings";
 export default function Venue(props) {
     // const dispatch = useDispatch();
     // console.log("props in venue", props);
-    // console.log("i am Venue");
+    console.log("i am Venue");
 
     const [createdAt, setCreatedAt] = useState("");
     const [userFirst, setUserFirst] = useState("");
@@ -88,46 +88,3 @@ export default function Venue(props) {
         </>
     );
 }
-// return (
-//     <>
-//         <div className="overlay">
-//             <div className="venue-box">
-//                 {venueId && (
-//                     <>
-//                         <img
-//                             onClick={() => props.history.goBack()}
-//                             className="icon-close"
-//                             src="/images/close.svg"
-//                         />
-//                         <h1>{venueName}</h1>
-//                         <p>{description}</p>
-//                         <Ratings />
-
-//                         <div className="comment-user">
-//                             <img
-//                                 className="pro-pic small"
-//                                 src={userPic || "/images/avatar.svg"}
-//                             />
-//                             <div className="user-box">
-//                                 <p className="gray">
-//                                     Created by {userFirst} {userLast} on{" "}
-//                                     {createdAt
-//                                         .slice(0, 16)
-//                                         .replace("T", " at ")}
-//                                 </p>
-//                             </div>
-//                         </div>
-
-//                         <img
-//                             className="popup-pic ven"
-//                             src={venuePic || "/images/ven-avatar.jpg"}
-//                         />
-//                         <Comments id={props.id} venueId={venueId} />
-//                     </>
-//                 )}
-
-//                 {error && <p>Oops something went wrong.</p>}
-//             </div>
-//         </div>
-//     </>
-// );

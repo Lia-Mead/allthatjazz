@@ -6,7 +6,7 @@ import Header from "./header";
 import Profile from "./profile";
 import AddVenue from "./addVenue";
 import AllVenues from "./allVenues";
-import Venue from "./venue";
+import Venue from "./Venue";
 // import Ratings from "./ratings";
 import Feed from "./feed";
 import Footer from "./footer";
