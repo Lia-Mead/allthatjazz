@@ -54,7 +54,7 @@ export default function MyPosts(props) {
                                         </p>
                                         <p>{post.description}</p>
 
-                                        <div className="my-ven-box">
+                                        <div className="my-edit-box">
                                             <button
                                                 onClick={() =>
                                                     toggleEditVenue()

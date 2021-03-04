@@ -78,7 +78,7 @@ body {
     padding: 12px;
 }
 
-.border-hotpink {
+/* .border-hotpink {
     border: 5px hotpink solid;
 }
 .border-acqua {
@@ -95,7 +95,7 @@ body {
 }
 .border-blue {
     border: 5px blue solid;
-}
+} */
 
 header {
     display: flex;
@@ -346,18 +346,6 @@ nav ul li a {
     padding: 20px;
 }
 
-/* .venue-box {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin: 20px;
-    width: 80%;
-    height: 80%;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 11px;
-} */
-
 .venue-box {
     display: flex;
     align-items: center;
@@ -365,7 +353,6 @@ nav ul li a {
     margin: 20px;
     background-color: #fff;
     border-radius: 11px;
-    /* padding: 20px; */
 }
 
 .venue-box h1 {
@@ -394,7 +381,7 @@ textarea {
     margin: 0px;
     max-width: 800px;
     min-width: 400px;
-    height: 222px;
+    height: 150px;
     width: 600px;
     font-size: 24px;
     padding: 20px 10px;
@@ -408,9 +395,9 @@ textarea {
 textarea:focus {
     outline: none;
 }
-.comments textarea {
+/* .comments textarea {
     margin-top: 0;
-}
+} */
 
 .text-area {
     min-height: auto;
@@ -760,6 +747,12 @@ footer > div {
     margin: 40px 0;
 }
 
+.my-edit-box {
+    display: flex;
+    flex-direction: column;
+    margin: 40px 0;
+}
+
 .my-ven-pic {
     width: 80%;
     max-height: 570px;
@@ -1101,6 +1094,7 @@ footer > div {
 
     textarea {
         width: auto;
+        height: 100px;
     }
 
     input {

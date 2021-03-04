@@ -16,17 +16,9 @@ export function reducer(state = {}, action) {
     if (action.type === "NEW_VEN") {
         state = {
             ...state,
-            // newVenues: [...state.newVenues, action.newVen],
             newVenues: [action.newVen, ...state.newVenues].slice(0, 3),
         };
     }
-
-    // if (action.type === "UPDATE_VEN") {
-    //     state = {
-    //         ...state,
-    //         newVenues: [action.updateVen, ...state.newVenues].slice(0, 3),
-    //     };
-    // }
 
     if (action.type === "MY_POSTS") {
         state = {
