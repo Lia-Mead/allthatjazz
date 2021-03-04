@@ -17,6 +17,10 @@ body {
     object-fit: cover;
 }
 
+.height {
+    min-height: 83vh;
+}
+
 .pro-pic.small {
     width: 80px;
     height: 80px;
@@ -240,6 +244,7 @@ nav ul li a {
     margin: 20px 0;
     color: #fc8240;
     text-align: center;
+    font-size: 1em;
 }
 
 .center-box {
@@ -523,6 +528,7 @@ input:-webkit-autofill {
 .input-file {
     border-bottom: none !important;
     color: black;
+    min-height: 60px;
 }
 
 .find-people {
@@ -646,6 +652,8 @@ footer > div {
     align-items: center;
     justify-self: flex-end;
     align-self: flex-end;
+
+    flex-flow: wrap;
 }
 
 .iframe-box {
@@ -1036,12 +1044,12 @@ footer > div {
 
     .pro-pic {
         margin: 10px 0;
-        height: 330px;
+        /* height: 330px; */
     }
 
     .pro-pic.small {
-        width: 50px;
-        height: 50px;
+        width: 70px;
+        height: 70px;
         padding: 7px;
     }
 
@@ -1129,6 +1137,10 @@ footer > div {
 
     .ven-text {
         width: 100%;
+    }
+    .ven-image {
+        max-height: 400px;
+        /* min-height: 300px; */
     }
 }
 

@@ -19,7 +19,7 @@ export default function Profile(props) {
     };
 
     return (
-        <>
+        <div className="height">
             <div className="profile-con">
                 <h1>
                     <span className="orange">Welcome</span>
@@ -33,23 +33,23 @@ export default function Profile(props) {
                     className="pro-pic"
                     src={props.pic || "/images/avatar.svg"}
                 />
+
+                <EditProfile
+                    first={props.first}
+                    last={props.last}
+                    email={props.email}
+                    editProfile={props.editProfile}
+                    updateProfileData={props.updateProfileData}
+                    edit={edit}
+                    toggleEdit={toggleEdit}
+                />
+
+                <ProPicUploader
+                    toggleEditPic={toggleEditPic}
+                    editPic={editPic}
+                    setProfilePicUrl={props.setProfilePicUrl}
+                />
             </div>
-
-            <EditProfile
-                first={props.first}
-                last={props.last}
-                email={props.email}
-                editProfile={props.editProfile}
-                updateProfileData={props.updateProfileData}
-                edit={edit}
-                toggleEdit={toggleEdit}
-            />
-
-            <ProPicUploader
-                toggleEditPic={toggleEditPic}
-                editPic={editPic}
-                setProfilePicUrl={props.setProfilePicUrl}
-            />
-        </>
+        </div>
     );
 }
