@@ -7,7 +7,7 @@ import Ratings from "./ratings";
 export default function Venue(props) {
     // const dispatch = useDispatch();
     // console.log("props in venue", props);
-    console.log("i am Venue");
+    // console.log("i am Venue");
 
     const [createdAt, setCreatedAt] = useState("");
     const [userFirst, setUserFirst] = useState("");

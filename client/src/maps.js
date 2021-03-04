@@ -21,6 +21,7 @@ function Maps(props) {
     // console.log("props in maps: ", props);
     const dispatch = useDispatch();
 
+    // heroku
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
         googleMapsApiKey: apiKey || process.env.apiKey,
@@ -30,12 +31,7 @@ function Maps(props) {
     //     id: "google-map-script",
     //     googleMapsApiKey: apiKey,
     // });
-    // const { isLoaded } = useJsApiLoader({
-    //     id: "google-map-script",
-    //     googleMapsApiKey: apiKey,
-    // });
 
-    // const [location, setLocation] = useState(0);
     const [pinLocation, setPinLocation] = useState([]);
     const [userLat, setUserLat] = useState(0);
     const [userLng, setUserLng] = useState(0);
@@ -128,7 +124,7 @@ function Maps(props) {
                 }
             );
             return () => {
-                console.log("running cleanup fn");
+                // console.log("running cleanup fn");
                 navigator.geolocation.clearWatch(watchId);
             };
         } else {

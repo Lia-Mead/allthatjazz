@@ -324,8 +324,8 @@ app.post("/edit-venue-pic", uploader.single("file"), s3.upload, (req, res) => {
 
 app.post("/edit-venue", (req, res) => {
     const { venId, venueName, description, lat, lng } = req.body;
-    console.log("route edit ven prop", venId, venueName, description, lat, lng);
-    console.log("cookie", req.session.userId);
+    // console.log("route edit ven prop", venId, venueName, description, lat, lng);
+    // console.log("cookie", req.session.userId);
 
     db.editVenNoPic(req.session.userId, venId, venueName, description, lat, lng)
         .then(({ rows }) => {

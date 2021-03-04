@@ -353,7 +353,16 @@ nav ul li a {
     margin: 20px;
     background-color: #fff;
     border-radius: 11px;
+    /* max-width: 2400px; */
 }
+/* .venue-box {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 11px;
+} */
 
 .venue-box h1 {
     margin: 0px 0 20px 0px;
@@ -865,8 +874,9 @@ footer > div {
     border-radius: 11px;
     object-fit: cover;
     margin-top: 5px;
-
     border-radius: 0 50px 0 50px;
+
+    min-height: 600px;
 }
 
 .popup-pic.ven {

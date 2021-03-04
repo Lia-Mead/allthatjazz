@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Footer() {
     return (
         <footer>
-            <p className="footer-nnote">© 2021 Made with ♡ Liat Meadows</p>
+            <p className="footer-note">© 2021 Made with ♡ Liat Meadows</p>
             <div className="music-box">
                 <Playlist />
                 <Link to="/">
