@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { showAllVenues } from "./actions";
-import { Link, Route } from "react-router-dom";
-import Venue from "./venue";
+import { Link } from "react-router-dom";
 
 export default function AllVenues() {
     const dispatch = useDispatch();

@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+// import { useSelector, useDispatch } from "react-redux";
 import axios from "./Axios";
 import Comments from "./comments";
 import Ratings from "./ratings";
 
 export default function Venue(props) {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     // console.log("props in venue", props);
     // console.log("i am Venue");
 
