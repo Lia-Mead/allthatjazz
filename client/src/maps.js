@@ -21,9 +21,14 @@ function Maps(props) {
     // console.log("props in maps: ", props);
     const dispatch = useDispatch();
 
+    // const { isLoaded } = useJsApiLoader({
+    //     id: "google-map-script",
+    //     googleMapsApiKey: apiKey || process.env.apiKey,
+    // });
+
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: apiKey || process.env.apiKey,
+        googleMapsApiKey: apiKey,
     });
     // const { isLoaded } = useJsApiLoader({
     //     id: "google-map-script",
