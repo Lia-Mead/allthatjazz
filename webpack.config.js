@@ -6,6 +6,7 @@ const webpack = require("webpack");
 //     // Already set on heroku production
 //     process.env.apiKey = require("./google.json");
 // }
+process.env.apiKey = process.env.apiKey || JSON.stringify("./google.json");
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -59,17 +60,23 @@ module.exports = () => ({
         new MiniCssExtractPlugin({
             filename: "bundle.css",
         }),
+        new webpack.EnvironmentPlugin(["apiKey"]),
         // new webpack.DefinePlugin({
         //     apiKey:
         //         process.env.apiKey || JSON.stringify(require("./google.json")),
         // }),
-        new webpack.EnvironmentPlugin([
-            "apiKey",
-            process.env.apiKey || JSON.stringify(require("./google.json")),
-        ]),
-        // new webpack.EnvironmentPlugin(["apiKey"]),
-        // new webpack.DefinePlugin({
-        //     apiKey: JSON.stringify(require("./google.json")),
-        // }),
     ],
 });
+
+// new webpack.DefinePlugin({
+//     apiKey:
+//         process.env.apiKey || JSON.stringify(require("./google.json")),
+// }),
+// new webpack.EnvironmentPlugin([
+//     "apiKey",
+//     process.env.apiKey || JSON.stringify(require("./google.json")),
+// ]),
+// new webpack.EnvironmentPlugin(["apiKey"]),
+// new webpack.DefinePlugin({
+//     apiKey: JSON.stringify(require("./google.json")),
+// }),
