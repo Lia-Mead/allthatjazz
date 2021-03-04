@@ -1,15 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { allMyPosts } from "./actions";
 import { Link } from "react-router-dom";
+import EditVenue from "./editVenue";
 
-export default function MyPosts() {
+export default function MyPosts(props) {
     const dispatch = useDispatch();
 
     const showAllMine = useSelector(
         (state) =>
             state.allMyPosts && state.allMyPosts.filter((post) => post.id)
     );
+
+    const [editVenue, setEditVenue] = useState(false);
+
+    const toggleEditVenue = () => {
+        setEditVenue(!editVenue);
+    };
 
     useEffect(() => {
         dispatch(allMyPosts());
@@ -46,6 +53,17 @@ export default function MyPosts() {
                                                 .replace("T", " at ")}
                                         </p>
                                         <p>{post.description}</p>
+
+                                        <div className="my-ven-box">
+                                            <button
+                                                onClick={() =>
+                                                    toggleEditVenue()
+                                                }
+                                                className="btn my-edit"
+                                            >
+                                                Edit Venue
+                                            </button>
+                                        </div>
                                     </div>
 
                                     <Link to={`/venues/${post.id}`}>
@@ -66,3 +84,20 @@ export default function MyPosts() {
         </>
     );
 }
+
+//    {
+//        editVenue && (
+//            <EditVenue
+//                id={props.id}
+//                venId={props.venId}
+//                first={props.first}
+//                last={props.last}
+//                lat={props.lat}
+//                lng={props.lng}
+//                updateNewVen={props.updateNewVen}
+//                editVenue={props.editVenue}
+//                toggleEditVenue={props.toggleEditVenue}
+//                delVenFn={props.delVenFn}
+//            />
+//        );
+//    }

@@ -558,6 +558,17 @@ input:-webkit-autofill {
     background-color: transparent;
 }
 
+.btn.my-edit {
+    border: none;
+    background-color: transparent;
+    margin: 20px 10px 10px 0;
+    text-align: left;
+    padding-left: 0;
+    font-size: 0.8em;
+    max-width: 11px;
+    color: #f9815b;
+}
+
 .btn:hover {
     color: white;
     background-color: black;
