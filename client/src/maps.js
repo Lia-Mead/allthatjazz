@@ -23,8 +23,12 @@ function Maps(props) {
 
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: apiKey,
+        googleMapsApiKey: apiKey || process.env.apiKey,
     });
+    // const { isLoaded } = useJsApiLoader({
+    //     id: "google-map-script",
+    //     googleMapsApiKey: apiKey,
+    // });
 
     // const [location, setLocation] = useState(0);
     const [pinLocation, setPinLocation] = useState([]);

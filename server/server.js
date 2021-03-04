@@ -3,7 +3,7 @@ const app = express();
 const server = require("http").Server(app);
 
 const io = require("socket.io")(server, {
-    origins: "localhost:3000 https://epic-time.herokuapp.com/:*",
+    origins: "localhost:3000 https://allthat-jazz.herokuapp.com/:*",
 });
 
 // twitter

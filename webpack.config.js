@@ -2,6 +2,11 @@ const path = require("path");
 const webpack = require("webpack");
 // const { API_KEY } = require("./google");
 
+if (process.env.NODE_ENV !== "production") {
+    // Already set on heroku production
+    process.env.apiKey = require("./google.json");
+}
+
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = () => ({
@@ -57,5 +62,6 @@ module.exports = () => ({
         new webpack.DefinePlugin({
             apiKey: JSON.stringify(require("./google.json")),
         }),
+        new webpack.EnvironmentPlugin("apiKey"),
     ],
 });
