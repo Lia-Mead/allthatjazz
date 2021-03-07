@@ -171,6 +171,11 @@ p {
     align-items: center;
 }
 
+.cen-con {
+    display: flex;
+    align-items: center;
+}
+
 a {
     color: #f9815b;
     cursor: pointer;
@@ -991,6 +996,7 @@ footer > div {
     background-color: #f6f5f6;
     transition: 0.4s ease-out;
     box-shadow: 7px 9px 5px 0px;
+    align-items: center;
 }
 
 .card:hover {

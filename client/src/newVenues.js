@@ -37,7 +37,10 @@ export default function NewVenues(props) {
                                             .slice(0, 16)
                                             .replace("T", " at ")}
                                     </p>
-                                    <Link to={`/venues/${ven.id}`}>
+                                    <Link
+                                        className="cen-con"
+                                        to={`/venues/${ven.id}`}
+                                    >
                                         <button className="btn link">
                                             Go to Venue
                                         </button>

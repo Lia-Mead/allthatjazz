@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 // import axios from "./Axios";
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import PlacesAutoComplete from "./placesAutoComplete";
 // import mapstyle from "./mapstyle";
 
@@ -118,9 +118,9 @@ function Maps(props) {
                 },
                 (err) => console.log(err, "err useEffect maps"),
                 {
-                    enableHighAccuracy: false,
-                    timeout: 10000,
-                    maximumAge: 10000,
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 5000,
                 }
             );
             return () => {
