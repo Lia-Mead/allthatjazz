@@ -24,8 +24,12 @@ function Maps(props) {
     // heroku
     const { isLoaded } = useJsApiLoader({
         id: "google-map-script",
-        googleMapsApiKey: apiKey || process.env.apiKey,
+        googleMapsApiKey: process.env.apiKey,
     });
+    // const { isLoaded } = useJsApiLoader({
+    //     id: "google-map-script",
+    //     googleMapsApiKey: apiKey || process.env.apiKey,
+    // });
 
     // const { isLoaded } = useJsApiLoader({
     //     id: "google-map-script",
@@ -90,9 +94,14 @@ function Maps(props) {
         console.log("marker: ", marker);
     };
 
-    const userLocation = {
+    let userLocation = {
         lat: userLat,
         lng: userLng,
+    };
+
+    const center = {
+        lat: 52.54926456012464,
+        lng: 13.42525726347902,
     };
 
     let options = {
@@ -173,7 +182,7 @@ function Maps(props) {
             <section className="maps">
                 <GoogleMap
                     mapContainerStyle={containerStyle}
-                    center={userLocation}
+                    center={center}
                     zoom={12}
                     options={options}
                     onLoad={onMapLoad}
