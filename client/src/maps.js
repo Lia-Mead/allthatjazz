@@ -99,6 +99,9 @@ function Maps(props) {
         lng: userLng,
     };
 
+    // console.log("userLat", userLat);
+    // console.log("userLng", userLng);
+
     const center = {
         lat: 52.54926456012464,
         lng: 13.42525726347902,
@@ -109,8 +112,8 @@ function Maps(props) {
         disableDefaultUI: true,
         zoomControl: true,
         enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 5000,
+        timeout: 10000,
+        maximumAge: 10000,
     };
 
     let watchId;
@@ -128,8 +131,8 @@ function Maps(props) {
                 (err) => console.log(err, "err useEffect maps"),
                 {
                     enableHighAccuracy: true,
-                    timeout: 5000,
-                    maximumAge: 5000,
+                    timeout: 10000,
+                    maximumAge: 10000,
                 }
             );
             return () => {
@@ -183,7 +186,7 @@ function Maps(props) {
                 <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={center}
-                    zoom={12}
+                    zoom={11}
                     options={options}
                     onLoad={onMapLoad}
                     onClick={(e) => addMarker(e)}
