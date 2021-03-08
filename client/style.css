@@ -1077,6 +1077,9 @@ footer > div {
         height: 100%;
     }
 
+    .reg-form > h2 {
+        margin-top: 60px;
+    }
     .intro > p {
         width: 90%;
         margin-bottom: 70px;
@@ -1089,10 +1092,6 @@ footer > div {
     .menu-right > .icon {
         margin: 0;
     }
-
-    /* .venue-box {
-        margin: 0px;
-    } */
 
     .profile-con {
         padding-bottom: 0px;
@@ -1148,6 +1147,14 @@ footer > div {
     .ven-image {
         max-height: 400px;
         /* min-height: 300px; */
+    }
+
+    .reg-form {
+        min-height: auto;
+    }
+
+    .intro {
+        padding: 60px 0;
     }
 }
 
