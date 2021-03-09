@@ -99,9 +99,6 @@ function Maps(props) {
         lng: userLng,
     };
 
-    // console.log("userLat", userLat);
-    // console.log("userLng", userLng);
-
     const center = {
         lat: 52.54926456012464,
         lng: 13.42525726347902,
@@ -121,6 +118,8 @@ function Maps(props) {
     useEffect(() => {
         // console.log("i am use effect maps");
         // console.log("userLocation", userLocation);
+        console.log("userLat", userLat);
+        console.log("userLng", userLng);
 
         if (navigator.geolocation) {
             watchId = navigator.geolocation.watchPosition(
@@ -185,7 +184,7 @@ function Maps(props) {
             <section className="maps">
                 <GoogleMap
                     mapContainerStyle={containerStyle}
-                    center={center}
+                    center={userLocation}
                     zoom={11}
                     options={options}
                     onLoad={onMapLoad}
