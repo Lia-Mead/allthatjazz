@@ -26,15 +26,6 @@ function Maps(props) {
         id: "google-map-script",
         googleMapsApiKey: process.env.apiKey,
     });
-    // const { isLoaded } = useJsApiLoader({
-    //     id: "google-map-script",
-    //     googleMapsApiKey: apiKey || process.env.apiKey,
-    // });
-
-    // const { isLoaded } = useJsApiLoader({
-    //     id: "google-map-script",
-    //     googleMapsApiKey: apiKey,
-    // });
 
     const [pinLocation, setPinLocation] = useState([]);
     const [userLat, setUserLat] = useState(0);
@@ -82,10 +73,11 @@ function Maps(props) {
     };
 
     const addMarker = (e) => {
+        // console.log("e", e);
+        // console.log("lat", e.latLng.lat());
         setPinLocation({
             lat: e.latLng.lat(),
             lng: e.latLng.lng(),
-            // creator: props.id,
         });
         togglePopup();
     };
@@ -99,10 +91,10 @@ function Maps(props) {
         lng: userLng,
     };
 
-    const center = {
-        lat: 52.54926456012464,
-        lng: 13.42525726347902,
-    };
+    // const center = {
+    //     lat: 52.54926456012464,
+    //     lng: 13.42525726347902,
+    // };
 
     let options = {
         // styles: mapStyle,
@@ -118,8 +110,8 @@ function Maps(props) {
     useEffect(() => {
         // console.log("i am use effect maps");
         // console.log("userLocation", userLocation);
-        console.log("userLat", userLat);
-        console.log("userLng", userLng);
+        // console.log("userLat", userLat);
+        // console.log("userLng", userLng);
 
         if (navigator.geolocation) {
             watchId = navigator.geolocation.watchPosition(

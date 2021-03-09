@@ -154,7 +154,12 @@ export default function EditVenue(props) {
                     Delete Venue
                 </a>
 
-                {delCon && <DeleteVenue toggleDelete={toggleDelete} />}
+                {delCon && (
+                    <DeleteVenue
+                        venId={props.venId}
+                        toggleDelete={toggleDelete}
+                    />
+                )}
             </div>
         </>
     );

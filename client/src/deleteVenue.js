@@ -9,11 +9,14 @@ export default function DeleteVenue(props) {
     };
 
     const delVen = () => {
+        const venueId = props.venId;
+        console.log("venueId", venueId);
         axios
-            .post(`/delete-venue`)
+            .post(`/delete-venue`, { venueId })
             .then((res) => {
-                // window.location.reload();
-                props.delVenFn(res.data.rows[0]);
+                console.log("res del ven", res);
+                window.location.replace("/venues");
+                // props.delVenFn(res.data.rows[0]);
             })
             .catch((err) => {
                 console.log("err in axios delete venue: ", err);

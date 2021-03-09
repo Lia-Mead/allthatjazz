@@ -341,17 +341,18 @@ app.post("/edit-venue", (req, res) => {
 
 // DELETE
 app.post("/delete-venue", async (req, res) => {
-    const { venId } = req.body;
+    const { venueId } = req.body;
     const userId = req.session.userId;
 
     try {
-        const venues = await db.showVenue(venId);
+        const venues = await db.showVenue(venueId);
         // console.log("users are ", users.rows[0]);
         if (venues.rows[0].image != null) {
             s3.deleteImage(venues.rows[0].image);
         }
-        await db.deleteComments(venId);
-        db.deleteVenue(venId, userId);
+        db.deleteComments(venueId);
+        await db.deleteVenue(venueId, userId);
+        res.json({ success: true });
     } catch (err) {
         console.log("err in delete venue: ", err);
         res.json({ success: false });
