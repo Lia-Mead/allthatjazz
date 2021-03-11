@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { newThreeVens } from "./actions";
-// import axios from "./Axios";
 
 export default function NewVenues(props) {
     const dispatch = useDispatch();

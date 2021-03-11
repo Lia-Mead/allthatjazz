@@ -6,7 +6,7 @@
 body {
     background-color: white;
     font-family: "Ubuntu", sans-serif;
-    font-size: 24px;
+    font-size: 18px;
 }
 
 .pro-pic {
@@ -845,6 +845,7 @@ footer > div {
 }
 .icon.big {
     width: 50px;
+    margin: 20px;
 }
 
 .back {
