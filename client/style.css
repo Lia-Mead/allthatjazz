@@ -317,9 +317,9 @@ nav ul li a {
     min-height: 100vh;
 }
 
-/* .maps {
-    margin: 50px 0 0;
-} */
+.maps {
+    margin: 30px 0 0;
+}
 
 .add-venue {
     display: flex;
@@ -551,7 +551,6 @@ input:-webkit-autofill {
     margin: 30px auto;
     cursor: pointer;
     box-shadow: 0px 0px 0px #fff;
-    font-size: 24px;
     letter-spacing: 0.3em;
     padding: 15px 25px;
     max-width: 300px;
@@ -1138,9 +1137,9 @@ footer > div {
         align-self: flex-end;
     }
 
-    /* .maps {
+    .maps {
         margin: 0;
-    } */
+    }
 
     .ven-text {
         width: 100%;
