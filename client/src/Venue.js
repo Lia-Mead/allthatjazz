@@ -2,14 +2,13 @@ import { useState, useEffect } from "react";
 // import { useSelector, useDispatch } from "react-redux";
 import axios from "./Axios";
 import Comments from "./comments";
-import EditVenue from "./editVenue";
+// import EditVenue from "./editVenue";
 import DeleteVenue from "./deleteVenue";
 import Ratings from "./ratings";
 
 export default function Venue(props) {
     // const dispatch = useDispatch();
     // console.log("props in venue", props);
-    // console.log("i am Venue");
 
     const [createdAt, setCreatedAt] = useState("");
     const [userFirst, setUserFirst] = useState("");
@@ -24,13 +23,9 @@ export default function Venue(props) {
     const [userId, setUserId] = useState("");
     const [error, setError] = useState(false);
 
-    // make it defined
-    // console.log("p.id", props.id);
+    console.log("p.id in venue", props.id);
 
     useEffect(() => {
-        // console.log("props: ", props);
-        // console.log("venueName", venueName);
-
         // dispatch(myLastV(res.data.rows[0]));
 
         axios
@@ -49,7 +44,7 @@ export default function Venue(props) {
                 setUserId(res.data.rowsUser[0].id);
                 setUserCookie(res.data.cookie);
 
-                console.log("cookie", res.data.cookie);
+                // console.log("cookie", res.data.cookie);
 
                 setError(false);
             })

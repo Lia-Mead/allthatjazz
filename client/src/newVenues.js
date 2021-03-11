@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { newThreeVens } from "./actions";
@@ -31,7 +31,7 @@ export default function NewVenues(props) {
                                 />
                                 <div className="">
                                     <p className="gray">
-                                        {props.first} {props.last} on{" "}
+                                        Created on{" "}
                                         {ven.created_at
                                             .slice(0, 16)
                                             .replace("T", " at ")}

@@ -144,7 +144,7 @@ p {
 
 .handwrite {
     font-family: "Niconne", cursive;
-    font-size: 1.4em;
+    font-size: 1.6em;
     text-align: center;
     margin: 20px 0;
 }
@@ -455,7 +455,6 @@ textarea:focus {
 
 .del-box {
     margin-bottom: 40px;
-    /* font-size: 0.8em; */
 }
 
 .del-con {
@@ -464,10 +463,11 @@ textarea:focus {
     justify-content: center;
     text-align: center;
     background-color: white;
-    padding: 40px;
+    padding: 10px;
     border: 1px black dotted;
     border-radius: 7px;
     margin-bottom: 40px;
+    margin-top: 10px;
 }
 
 .pro-fields {
@@ -717,7 +717,7 @@ footer > div {
 }
 
 .comment.my {
-    background-color: #e6dcf6;
+    border: 1px solid #f9815b;
 }
 
 .menu-con {

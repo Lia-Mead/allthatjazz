@@ -183,6 +183,7 @@ export default function App() {
                         path="/venues/:id"
                         render={(props) => (
                             <Venue
+                                id={id}
                                 key={props.match.url}
                                 match={props.match}
                                 history={props.history}

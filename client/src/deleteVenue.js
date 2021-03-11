@@ -16,7 +16,7 @@ export default function DeleteVenue(props) {
         axios
             .post(`/delete-venue`, { venueId })
             .then((res) => {
-                console.log("res del ven", res);
+                // console.log("res del ven", res);
                 window.location.replace("/venues");
                 // props.delVenFn(res.data.rows[0]);
             })
@@ -50,7 +50,3 @@ export default function DeleteVenue(props) {
         </>
     );
 }
-
-// <a onClick={() => toggleDelete()} className="del-link">
-//     Delete Account
-// </a>
