@@ -4,9 +4,11 @@ import { useState } from "react";
 export default function DeleteVenue(props) {
     const [toggleDel, setToggleDel] = useState(false);
 
-    const toggleDelete = () => {
+    const toggleDelVenue = () => {
         setToggleDel(!toggleDel);
     };
+
+    // console.log("props.id", props.id);
 
     const delVen = () => {
         const venueId = props.venId;
@@ -24,7 +26,12 @@ export default function DeleteVenue(props) {
     };
     return (
         <>
-            {toggleDelete && (
+            <img
+                className="icon"
+                src="/images/delete.svg"
+                onClick={() => toggleDelVenue()}
+            />
+            {toggleDel && (
                 <div className="del-con">
                     <p>Are you sure?</p>
                     <div className="">
@@ -32,7 +39,7 @@ export default function DeleteVenue(props) {
                             Yes, Delete
                         </button>
                         <button
-                            onClick={() => props.toggleDelete()}
+                            onClick={() => toggleDelVenue()}
                             className="btn upload"
                         >
                             Cancel

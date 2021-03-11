@@ -34,8 +34,8 @@ export default function EditVenue(props) {
         let lng = props.lng;
         let venId = props.venId;
         let id = props.id;
-        // console.log("ID", props.id);
-        // console.log("venId", props.venId);
+        console.log("ID", props.id);
+        console.log("venId", props.venId);
 
         venueName = venueName.length == 0 ? showLast[0].name : venueName;
         description =
@@ -100,12 +100,12 @@ export default function EditVenue(props) {
         }
     };
 
-    const [delCon, setDelCon] = useState(false);
+    // const [delCon, setDelCon] = useState(false);
 
-    const toggleDelete = () => {
-        console.log("toggle del pressed");
-        setDelCon(!delCon);
-    };
+    // const toggleDelete = () => {
+    //     console.log("toggle del pressed");
+    //     setDelCon(!delCon);
+    // };
 
     return (
         <>
@@ -145,22 +145,31 @@ export default function EditVenue(props) {
                     Submit
                 </button>
 
-                <a
-                    className="del-box"
-                    onClick={() => {
-                        toggleDelete();
-                    }}
-                >
-                    Delete Venue
-                </a>
-
-                {delCon && (
-                    <DeleteVenue
-                        venId={props.venId}
-                        toggleDelete={toggleDelete}
-                    />
-                )}
+                <DeleteVenue
+                    id={props.id}
+                    venId={props.venId}
+                    delCon={props.delCon}
+                />
             </div>
         </>
     );
 }
+
+//  <a
+//      className="del-box"
+//      onClick={() => {
+//          toggleDelete();
+//      }}
+//  >
+//      Delete Venue
+//  </a>;
+
+// {
+//     delCon && (
+//         <DeleteVenue
+//             venId={props.venId}
+//             toggleDelete={toggleDelete}
+//             delCon={props.delCon}
+//         />
+//     );
+// }

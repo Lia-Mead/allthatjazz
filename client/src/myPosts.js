@@ -12,11 +12,11 @@ export default function MyPosts(props) {
             state.allMyPosts && state.allMyPosts.filter((post) => post.id)
     );
 
-    const [editVenue, setEditVenue] = useState(false);
+    // const [editVenue, setEditVenue] = useState(false);
 
-    const toggleEditVenue = () => {
-        setEditVenue(!editVenue);
-    };
+    // const toggleEditVenue = () => {
+    //     setEditVenue(!editVenue);
+    // };
 
     useEffect(() => {
         dispatch(allMyPosts());
@@ -53,17 +53,6 @@ export default function MyPosts(props) {
                                                 .replace("T", " at ")}
                                         </p>
                                         <p>{post.description}</p>
-
-                                        <div className="my-edit-box">
-                                            <button
-                                                onClick={() =>
-                                                    toggleEditVenue()
-                                                }
-                                                className="btn my-edit"
-                                            >
-                                                Edit Venue
-                                            </button>
-                                        </div>
                                     </div>
 
                                     <Link to={`/venues/${post.id}`}>
@@ -87,17 +76,23 @@ export default function MyPosts(props) {
 
 //    {
 //        editVenue && (
-//            <EditVenue
-//                id={props.id}
-//                venId={props.venId}
-//                first={props.first}
-//                last={props.last}
-//                lat={props.lat}
-//                lng={props.lng}
-//                updateNewVen={props.updateNewVen}
-//                editVenue={props.editVenue}
-//                toggleEditVenue={props.toggleEditVenue}
-//                delVenFn={props.delVenFn}
-//            />
+//    <EditVenue
+//        id={props.id}
+//        venId={props.venId}
+//        first={props.first}
+//        last={props.last}
+//        lat={props.lat}
+//        lng={props.lng}
+//        updateNewVen={props.updateNewVen}
+//        editVenue={props.editVenue}
+//        toggleEditVenue={props.toggleEditVenue}
+//        delVenFn={props.delVenFn}
+//    />
 //        );
 //    }
+
+//    <div className="my-edit-box">
+//        <button onClick={() => toggleEditVenue()} className="btn my-edit">
+//            Edit Venue
+//        </button>
+//    </div>;

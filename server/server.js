@@ -369,7 +369,12 @@ app.get(`/api-venue/:id`, (req, res) => {
             // console.log("rows in showvenue", rows);
             db.getInfoUploader(rows[0].user_id)
                 .then(({ rows }) => {
-                    res.json({ success: true, rowVen: rowVen, rowsUser: rows });
+                    res.json({
+                        success: true,
+                        rowVen: rowVen,
+                        rowsUser: rows,
+                        cookie: req.session.userId,
+                    });
                 })
                 .catch((err) => {
                     console.log("error in get info uploader", err);
