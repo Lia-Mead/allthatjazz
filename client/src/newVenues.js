@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { newThreeVens } from "./actions";
 
-export default function NewVenues(props) {
+export default function NewVenues() {
     const dispatch = useDispatch();
 
     const showNewVens = useSelector(

@@ -20,7 +20,7 @@ export async function newThreeVens() {
 
 export async function myLastV() {
     const { data } = await axios.get("/api-last-ven");
-    console.log("rowVen: rowVen, rowUser: rows: ", data.rowVen, data.rowUser);
+    // console.log("rowVen: rowVen, rowUser: rows: ", data.rowVen, data.rowUser);
     // console.log("data in axios all venues: ", data);
     return {
         type: "LAST_VEN",

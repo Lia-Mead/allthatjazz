@@ -156,7 +156,7 @@ p {
 }
 
 .menu {
-    font-size: 2em;
+    font-size: 1.8em;
     color: #f9815b;
     font-weight: 100;
     z-index: 300;
@@ -294,7 +294,7 @@ nav ul li a {
 }
 
 .logo {
-    width: 60%;
+    width: 42%;
     padding: 20px;
 }
 
@@ -317,9 +317,9 @@ nav ul li a {
     min-height: 100vh;
 }
 
-.maps {
+/* .maps {
     margin: 50px 0 0;
-}
+} */
 
 .add-venue {
     display: flex;
@@ -767,7 +767,7 @@ footer > div {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 40px 0;
+    /* margin: 40px 0; */
 }
 
 .my-edit-box {
@@ -1138,9 +1138,9 @@ footer > div {
         align-self: flex-end;
     }
 
-    .maps {
+    /* .maps {
         margin: 0;
-    }
+    } */
 
     .ven-text {
         width: 100%;

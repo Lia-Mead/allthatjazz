@@ -23,7 +23,7 @@ export default function Venue(props) {
     const [userId, setUserId] = useState("");
     const [error, setError] = useState(false);
 
-    console.log("p.id in venue", props.id);
+    // console.log("p.id in venue", props.id);
 
     useEffect(() => {
         // dispatch(myLastV(res.data.rows[0]));
