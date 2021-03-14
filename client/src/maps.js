@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 // import axios from "./Axios";
 import { Link } from "react-router-dom";
 // import PlacesAutoComplete from "./placesAutoComplete";
-// import mapstyle from "./mapstyle";
+// import mapStyles from "./mapstyles";
 
 import { useSelector, useDispatch } from "react-redux";
 import { showAllVenues } from "./actions";
@@ -97,7 +97,7 @@ function Maps(props) {
     // };
 
     let options = {
-        // styles: mapStyle,
+        // styles: mapStyles,
         disableDefaultUI: true,
         zoomControl: true,
         enableHighAccuracy: true,
