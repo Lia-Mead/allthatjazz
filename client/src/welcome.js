@@ -12,6 +12,7 @@ export default function Welcome() {
                     <img
                         className="logo"
                         src="/logo-w.svg"
+                        Fv
                         alt="all-that-jazz-logo"
                     />
                     <h1>Welcome</h1>
