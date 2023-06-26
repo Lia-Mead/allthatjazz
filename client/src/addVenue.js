@@ -4,7 +4,7 @@ import axios from "./Axios";
 import { addVen, myLastV } from "./actions";
 
 export default function AddVenue(props) {
-    // console.log("props in add venue", props);
+    console.log("props in add venue", props);
     // console.log("pinLocation", props.pinLocation);
     // const inputRef = useRef("");
     const dispatch = useDispatch();
