@@ -1,14 +1,12 @@
 const spicedPg = require("spiced-pg");
 
-let db = spicedPg(process.env.DATABASE_URL);
-
-// if (process.env.DATABASE_URL) {
-//     db = spicedPg(process.env.DATABASE_URL);
-// }
-// else {
-//     const { dbUsername, dbPass } = require("../secrets.json");
-//     db = spicedPg(`postgres:${dbUsername}:${dbPass}@localhost:5432/jazz`);
-// }
+let db;
+if (process.env.POSTGRES_URL) {
+    db = spicedPg(process.env.POSTGRES_URL);
+} else {
+    const { dbUsername, dbPass } = require("../secrets.json");
+    db = spicedPg(`postgres:${dbUsername}:${dbPass}@localhost:5432/jazz`);
+}
 
 module.exports.insertUserData = (first, last, email, hashedPw) => {
     const q = `INSERT INTO users (first, last, email, password)
