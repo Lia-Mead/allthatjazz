@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { socket } from "./socket";
 
 export default function Comments(props) {
-    // console.log("props.id in comments", props.id);
     const inputRef = useRef("");
     let scrollRef = useRef();
 
