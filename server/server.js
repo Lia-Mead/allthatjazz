@@ -61,10 +61,13 @@ app.use(function (req, res, next) {
 });
 
 app.get("/welcome", function (req, res) {
+    console.log("/welcome req.session.userId", req.session);
+    console.log("/welcome req.session.userId", req.session.userId);
+
     if (req.session.userId) {
         res.redirect("/");
     } else {
-        res.sendFile(path.join(__dirname, "..", "client/public", "index.html"));
+        res.sendFile(path.join(__dirname, "../client", "public", "index.html"));
     }
 });
 
@@ -509,7 +512,7 @@ app.get("*", (req, res) => {
     if (!req.session.userId && req.url != "/welcome") {
         res.redirect("/welcome");
     } else {
-        res.sendFile(path.join(__dirname, "..", "client/public", "index.html"));
+        res.sendFile(path.join(__dirname, "../client", "public", "index.html"));
         // res.sendFile(path.join(__dirname, "..", "client", "index.html"));
     }
 });
