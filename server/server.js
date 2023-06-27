@@ -513,7 +513,6 @@ app.get("*", (req, res) => {
         res.redirect("/welcome");
     } else {
         res.sendFile(path.join(__dirname, "../client", "public", "index.html"));
-        // res.sendFile(path.join(__dirname, "..", "client", "index.html"));
     }
 });
 
